@@ -1,0 +1,202 @@
+%Referência de Modelo para a FAI: https://www.fai-mg.br/biblio/images/publicacoes/modelo/ModeloArtigoCientifico.pdf %
+
+\usepackage[brazil]{babel}  % Usa o idioma português (Brasil) para definir as convenções de idioma, como a separação de sílabas e tradução de termos.
+\usepackage[utf8]{inputenc}  % Define a codificação de entrada como UTF-8 para permitir caracteres acentuados corretamente.
+\usepackage[T1]{fontenc}  % Define a codificação de saída de fontes como T1, permitindo o uso correto de caracteres especiais.
+\usepackage{times}     % Fonte Times New Roman
+\usepackage{parskip}   % Remove a identação dos parágrafos
+\usepackage{geometry}  % Permite personalizar as margens e o layout da página.
+\usepackage{graphicx}  % Permite inserir gráficos, imagens e ajustar o tamanho deles.
+\usepackage{titlesec}  % Fornece comandos para personalizar o formato dos títulos das seções.
+\usepackage{fancyhdr}  % Permite personalizar os cabeçalhos e rodapés do documento.
+\usepackage{setspace}  % Controla o espaçamento entre linhas no documento (aqui é usado para espaçamento de 1,5 linha).
+\usepackage{csquotes}  % Fornece suporte para citações, garantindo que o estilo de aspas seja correto em diferentes idiomas.
+\usepackage{ragged2e}  % Fornece comandos para justificar ou ajustar o alinhamento de texto.
+\usepackage{lipsum}    % Para gerar texto Lorem Ipsum
+\usepackage{enumitem} % Customizar alíneas
+
+% Define a numeração da página
+\fancypagestyle{numbered}{
+    \fancyhf{}
+    \fancyhead[R]{{\fontsize{10pt}{12pt}\selectfont\thepage}}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% Quanto à separação entre títulos, subtítulos e texto, observa-se o seguinte:
+\let\oldsection\section
+\renewcommand{\section}[1]{%
+    \clearpage % os títulos de capítulos estão sempre no início de uma nova página;
+    \thispagestyle{empty} % No page number on this page
+    \oldsection{#1}
+}
+% seções primárias: os títulos dessas seções devem ser em caixa alta, fonte 12 e em negrito;
+\titleformat{\section}{\normalfont\large\bfseries}{\thesection}{0.3em}{\MakeUppercase} 
+
+\let\oldsubsection\subsection
+\renewcommand{\subsection}[1]{%
+    \par\vspace{\parskip}% Add paragraph break before
+    \oldsubsection{#1}
+    \par\vspace{\parskip} % separação entre o texto e os subtítulos: pula-se uma linha em branco.
+}
+% seções secundárias: os títulos dessas seções devem ser iguais aos das primárias, porém sem negrito;
+\titleformat{\subsection}{\normalfont}{\thesubsection}{0.3em}{\MakeUppercase} 
+
+% Define spacing for subsubsection
+\let\oldsubsubsection\subsubsection
+\renewcommand{\subsubsection}[1]{%
+    \par\vspace{\parskip}% Add paragraph break before
+    \oldsubsubsection{#1}
+    \par\vspace{\parskip}% Add paragraph break after
+}
+% seções terciárias: os títulos dessas seções devem ser em negrito, somente com a primeira letra maiúscula;
+\titleformat{\subsubsection}{\normalfont\bfseries}{\thesubsubsection}{0.3em}{}
+
+\geometry{
+    left=3cm,
+    right=2cm,
+    top=3cm,
+    bottom=2cm,
+    headsep=35pt,
+    footskip=0pt
+    % , showframe
+} % Define as margens da página (esquerda = 3cm, direita = 2cm, topo = 3cm, fundo = 2cm)
+
+\setlength{\parindent}{0pt}  % Paragráfos sem identação, conforme modelo da FAI
+% \onehalfspacing  % Espaçamento de 1.5 entre linhas
+\setstretch{1.5}  % This also sets 1.5 line spacing
+\setlength{\parskip}{12pt}  % Espaçament ode 12pt entre paragrafos
+
+% Configuração das alíneas
+\newlist{alphaitemize}{enumerate}{1}
+\setlist[alphaitemize,1]{
+    label=\alph*), % c) as alíneas devem ser indicadas alfabeticamente, em letra minúscula, seguida de parêntese fechado. Utilizam-se letras dobradas, quando esgotadas as letras do alfabeto;
+    leftmargin=1cm,        % Total indentation from current margin
+    itemindent=0pt,        % No additional item indentation
+    labelsep=0pt,          % No space between label and text
+    labelwidth=13pt,       % d) as letras indicativas das alíneas devem apresentar recuo de 0,5 cm em relação à margem esquerda;
+    itemsep=0pt,
+    parsep=0pt,
+    topsep=0pt,
+    partopsep=0pt,
+    align=left,
+    before={\setlength{\parskip}{0pt}},  % h) Entre as alíneas, inclusive a primeira delas, os parágrafos são formatados com zero ponto ante e zero depois
+    after={\setlength{\parskip}{12pt}}   % i) O próximo parágrafo, após a última alínea, volta a ter formatação normal com 12 pontos antes e 12 depois.
+}
+
+\usepackage[sorting=nyt]{biblatex}  % Carrega o pacote BibLaTeX para bibliografia e define o estilo de ordenação como "nyt" (nome, ano, título).
+\renewcommand*{\bibfont}{\raggedright}  % Alinha a bibliografia à esquerda (de forma justificada).
+
+% Redefine o título da seção de referências para maiúsculas e centralizado
+\defbibheading{bibliography}{%
+  \begin{center}
+    \textbf{\MakeUppercase{Referências}}
+  \end{center}
+}
+
+% Customização do Sumário ----------------------------------------------------------
+\usepackage{tocloft}
+\usepackage{xstring}
+\usepackage{textcase}
+
+\renewcommand{\contentsname}{SUMÁRIO}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\setlength{\cftbeforetoctitleskip}{0pt}
+\setlength{\cftaftertoctitleskip}{0.4cm}
+\renewcommand{\cfttoctitlefont}{\hfil\bfseries}
+
+
+\renewcommand{\cfttoctitlefont}{\hfil\rmfamily\bfseries\MakeUppercase} % Título maiúsculo
+\renewcommand{\cftdotsep}{0.1} % Adiciona mais pontos. Menor numero = Mais pontos
+\setlength{\cftbeforesecskip}{0em} % Espaço entre as linhas de seção
+\setlength{\cftbeforesubsecskip}{0em} % Espaço entre as linhas de subseção
+\setlength{\cftbeforesubsubsecskip}{0em} % Espaço entre as linhas de subsubseção
+\setlength{\cftsecindent}{0em} % Remove identação das seções
+\setlength{\cftsubsecindent}{0em}   % Remove identação das subseções
+\setlength{\cftsubsubsecindent}{0em} % Remove identação das subsubseções
+
+\setlength{\cftsecnumwidth}{1.2em} % Espaço entre número da seção e texto
+\setlength{\cftsubsecnumwidth}{1.5em} % Espaço entre número da subseção e texto
+\setlength{\cftsubsubsecnumwidth}{2.3em} % Espaço entre número da subsubseção e texto
+
+% Seção, subseção e subsubseção em maiúsculo no Sumário
+\makeatletter
+\let\oldcontentsline\contentsline
+\renewcommand{\contentsline}[4]{%
+  \expandafter\ifx\csname l@#1\endcsname\l@section
+    \oldcontentsline{#1}{\MakeUppercase{#2}}{#3}{#4}%
+  \else
+    \expandafter\ifx\csname l@#1\endcsname\l@subsection
+      \oldcontentsline{#1}{\MakeUppercase{#2}}{#3}{#4}%
+    \else
+      \expandafter\ifx\csname l@#1\endcsname\l@subsubsection
+        \oldcontentsline{#1}{\MakeUppercase{#2}}{#3}{#4}%
+      \else
+        \oldcontentsline{#1}{#2}{#3}{#4}%
+      \fi
+    \fi
+  \fi
+}
+\makeatother
+% ------------------------------------------------------------------------------------
+
+% Funções customizadas para criar e imprimir autores ---------------------------------
+\usepackage{pgffor}
+
+\newcounter{authorcount} % Counter para autores
+
+% Comando para adicionar novos autores
+\newcommand{\AddAuthor}[2]{% #1 = nome, #2 = email
+    \stepcounter{authorcount}
+    \expandafter\def\csname author\theauthorcount\endcsname{#1}
+    \expandafter\def\csname email\theauthorcount\endcsname{#2}
+}
+
+% Comando para imprimir os autores
+\newcommand{\PrintAuthorsLombada}{%
+    \foreach \i in {1,...,\theauthorcount} {%
+        \textbf{\fontsize{12}{14}\selectfont\MakeUppercase{\csname author\i\endcsname}} \\
+    }%
+}
+% ------------------------------------------------------------------------------------
+
+% Funções para Citação Direta ---------------------------------
+\newenvironment{citacaodireta}
+{\par\addvspace{\baselineskip}% Add exactly one line space before
+ \begingroup
+ \list{}{\leftmargin=4cm
+         \rightmargin=0pt
+         \parsep=0pt
+         \itemsep=0pt
+         \topsep=0pt}
+ \item\relax
+ \singlespacing
+ \fontsize{10}{12}\selectfont
+ \justifying}
+{\endlist
+ \endgroup
+ \par\addvspace{\baselineskip}}% Add exactly one line space after
+
+% Usar:
+% \begin{citacaodireta}
+% ...
+% \end{citacaodireta}
+% ------------------------------------------------------------------------------------
+
+% Customização da Lista de Figuras ---------------------------------
+\usepackage[labelfont=bf]{caption}
+\usepackage[figure]{totalcount} % Add this package
+\makeatletter
+\renewcommand{\@cftmakeloftitle}{} % Completely remove title generation
+\makeatother
+% Configure the figure entries
+\renewcommand{\cftfigpresnum}{FIGURA }
+\setlength{\cftfignumwidth}{2.2cm} % Reduce this width to avoid line breaking
+\setlength{\cftfigindent}{0pt} % No indentation
+% Remove extra spacing between number and title
+\renewcommand{\cftfigpresnum}{FIGURA }
+\renewcommand{\cftfigaftersnum}{ - }
+% ------------------------------------------------------------------------------------
+
+\addbibresource{references.bib}  % Adiciona o arquivo de bibliografia (references.bib) como fonte para as referências bibliográficas.

@@ -1,0 +1,231 @@
+% Definições por grupos de elementos textuais
+\newenvironment{ElementosExternos}{
+    \pagenumbering{roman}
+    \pagestyle{numbered}
+}{}
+
+\newenvironment{ElementosPreTextuais}{
+    \pagestyle{numbered}
+}{}
+
+\newenvironment{ElementosTextuais}{
+    \clearpage
+    \setcounter{savepage}{\value{page}} % Save current page number
+    \pagenumbering{arabic}
+    \setcounter{page}{\value{savepage}} % Restore the page number
+    \pagestyle{numbered}
+}{
+    \newpage
+}
+
+\newenvironment{ElementosPosTextuais}{
+    \clearpage
+    \pagestyle{numbered}
+}{}
+
+% Definições por tipos de conteúdo
+\newenvironment{Capa}{
+    \setcounter{page}{1}
+    \thispagestyle{empty} % Remove numeração da primeira página
+    \begin{center}
+}{
+    \textbf{\theinstitution}
+    
+    \vfill
+    
+    \textbf{\fontsize{12}{14}\selectfont\MakeUppercase{\thetitle}}
+    
+    \vfill
+    \textbf{\theplace}\\
+    \textbf{\theyear}
+    \end{center}
+    \newpage
+}
+
+\newenvironment{Lombada}{
+    \begin{center}
+}{
+    \textbf{\theinstitution}
+    
+    \vfill
+    
+    \begin{center}
+        \PrintAuthorsLombada
+    \end{center}
+    
+    \vfill
+    
+    \textbf{\fontsize{12}{14}\selectfont\MakeUppercase{\thetitle}}
+    
+    \vfill
+    
+    \textbf{\theplace}\\
+    \textbf{\theyear}
+    \end{center}
+    \newpage
+}
+
+\newenvironment{FolhaDeRosto}{
+    
+}{}
+
+\newenvironment{Errata}{
+    
+}{}
+
+\newenvironment{FolhaDeAprovacao}{
+    
+}{}
+
+\newenvironment{Dedicatoria}{
+    
+}{}
+
+\newenvironment{Agradecimentos}{
+    \begin{center}
+    \textbf{AGRADECIMENTOS}
+    \end{center}
+    \noindent
+}{
+    \newpage
+}
+
+\newenvironment{Epigrafe}{
+    \vspace*{\fill}
+    \begin{flushright}
+    \begin{minipage}{0.5\textwidth}
+    \raggedleft
+    \singlespacing
+    \justifying
+}{
+    \end{minipage}
+    \end{flushright}
+    \vspace{1cm}
+    
+    \newpage
+}
+
+\newenvironment{Resumo}{
+    \begin{center}
+    \textbf{RESUMO}
+    \end{center}
+    
+    \justifying
+    \begin{singlespace}
+    \theabstract
+    \end{singlespace}
+    
+    \textbf{Palavras-chave:} \thekeywords
+    
+    \vspace{1cm}
+    \begin{center}
+    \textbf{ABSTRACT}
+    \end{center}
+    
+    \justifying
+    \begin{singlespace}
+    \theabstractenglish
+    \end{singlespace}
+    
+    \textbf{Keywords:} \thekeywordsenglish
+}{
+    \newpage
+}
+
+\newenvironment{ListaDeIlustracoes}{
+    
+}{}
+
+\newcommand{\ListaDeFiguras}{%
+    \iftotalfigures
+        \clearpage
+        \begin{center}
+        \textbf{LISTA DE ILUSTRAÇÕES}
+        \vspace{0.3cm}
+        \end{center}
+        \listoffigures
+        \clearpage
+    \fi
+}
+
+\newenvironment{ListaDeTabelas}{
+    
+}{}
+
+% Create a counter for siglas
+\newcounter{siglacount}
+
+% Create a temporary storage for siglas
+\newtoks\siglacontent
+
+% Modified sigla command that increments counter and stores content
+\newcommand{\sigla}[2]{%
+  \stepcounter{siglacount}%
+  \siglacontent\expandafter{\the\siglacontent #1 \> - \quad #2 \\}%
+}
+
+% Modified environment that checks the counter
+\newenvironment{ListaAbrevESiglas}{%
+  % Reset counter and content at the beginning
+  \setcounter{siglacount}{0}%
+  \siglacontent{}%
+}{%
+  % Only display if more than 9 siglas
+  \ifnum\value{siglacount}>9
+    \clearpage
+    \begin{center}
+    \textbf{LISTA DE ABREVIATURAS E SIGLAS}
+    \end{center}
+    \vspace{0.5cm}
+    \begin{tabbing}
+    \hspace{2cm} \= \kill % Set tab stop at 2.5cm
+    \the\siglacontent
+    \end{tabbing}
+    \clearpage
+  \fi
+}
+
+\newenvironment{ListaDeSimbolos}{
+    
+}{}
+
+\newenvironment{Sumario}{
+    \clearpage
+    \tableofcontents
+    \thispagestyle{numbered}
+    \clearpage
+}{}
+
+\newenvironment{Introducao}{
+    
+}{}
+
+\newenvironment{Desenvolvimento}{
+    
+}{}
+
+\newenvironment{Conclusao}{
+    
+}{}
+
+\newenvironment{Referencias}{
+    \thispagestyle{empty} % Remove numeração da primeira página
+}{
+    \printbibliography
+}
+
+\newenvironment{Glossario}{
+    
+}{}
+
+\newenvironment{Apendice}{
+    
+}{}
+
+\newenvironment{Anexo}{
+    
+}{}
+
+\newenvironment{Indice}{
+    
+}{}

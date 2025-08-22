@@ -1,0 +1,230 @@
+\documentclass[a4paper,12pt]{article}  % Tipo de documento como artigo, com tamanho de fonte 12pt e formato A4
+\input{preamble} % Definições de formato e estilo do documento seguindo diretrizes da FAI
+\input{metadata} % Definições de Título, instituição, autores...
+\input{definitions} % Formatação das páginas
+
+% ============================================================================
+% RESUMO - EDITE O TEXTO ABAIXO ENTRE {}
+% ============================================================================
+\newcommand{\theabstract}{
+Esta é a oitava edição do manual “Diretrizes para elaboração de trabalhos científicos: padrão ABNT e adaptação às normas institucionais da FAI”, onde se encontram as normas e os procedimentos para a produção acadêmica da Instituição. Este manual contém um conjunto de recomendações necessárias à elaboração de textos acadêmicos de acordo com as normas da
+
+Associação Brasileira de Normas Técnicas (ABNT). Para aqueles itens que as normas não estabelecem critérios, estabeleceram-se procedimentos próprios e pertinentes à comunidade acadêmica da FAI. Em suas edições anteriores, contou-se com a colaboração dos professores e das bibliotecárias da FAI. As particularidades de cada área do conhecimento presentes nos vários cursos, cada qual com seu estilo, foram trabalhadas para se obter a concisão de ideias e estabelecer o padrão adotado pela FAI como um todo.
+}
+
+% ============================================================================
+% PALAVRAS-CHAVE - EDITE O TEXTO ABAIXO ENTRE {} (separe com ponto e espaço)
+% ============================================================================
+\newcommand{\thekeywords}{
+Normalização. Procedimentos. Diretrizes. ABNT.
+}
+
+% ============================================================================
+% RESUMO EM INGLÊS - EDITE O TEXTO ABAIXO ENTRE {}
+% ============================================================================
+\newcommand{\theabstractenglish}{
+This is the eighth edition of the manual “Guidelines for the preparation of scientific papers: ABNT standard and adaptation to FAI institutional norms”, which contains the norms and procedures for the Institution's academic production. This manual contains a set of recommendations necessary for the preparation of academic texts in accordance with the norms of the Associação Brasileira de Normas Técnicas (ABNT). For those items that the norms do not establish criteria, proper procedures were established and pertinent to the academic community of the FAI. In previous editions, FAI teachers and librarians collaborated. The particularities of each area of knowledge present in the various courses, each with its own style, were worked on to obtain concise ideas and establish the standard adopted by the FAI as a whole.
+}
+% ============================================================================
+% PALAVRAS-CHAVE EM INGLÊS - EDITE O TEXTO ABAIXO ENTRE {} (separe com ponto e espaço)
+% ============================================================================
+\newcommand{\thekeywordsenglish}{
+Standardization. Procedures. Guidelines. ABNT.
+}
+
+\begin{document}
+\newcounter{savepage}
+
+% ============================================================================
+% (NÃO EDITAR) CONFIGURAÇÃO DOS ELEMENTOS EXTERNOS SEGUNDO DIRETRIZES DA FAI
+% ============================================================================
+\begin{ElementosExternos}
+\begin{Capa} \end{Capa}
+\begin{Lombada} \end{Lombada}
+\end{ElementosExternos}
+% =============================================================================
+
+% ============================================================================
+% (NÃO EDITAR) CONFIGURAÇÃO DOS ELEMENTOS PRÉ-TEXTUAIS SEGUNDO DIRETRIZES DA FAI
+% ============================================================================
+\begin{ElementosPreTextuais}
+
+\begin{FolhaDeRosto} % --------------------------------------------------------
+\end{FolhaDeRosto}
+
+\begin{Errata} % --------------------------------------------------------------
+\end{Errata}
+
+\begin{FolhaDeAprovacao} % ----------------------------------------------------
+\end{FolhaDeAprovacao}
+
+\begin{Dedicatoria} % ---------------------------------------------------------
+\end{Dedicatoria}
+
+% ============================================================================
+% AGRADECIMENTOS - EDITE O TEXTO ABAIXO (Entre aspas, com referência ao autor)
+% ============================================================================
+\begin{Agradecimentos} % -----------------------------------------------------
+Aos alunos, professores, colaboradores e revisores pelo apoio e pelas discussões que muito enriqueceram e contribuíram para a realização deste trabalho.
+
+Agradecimento especial ao acadêmico do I e II períodos de 2017, Michel Liberato de Sousa, do Curso de Administração, que revisou todo o documento no final daquele ano, por iniciativa própria, baseado no conteúdo nele contido e no aprendizado obtido na disciplina de Metodologia da Pesquisa Científica, cursada no I período.
+\end{Agradecimentos}
+
+% ============================================================================
+% EPÍGRAFE - EDITE O TEXTO ABAIXO (Entre aspas, com referência ao autor)
+% ============================================================================
+\begin{Epigrafe} % -----------------------------------------------------------
+“O cientista não só tem que fazer ciência, mas também escrevê-la” (DAY, 1990).
+\end{Epigrafe}
+
+\begin{Resumo} % -------------------------------------------------------------
+\end{Resumo}
+
+\begin{ListaDeIlustracoes} % -------------------------------------------------
+\end{ListaDeIlustracoes}
+
+% ============================================================================
+% (NÃO EDITAR) LISTA DE FIGURAS. SOMENTE DISPONÍVEL CASO HAJA FIGURAS
+% ============================================================================
+\ListaDeFiguras
+
+\begin{ListaDeTabelas} % -----------------------------------------------------
+\end{ListaDeTabelas}
+
+% ============================================================================
+% ABREVIAÇÕES - ADICIONE ABREVIAÇÕES ABAIXO NO FORMAT \sigla{ABREVIAÇÃO}{DESCRIÇÃO}
+%    Só irá mostrar a página caso haja mais que 9 siglas
+% ============================================================================
+\begin{ListaAbrevESiglas} % ---------------------------------------------------
+\sigla{ABNT}{Associação Brasileira de Normas Técnicas}
+\sigla{FAI}{Centro de Ensino Superior em Gestão, Tecnologia e Educação}
+\sigla{IBGE}{Instituto Brasileiro de Geografia e Estatística}
+\sigla{ISBN}{Número Internacional Normalizado para Livros}
+\sigla{ISSN}{Número Internacional Normalizado para Publicações Seriadas}
+\sigla{JSP}{Java Server Pages}
+\sigla{NBR}{Norma Brasileira}
+\sigla{ORG}{ Organização}
+\sigla{PHP}{Hypertext Pre-processor}
+\sigla{TCC}{Trabalho de Conclusão de Curso}
+\end{ListaAbrevESiglas}
+
+\begin{ListaDeSimbolos} % ------------------------------------------------------
+\end{ListaDeSimbolos}
+
+\begin{Sumario} % --------------------------------------------------------------
+\end{Sumario}
+
+\end{ElementosPreTextuais}
+% ==================================================================================
+
+% ============================================================================
+% INTRODUÇÃO - EDITE O TEXTO ABAIXO
+% ============================================================================
+\begin{ElementosTextuais}
+\begin{Introducao} % ---------------------------------------------------------------
+\section{Introdução}
+A FAI - Centro de Ensino Superior em Gestão, Tecnologia e Educação (FAI), por meio da sua biblioteca, disponibiliza este manual para normalização de trabalhos acadêmicos para os seus alunos, professores e funcionários. Este material é essencial ao uso das normas técnicas para uma apresentação correta e melhor compreensão da leitura, uma vez que um trabalho de nível superior, ou de pós-graduação, é analisado por uma banca examinadora composta por profissionais diversos, de elevado nível de conhecimentos sobre o assunto.
+
+A normalização adotada neste manual tem como base, as normas de documentação da Associação Brasileira de Normas Técnicas (ABNT), tais como:
+\begin{alphaitemize}
+    \item BNT NBR 6023:2002 - Informação e documentação - Referências - Elaboração;
+    \item ABNT NBR 6024:2012 - Informação e documentação - Numeração Progressiva das
+seções de um documento escrito - apresentação;
+    \item ABNT NBR 6027:2012 - Informação e documentação - Sumário - apresentação;
+    \item ABNT NBR 6028:2003 - Informação e documentação;
+    \item ABNT NBR 6034:2004 - Informação e documentação - Índice – apresentação;
+    \item ABNT NBR 10520:2002 - Informação e documentação - Citação em documentos -
+apresentação;
+    \item ABNT NBR 12225:2004 - Informação e documentação - Lombada – apresentação;
+    \item ABNT NBR 14724:2011 - Informação e documentação - Trabalhos Acadêmicos -
+apresentação.
+\end{alphaitemize}
+
+Devido à atualização dos padrões nacionais e internacionais, fez-se necessária mais uma revisão no manual, que por sua vez, encontra-se em sua 8ª edição. A apresentação gráfica dos textos científicos é regulamentada pela ABNT, pois segue o padrão básico internacional, o qual organiza e permite a identificação de formas e origens de textos científicos em todo o mundo (SANTOS, 2001). É importante ressaltar que em alguns casos a ABNT apresenta em suas normas algumas regras que são opcionais, permitindo que a instituição defina seus próprios critérios. Por isso, a FAI decidiu pela utilização de alguns critérios mencionados neste manual para promover a padronização e facilitar a compreensão da comunidade acadêmica acerca da realização de seus trabalhos acadêmico/científicos.
+
+\end{Introducao}
+
+% ============================================================================
+% DESENVOLVIMENTO- EDITE O TEXTO ABAIXO. É O CONTEÚDO PRINCIPAL DO TRABALHO
+% ============================================================================
+\begin{Desenvolvimento} % ------------------------------------------------------------------
+
+\section{Trabalhos Acadêmicos}
+A NBR 14724 (ABNT, 2011) especifica os princípios gerais para a elaboração de trabalhos acadêmicos (teses, dissertações, trabalhos de conclusão de curso, monografias e outros trabalhos similares), visando sua apresentação à Instituição de Ensino, a bancas e comissões examinadoras compostas por professores, especialistas, designados e/ou outros.
+
+\subsection{Definições}
+Seguem as definições da NBR 14724 (ABNT, 2011) e da NBR 6022 (ABNT, 2003), para trabalhos acadêmicos e artigos:
+
+\begin{alphaitemize}
+    \item Dissertação: documento que apresenta o resultado de um trabalho experimental ou exposição de um estudo científico retrospectivo, de tema único e bem delimitado em sua extensão, com o objetivo de reunir, analisar e interpretar informações. Deve evidenciar o conhecimento da literatura existente sobre o assunto e a capacidade de sistematização do candidato. É feito sob a coordenação de um orientador (Doutor), visando à obtenção do título de mestre.
+    \item Tese: documento que representa o resultado de um trabalho experimental ou exposição de um estudo científico de tema único e bem delimitado. Deve ser elaborado com base em investigação original, constituindo-se em real contribuição para a especialidade em questão. É feito sob a coordenação de um orientador (Doutor) e visa a obtenção do título de doutor, ou similar.
+    \item Trabalho de conclusão de graduação, trabalho de graduação interdisciplinar, trabalho de conclusão de curso de especialização e/ou aperfeiçoamento: documento que apresenta o resultado de estudo, devendo expressar conhecimento do assunto escolhido, que deve ser obrigatoriamente emanado da disciplina, módulo, estudo independente, curso, programa ou outros ministrados. Deve ser feito sob a coordenação de um Professor orientador.
+    \item Artigo científico: parte de uma publicação com autoria declarada, que apresenta e discute ideias, métodos, técnicas, processos e resultados nas diversas áreas do conhecimento.
+\end{alphaitemize}
+
+Santos (2001, p. 37) conceitua monografia como:
+\begin{citacaodireta}
+Um texto de primeira mão resultante de pesquisa científica e que contém a identificação, o posicionamento, o tratamento, e o fechamento competente de um tema/problema que essencialmente analisa, em que o objeto (o tema, o problema é geralmente bem delimitado em extensão, a monografia permite o aprofundamento do estudo). Fundamenta-se na organização e na interpretação analítica e avaliativa de dados, conforme objetivos (linhas de raciocínio) pré-estabelecidos. A matéria prima do raciocínio são os dados, que basicamente se constituem de axiomas científicos (verdadeiros aceitos por diversas ciências), da autoridade de autores consagrados, com suas ilustrações, testemunhos e, até mesmo, da sua experiência pessoal coerente de pesquisador. O raciocínio é desenvolvido de forma indutiva (parte-se de experiências e observações particulares para se chegar a um princípio geral), ou de forma dedutiva (parte-se de um principio geral para verificá-la em casos particulares).
+\end{citacaodireta}
+
+Segundo França e Vasconcelos (2008) a monografia, por ser uma primeira experiência de relato científico, constitui-se numa preparação metodologia para futuras investigações. Conforme Salomon (1979, p. 36),
+
+\begin{citacaodireta}
+O trabalho científico é identificado, frequentemente, com a investigação científica ou com o seu resultado, quando este é comunicado. Perfeitamente válida a identificação, uma vez que dá à investigação o seu devido lugar e, ao mesmo tempo, mostra a importância da comunicação no processo de elaboração dos trabalhos científicos.
+\end{citacaodireta}
+
+Definidos, de forma bastante resumida, os vários tipos de trabalhos científicos existentes, passa- se às informações sobre a estrutura de composição desses documentos.
+
+\subsection{Estrutura}
+A estrutura de trabalhos acadêmicos (ou científicos) tais como relatórios de estágio, artigos e monografias, compreende os seguintes elementos: parte externa, pré-textuais, textuais e pós- textuais, conforme mostra a Figura \ref{fig:EstruturaTrabalhoAcademico}.
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=1\textwidth]{figuras/Estrutura de trabalho acadêmico.png}
+  \caption{Estrutura de trabalhos acadêmicos, monografias e relatórios de estágio}
+  \vspace{0em}
+  \begin{minipage}{\textwidth}
+    FONTE: O autor
+  \end{minipage}
+  \label{fig:EstruturaTrabalhoAcademico}
+\end{figure}
+
+
+O Quadro 1 especifica os elementos em função do tipo de trabalho. Note-se que nas partes pré- textuais e pós-textuais há elementos de inclusão obrigatória, opcional e condicional (opcional, mas com indicação de inclusão em determinados casos). Já as partes textuais são obrigatórias para todos os tipos de documentos acadêmico-científicos.
+
+
+
+
+\end{Desenvolvimento}
+
+\begin{Conclusao} % ------------------------------------------------------------------
+
+\section{Conclusão}
+...
+
+\end{Conclusao}
+
+% ===================================================================================
+\end{ElementosTextuais}
+
+% ====== ELEMENTOS PÓS-TEXTUAIS ===================================================
+\begin{ElementosPosTextuais}
+\begin{Referencias} % ----------------------------------------------------------------
+\end{Referencias}
+
+\begin{Glossario} % ----------------------------------------------------------------
+\end{Glossario}
+
+\begin{Apendice} % -----------------------------------------------------------------
+\end{Apendice}
+
+\begin{Anexo} % --------------------------------------------------------------------
+\end{Anexo}
+
+\begin{Indice} % --------------------------------------------------------------------
+\end{Indice}
+
+% ===================================================================================
+\end{ElementosPosTextuais}
+
+\end{document}

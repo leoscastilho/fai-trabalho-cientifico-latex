@@ -1,23 +1,23 @@
 # Fdb version 4
-["biber /Users/leocastilho/Downloads/Diretrizes_Elaboração_de_Trabalho_Científico_da_FAI/build/main"] 1756202329.4664 "/Users/leocastilho/Downloads/Diretrizes_Elaboração_de_Trabalho_Científico_da_FAI/build/main.bcf" "/Users/leocastilho/Downloads/Diretrizes_Elaboração_de_Trabalho_Científico_da_FAI/build/main.bbl" "/Users/leocastilho/Downloads/Diretrizes_Elaboração_de_Trabalho_Científico_da_FAI/build/main" 1756202588.10711 0
-  "/Users/leocastilho/Downloads/Diretrizes_Elaboração_de_Trabalho_Científico_da_FAI/build/main.bcf" 1756202587.91017 108554 b3070663adeb5482b02ff76f01f4ce77 "xelatex"
+["biber /Users/leocastilho/Downloads/Diretrizes_Elaboração_de_Trabalho_Científico_da_FAI/build/main"] 1756202329.4664 "/Users/leocastilho/Downloads/Diretrizes_Elaboração_de_Trabalho_Científico_da_FAI/build/main.bcf" "/Users/leocastilho/Downloads/Diretrizes_Elaboração_de_Trabalho_Científico_da_FAI/build/main.bbl" "/Users/leocastilho/Downloads/Diretrizes_Elaboração_de_Trabalho_Científico_da_FAI/build/main" 1756202809.43552 0
+  "/Users/leocastilho/Downloads/Diretrizes_Elaboração_de_Trabalho_Científico_da_FAI/build/main.bcf" 1756202809.23745 108554 b3070663adeb5482b02ff76f01f4ce77 "xelatex"
   (generated)
   "/Users/leocastilho/Downloads/Diretrizes_Elaboração_de_Trabalho_Científico_da_FAI/build/main.bbl"
   "/Users/leocastilho/Downloads/Diretrizes_Elaboração_de_Trabalho_Científico_da_FAI/build/main.blg"
   (rewritten before read)
-["xdvipdfmx"] 1756202587.96553 "/Users/leocastilho/Downloads/Diretrizes_Elaboração_de_Trabalho_Científico_da_FAI/build/main.xdv" "/Users/leocastilho/Downloads/Diretrizes_Elaboração_de_Trabalho_Científico_da_FAI/build/main.pdf" "/Users/leocastilho/Downloads/Diretrizes_Elaboração_de_Trabalho_Científico_da_FAI/build/main" 1756202588.10839 0
-  "/Users/leocastilho/Downloads/Diretrizes_Elaboração_de_Trabalho_Científico_da_FAI/build/main.xdv" 1756202587.91102 20684 b3a979629f19c1545c48a740cb0ef5c2 "xelatex"
-  "build/main.xdv" 1756202587.91102 20684 b3a979629f19c1545c48a740cb0ef5c2 ""
+["xdvipdfmx"] 1756202809.29234 "/Users/leocastilho/Downloads/Diretrizes_Elaboração_de_Trabalho_Científico_da_FAI/build/main.xdv" "/Users/leocastilho/Downloads/Diretrizes_Elaboração_de_Trabalho_Científico_da_FAI/build/main.pdf" "/Users/leocastilho/Downloads/Diretrizes_Elaboração_de_Trabalho_Científico_da_FAI/build/main" 1756202809.43671 0
+  "/Users/leocastilho/Downloads/Diretrizes_Elaboração_de_Trabalho_Científico_da_FAI/build/main.xdv" 1756202809.23821 20684 515cf401f4f94a445d9c2c2a37a761b8 "xelatex"
+  "build/main.xdv" 1756202809.23821 20684 515cf401f4f94a445d9c2c2a37a761b8 ""
   (generated)
   "/Users/leocastilho/Downloads/Diretrizes_Elaboração_de_Trabalho_Científico_da_FAI/build/main.pdf"
   "build/main.pdf"
   (rewritten before read)
-["xelatex"] 1756202587.03992 "main.tex" "/Users/leocastilho/Downloads/Diretrizes_Elaboração_de_Trabalho_Científico_da_FAI/build/main.xdv" "main" 1756202588.10718 0
-  "/Users/leocastilho/Downloads/Diretrizes_Elaboração_de_Trabalho_Científico_da_FAI/build/main.aux" 1756202587.90495 1182 8698d963209a493d911feefe7dd37098 "xelatex"
+["xelatex"] 1756202808.34443 "main.tex" "/Users/leocastilho/Downloads/Diretrizes_Elaboração_de_Trabalho_Científico_da_FAI/build/main.xdv" "main" 1756202809.43562 0
+  "/Users/leocastilho/Downloads/Diretrizes_Elaboração_de_Trabalho_Científico_da_FAI/build/main.aux" 1756202809.23256 1182 8698d963209a493d911feefe7dd37098 "xelatex"
   "/Users/leocastilho/Downloads/Diretrizes_Elaboração_de_Trabalho_Científico_da_FAI/build/main.bbl" 1756202330.67545 466 76d65a242ec496c9b4361af646ff12cb "biber /Users/leocastilho/Downloads/Diretrizes_Elaboração_de_Trabalho_Científico_da_FAI/build/main"
-  "/Users/leocastilho/Downloads/Diretrizes_Elaboração_de_Trabalho_Científico_da_FAI/build/main.lof" 1756202587.91095 165 a5e994bb86e24597c2213a9ddb98a6b4 "xelatex"
-  "/Users/leocastilho/Downloads/Diretrizes_Elaboração_de_Trabalho_Científico_da_FAI/build/main.run.xml" 1756202587.91089 2376 e391d09eb3ee67a90aa93a1ebd348c78 "xelatex"
-  "/Users/leocastilho/Downloads/Diretrizes_Elaboração_de_Trabalho_Científico_da_FAI/build/main.toc" 1756202587.91098 342 557f7ae4050311ac65f8968225c1a793 "xelatex"
+  "/Users/leocastilho/Downloads/Diretrizes_Elaboração_de_Trabalho_Científico_da_FAI/build/main.lof" 1756202809.23814 165 a5e994bb86e24597c2213a9ddb98a6b4 "xelatex"
+  "/Users/leocastilho/Downloads/Diretrizes_Elaboração_de_Trabalho_Científico_da_FAI/build/main.run.xml" 1756202809.23808 2376 e391d09eb3ee67a90aa93a1ebd348c78 "xelatex"
+  "/Users/leocastilho/Downloads/Diretrizes_Elaboração_de_Trabalho_Científico_da_FAI/build/main.toc" 1756202809.23816 342 557f7ae4050311ac65f8968225c1a793 "xelatex"
   "/usr/local/texlive/2025basic/texmf-dist/fonts/tfm/adobe/times/ptmb8t.tfm" 1136768653 6880 f19b8995b61c334d78fc734065f6b4d4 ""
   "/usr/local/texlive/2025basic/texmf-dist/fonts/tfm/adobe/times/ptmr8t.tfm" 1136768653 6672 e3ab9e37e925f3045c9005e6d1473d56 ""
   "/usr/local/texlive/2025basic/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm" 1136768653 1524 4414a8315f39513458b80dfc63bff03a ""
@@ -123,7 +123,7 @@
   "/usr/local/texlive/2025basic/texmf-var/web2c/xetex/xelatex.fmt" 1755864933 5092500 fc4a03f692721af3291db030007ce8af ""
   "/usr/local/texlive/2025basic/texmf.cnf" 1741448314 628 81d1ada0f601fb1ffa62f1323192d946 ""
   "figuras/Estrutura de trabalho acadêmico.png" 1755869376 100919 22fbc329a3bfd3214c3976a6edf9cfb2 ""
-  "main.tex" 1756202586.00238 16313 ed87be914974ac89ff039ffbd42ac572 ""
+  "main.tex" 1756202807.674 16313 ed87be914974ac89ff039ffbd42ac572 ""
   "metadata.tex" 1755905069.77518 1160 04d8aaa0931316b6d5b994faf00eee71 ""
   "src/definitions.tex" 1755905069.77455 3941 7768465bd4c03aaeb3beab880af91e9e ""
   "src/preamble.tex" 1756201976.58122 9035 a6fb351022d0eaca65a5f73180bf8aaf ""

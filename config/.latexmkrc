@@ -1,10 +1,11 @@
 # LaTeX Mk configuration file
 # Ensures all generated files are placed in the build directory
+# This file is located in config/ but operates on the parent directory
 
 # Use XeLaTeX as the default engine
 $pdf_mode = 5;  # Use xelatex
 
-# Set output directory
+# Set output directory (relative to project root)
 $out_dir = 'build';
 
 # Use biber for bibliography processing
@@ -21,5 +22,5 @@ $clean_ext = 'synctex.gz synctex.gz(busy) run.xml tex.bak bbl bcf fdb_latexmk ru
 $preview_continuous_mode = 1;
 $pdf_previewer = 'open %O %S';  # macOS default PDF viewer
 
-# Force output directory creation
-$do_cd = 1;
+# Don't change directory (we want to work from project root)
+$do_cd = 0;

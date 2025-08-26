@@ -1,9 +1,0 @@
-[0] Config.pm:328> INFO - This is Biber 2.21
-[0] Config.pm:331> INFO - Logfile is '/Users/leocastilho/Downloads/Diretrizes_Elaboração_de_Trabalho_Científico_da_FAI/build/main.blg'
-[42] biber-darwin:342> INFO - === Tue Aug 26, 2025, 06:58:50
-[52] Biber.pm:421> INFO - Reading '/Users/leocastilho/Downloads/Diretrizes_Elaboração_de_Trabalho_Científico_da_FAI/build/main.bcf'
-[101] Biber.pm:1002> INFO - Found 0 citekeys in bib section 0
-[108] bbl.pm:676> INFO - Writing '/Users/leocastilho/Downloads/Diretrizes_Elaboração_de_Trabalho_Científico_da_FAI/build/main.bbl' with encoding 'UTF-8'
-[109] bbl.pm:779> INFO - Output to /Users/leocastilho/Downloads/Diretrizes_Elaboração_de_Trabalho_Científico_da_FAI/build/main.bbl
-[109] Biber.pm:132> WARN - The file '/Users/leocastilho/Downloads/Diretrizes_Elaboração_de_Trabalho_Científico_da_FAI/build/main.bcf' does not contain any citations!
-[109] Biber.pm:134> INFO - WARNINGS: 1

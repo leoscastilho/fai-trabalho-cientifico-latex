@@ -1,6 +1,0 @@
-\babel@toc {brazil}{}\relax 
-\contentsline {section}{\numberline {1}Introdução}{9}{}%
-\contentsline {section}{\numberline {2}Trabalhos Acadêmicos}{10}{}%
-\contentsline {subsection}{\numberline {2.1}Definições}{10}{}%
-\contentsline {subsection}{\numberline {2.2}Estrutura}{11}{}%
-\contentsline {section}{\numberline {3}Conclusão}{13}{}%

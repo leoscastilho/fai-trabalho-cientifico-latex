@@ -5,7 +5,7 @@
 # Use XeLaTeX as the default engine
 $pdf_mode = 5;  # Use xelatex
 
-# Set output directory (relative to project root)
+# Set output directory for auxiliary files (relative to project root)
 $out_dir = 'build';
 
 # Use biber for bibliography processing
@@ -24,3 +24,6 @@ $pdf_previewer = 'open %O %S';  # macOS default PDF viewer
 
 # Don't change directory (we want to work from project root)
 $do_cd = 0;
+
+# Custom success hook to copy PDF to pdf folder
+$success_cmd = 'mkdir -p pdf && cp build/artigo.pdf pdf/artigo.pdf';

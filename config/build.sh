@@ -8,26 +8,30 @@ set -e  # Exit on error
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 BUILD_DIR="$PROJECT_ROOT/build"
-MAIN_FILE="main.tex"
+PDF_DIR="$PROJECT_ROOT/pdf"
+MAIN_FILE="artigo.tex"
 
 # Functions
 build_pdf() {
     echo "Building PDF..."
     mkdir -p "$BUILD_DIR"
+    mkdir -p "$PDF_DIR"
     cd "$PROJECT_ROOT"
     latexmk -r config/.latexmkrc -xelatex -synctex=1 -interaction=nonstopmode -file-line-error -outdir=build "$MAIN_FILE"
-    echo "PDF built successfully in $BUILD_DIR/main.pdf"
+    cp "$BUILD_DIR/artigo.pdf" "$PDF_DIR/artigo.pdf"
+    echo "PDF built successfully in $PDF_DIR/artigo.pdf"
 }
 
 clean_build() {
-    echo "Cleaning build directory..."
+    echo "Cleaning build and pdf directories..."
     rm -rf "$BUILD_DIR"/*
-    echo "Build directory cleaned."
+    rm -rf "$PDF_DIR"/*
+    echo "Directories cleaned."
 }
 
 open_pdf() {
-    if [[ -f "$BUILD_DIR/main.pdf" ]]; then
-        open "$BUILD_DIR/main.pdf"
+    if [[ -f "$PDF_DIR/artigo.pdf" ]]; then
+        open "$PDF_DIR/artigo.pdf"
     else
         echo "PDF not found. Run 'build pdf' first."
         exit 1
@@ -39,7 +43,7 @@ show_help() {
     echo ""
     echo "Commands:"
     echo "  pdf     - Build the PDF (default)"
-    echo "  clean   - Clean build directory"
+    echo "  clean   - Clean build and pdf directories"
     echo "  open    - Open the generated PDF"
     echo "  help    - Show this help message"
 }

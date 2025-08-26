@@ -22,19 +22,29 @@
                 "-output-directory=%OUTDIR%",
                 "%DOC%"
             ]
+        },
+        {
+            "name": "copy-pdf",
+            "command": "cp",
+            "args": [
+                "%OUTDIR%/%DOCFILE%.pdf",
+                "%WORKSPACE_FOLDER%/pdf/%DOCFILE%.pdf"
+            ]
         }
     ],
     "latex-workshop.latex.recipes": [
         {
-            "name": "latexmk (XeLaTeX)",
+            "name": "latexmk (XeLaTeX) + Copy PDF",
             "tools": [
-                "latexmk"
+                "latexmk",
+                "copy-pdf"
             ]
         },
         {
-            "name": "xelatex",
+            "name": "xelatex + Copy PDF",
             "tools": [
-                "xelatex"
+                "xelatex",
+                "copy-pdf"
             ]
         }
     ],
@@ -66,5 +76,6 @@
         "*.synctex.gz",
         "*.xdv"
     ],
-    "latex-workshop.view.pdf.viewer": "tab"
+    "latex-workshop.view.pdf.viewer": "tab",
+    "latex-workshop.view.pdf.ref.viewer": "auto"
 }

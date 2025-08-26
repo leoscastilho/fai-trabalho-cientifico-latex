@@ -20,10 +20,11 @@ Esta é a oitava edição do manual "Diretrizes para elaboração de trabalhos c
 │   └── references.bib        # Arquivo de referências bibliográficas
 ├── figuras/                  # Imagens e figuras
 ├── quadros/                  # Quadros e tabelas
-├── build/                    # Arquivos gerados (PDF, auxiliares)
+├── build/                    # Arquivos auxiliares de compilação
+├── pdf/                      # Arquivo PDF final gerado
 ├── .vscode/                  # Configurações do VS Code
 │   └── settings.json         # Configurações do LaTeX Workshop
-├── main.tex                  # Arquivo principal do documento
+├── artigo.tex                # Arquivo principal do documento
 ├── metadata.tex              # Metadados (título, autor, etc.)
 └── Makefile                  # Wrapper para facilitar o build
 ```
@@ -78,16 +79,16 @@ make help
 #### Opção 3: Usando LaTeX diretamente
 ```bash
 # Compilar com XeLaTeX
-latexmk -xelatex -synctex=1 -interaction=nonstopmode -file-line-error -outdir=build main.tex
+latexmk -xelatex -synctex=1 -interaction=nonstopmode -file-line-error -outdir=build artigo.tex
 
 # Ou usando a configuração personalizada
-latexmk -r config/.latexmkrc -xelatex -outdir=build main.tex
+latexmk -r config/.latexmkrc -xelatex -outdir=build artigo.tex
 ```
 
 #### Opção 4: Usando VS Code
 1. Abra o projeto no VS Code
 2. Use `Ctrl+Alt+B` (ou `Cmd+Alt+B` no Mac) para compilar
-3. O PDF será gerado automaticamente na pasta `build/`
+3. O PDF será gerado automaticamente na pasta `pdf/`
 
 ### Personalização do Documento
 
@@ -100,7 +101,7 @@ Edite o arquivo `metadata.tex` para definir:
 - Outras informações específicas
 
 #### 2. Resumo e Palavras-chave
-No arquivo `main.tex`, edite as seções:
+No arquivo `artigo.tex`, edite as seções:
 ```latex
 \newcommand{\theabstract}{
     Seu resumo aqui...
@@ -112,7 +113,7 @@ No arquivo `main.tex`, edite as seções:
 ```
 
 #### 3. Conteúdo Principal
-Adicione seu conteúdo no arquivo `main.tex` ou crie arquivos separados e inclua-os usando `\input{arquivo.tex}`.
+Adicione seu conteúdo no arquivo `artigo.tex` ou crie arquivos separados e inclua-os usando `\input{arquivo.tex}`.
 
 #### 4. Bibliografia
 Adicione suas referências no arquivo `bib/references.bib` no formato BibTeX.
@@ -126,7 +127,8 @@ Adicione suas referências no arquivo `bib/references.bib` no formato BibTeX.
 ### Configuração do VS Code
 O arquivo `.vscode/settings.json` está configurado para:
 - Usar XeLaTeX como compilador padrão
-- Direcionar todos os arquivos gerados para a pasta `build/`
+- Direcionar arquivos auxiliares para a pasta `build/`
+- Copiar o PDF final para a pasta `pdf/`
 - Limpeza automática de arquivos auxiliares
 - Visualização do PDF integrada
 
@@ -146,11 +148,18 @@ O sistema de build oferece:
 
 ## 📁 Arquivos Gerados
 
-Todos os arquivos gerados durante a compilação são organizados na pasta `build/`:
-- `main.pdf` - Documento final
-- `main.aux`, `main.log`, etc. - Arquivos auxiliares do LaTeX
-- `main.synctex.gz` - Arquivo de sincronização para editores
-- `main.bbl` - Bibliografia processada
+O sistema de build organiza os arquivos da seguinte forma:
+
+### Pasta `pdf/`
+- `artigo.pdf` - **Documento final** (único arquivo nesta pasta)
+
+### Pasta `build/`
+- `artigo.aux`, `artigo.log`, etc. - Arquivos auxiliares do LaTeX
+- `artigo.synctex.gz` - Arquivo de sincronização para editores
+- `artigo.bbl` - Bibliografia processada
+- Outros arquivos temporários de compilação
+
+Esta separação mantém a pasta `pdf/` limpa com apenas o arquivo final, enquanto todos os arquivos auxiliares ficam organizados na pasta `build/`.
 
 ## 🎨 Características do Template
 
@@ -188,14 +197,14 @@ Todos os arquivos gerados durante a compilação são organizados na pasta `buil
 3. Use `make clean` e tente compilar novamente
 
 ### PDF não é gerado
-1. Verifique o arquivo `build/main.log` para erros
+1. Verifique o arquivo `build/artigo.log` para erros
 2. Certifique-se de que o XeLaTeX está instalado
 3. Tente compilar usando `make xelatex` para mais controle
 
 ### Problemas com Bibliografia
 1. Verifique se o Biber está instalado
 2. Confirme que as referências estão no formato BibTeX correto
-3. Use `biber build/main` manualmente se necessário
+3. Use `biber build/artigo` manualmente se necessário
 
 ### VS Code não compila automaticamente
 1. Instale a extensão LaTeX Workshop

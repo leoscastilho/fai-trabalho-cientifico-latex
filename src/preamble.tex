@@ -15,6 +15,10 @@
 \usepackage{lipsum}    % Para gerar texto Lorem Ipsum
 \usepackage{enumitem} % Customizar alíneas
 
+\setlength{\parindent}{0pt}  % Paragráfos sem identação, conforme modelo da FAI
+\setstretch{1.5}  % This also sets 1.5 line spacing
+\setlength{\parskip}{12pt}  % Espaçament ode 12pt entre paragrafos
+
 % Define a numeração da página
 \fancypagestyle{numbered}{
     \fancyhf{}
@@ -30,26 +34,26 @@
     \oldsection{#1}
 }
 % seções primárias: os títulos dessas seções devem ser em caixa alta, fonte 12 e em negrito;
-\titleformat{\section}{\normalfont\large\bfseries}{\thesection}{0.3em}{\MakeUppercase} 
+\titleformat{\section}{\normalfont\fontsize{12}{12}\selectfont\bfseries}{\thesection}{0.3em}{\MakeUppercase}
 
 \let\oldsubsection\subsection
 \renewcommand{\subsection}[1]{%
-    \par\vspace{\parskip}% Add paragraph break before
+    \par\vspace{2\parskip}
     \oldsubsection{#1}
-    \par\vspace{\parskip} % separação entre o texto e os subtítulos: pula-se uma linha em branco.
+    \par\vspace{0.5\parskip} % separação entre o texto e os subtítulos: pula-se uma linha em branco.
 }
 % seções secundárias: os títulos dessas seções devem ser iguais aos das primárias, porém sem negrito;
-\titleformat{\subsection}{\normalfont}{\thesubsection}{0.3em}{\MakeUppercase} 
+\titleformat{\subsection}{\normalfont\fontsize{12}{12}\selectfont}{\thesubsection}{0.3em}{\MakeUppercase}
 
 % Define spacing for subsubsection
 \let\oldsubsubsection\subsubsection
 \renewcommand{\subsubsection}[1]{%
-    \par\vspace{\parskip}% Add paragraph break before
+    \par\vspace{2\parskip}
     \oldsubsubsection{#1}
-    \par\vspace{\parskip}% Add paragraph break after
+    \par\vspace{0.5\parskip}% Add paragraph break after
 }
 % seções terciárias: os títulos dessas seções devem ser em negrito, somente com a primeira letra maiúscula;
-\titleformat{\subsubsection}{\normalfont\bfseries}{\thesubsubsection}{0.3em}{}
+\titleformat{\subsubsection}{\normalfont\fontsize{12}{14.4}\bfseries}{\thesubsubsection}{0.3em}{}
 
 \geometry{
     left=3cm,
@@ -60,11 +64,6 @@
     footskip=0pt
     % , showframe
 } % Define as margens da página (esquerda = 3cm, direita = 2cm, topo = 3cm, fundo = 2cm)
-
-\setlength{\parindent}{0pt}  % Paragráfos sem identação, conforme modelo da FAI
-% \onehalfspacing  % Espaçamento de 1.5 entre linhas
-\setstretch{1.5}  % This also sets 1.5 line spacing
-\setlength{\parskip}{12pt}  % Espaçament ode 12pt entre paragrafos
 
 % Configuração das alíneas
 \newlist{alphaitemize}{enumerate}{1}
@@ -182,6 +181,75 @@
 % \begin{citacaodireta}
 % ...
 % \end{citacaodireta}
+% ------------------------------------------------------------------------------------
+
+% Customização das Listas de Ilustrações ---------------------------------
+\usepackage[labelfont=bf]{caption}
+\usepackage{newfloat} % Para criar novos tipos de float
+
+% Definir novos tipos de float
+\DeclareFloatingEnvironment[
+    fileext=lof,
+    listname={Lista de Figuras},
+    name=Figura,
+    placement=htbp,
+]{figura}
+
+\DeclareFloatingEnvironment[
+    fileext=lop,
+    listname={Lista de Fotografias},
+    name=Fotografia,
+    placement=htbp,
+]{fotografia}
+
+\DeclareFloatingEnvironment[
+    fileext=grf,
+    listname={Lista de Gráficos},
+    name=Gráfico,
+    placement=htbp,
+]{grafico}
+
+\DeclareFloatingEnvironment[
+    fileext=loq,
+    listname={Lista de Quadros},
+    name=Quadro,
+    placement=htbp,
+]{quadro}
+
+% Contadores para cada tipo
+\newcounter{totalfiguras}
+\newcounter{totalfotografias}
+\newcounter{totalgraficos}
+\newcounter{totalquadros}
+
+% Comandos para incrementar contadores
+\newcommand{\addfigura}{\stepcounter{totalfiguras}}
+\newcommand{\addfotografia}{\stepcounter{totalfotografias}}
+\newcommand{\addgrafico}{\stepcounter{totalgraficos}}
+\newcommand{\addquadro}{\stepcounter{totalquadros}}
+
+% Sistema de duas passadas para listas condicionais
+\makeatletter
+% Escrever contadores no arquivo auxiliar ao final do documento
+\AtEndDocument{%
+    \immediate\write\@auxout{\string\gdef\string\@totalfiguras{\arabic{totalfiguras}}}%
+    \immediate\write\@auxout{\string\gdef\string\@totalfotografias{\arabic{totalfotografias}}}%
+    \immediate\write\@auxout{\string\gdef\string\@totalgraficos{\arabic{totalgraficos}}}%
+    \immediate\write\@auxout{\string\gdef\string\@totalquadros{\arabic{totalquadros}}}%
+}
+
+% Definir valores padrão se não existirem (primeira compilação)
+\@ifundefined{@totalfiguras}{\gdef\@totalfiguras{0}}{}
+\@ifundefined{@totalfotografias}{\gdef\@totalfotografias{0}}{}
+\@ifundefined{@totalgraficos}{\gdef\@totalgraficos{0}}{}
+\@ifundefined{@totalquadros}{\gdef\@totalquadros{0}}{}
+
+% Comandos condicionais usando os valores da compilação anterior
+\newcommand{\ifhasfiguras}[2]{\ifnum\@totalfiguras>0 #1\else #2\fi}
+\newcommand{\ifhasfotografias}[2]{\ifnum\@totalfotografias>0 #1\else #2\fi}
+\newcommand{\ifhasgraficos}[2]{\ifnum\@totalgraficos>0 #1\else #2\fi}
+\newcommand{\ifhasquadros}[2]{\ifnum\@totalquadros>0 #1\else #2\fi}
+\makeatother
 % ------------------------------------------------------------------------------------
 
 % Customização da Lista de Figuras ---------------------------------

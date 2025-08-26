@@ -132,20 +132,55 @@
     \newpage
 }
 
-\newenvironment{ListaDeIlustracoes}{
-    
-}{}
 
+% Comandos para listas condicionais de ilustrações
+% Usando sistema de duas passadas com arquivo auxiliar
 \newcommand{\ListaDeFiguras}{%
-    \iftotalfigures
+    \ifhasfiguras{
         \clearpage
         \begin{center}
-        \textbf{LISTA DE ILUSTRAÇÕES}
+        \textbf{LISTA DE FIGURAS}
         \vspace{0.3cm}
         \end{center}
-        \listoffigures
+        \listoffigura
         \clearpage
-    \fi
+    }{}
+}
+
+\newcommand{\ListaDeFotografias}{%
+    \ifhasfotografias{
+        \clearpage
+        \begin{center}
+        \textbf{LISTA DE FOTOGRAFIAS}
+        \vspace{0.3cm}
+        \end{center}
+        \listoffotografia
+        \clearpage
+    }{}
+}
+
+\newcommand{\ListaDeGraficos}{%
+    \ifhasgraficos{
+        \clearpage
+        \begin{center}
+        \textbf{LISTA DE GRÁFICOS}
+        \vspace{0.3cm}
+        \end{center}
+        \listofgrafico
+        \clearpage
+    }{}
+}
+
+\newcommand{\ListaDeQuadros}{%
+    \ifhasquadros{
+        \clearpage
+        \begin{center}
+        \textbf{LISTA DE QUADROS}
+        \vspace{0.3cm}
+        \end{center}
+        \listofquadro
+        \clearpage
+    }{}
 }
 
 \newenvironment{ListaDeTabelas}{

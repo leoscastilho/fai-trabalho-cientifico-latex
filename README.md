@@ -161,7 +161,50 @@ O sistema de build organiza os arquivos da seguinte forma:
 
 Esta separação mantém a pasta `pdf/` limpa com apenas o arquivo final, enquanto todos os arquivos auxiliares ficam organizados na pasta `build/`.
 
-## 🎨 Características do Template
+## 🎨 Sistema de Ilustrações
+
+O template agora suporta **quatro tipos distintos** de ilustrações, cada um com sua própria lista condicional:
+
+### Tipos Disponíveis
+
+| Tipo | Ambiente | Comando Contador | Uso Recomendado |
+|------|----------|------------------|-----------------|
+| **FIGURAS** | `figura` | `\addfigura` | Diagramas, esquemas, desenhos técnicos |
+| **FOTOGRAFIAS** | `fotografia` | `\addfotografia` | Imagens fotográficas reais |
+| **GRÁFICOS** | `grafico` | `\addgrafico` | Gráficos de barras, linhas, pizza |
+| **QUADROS** | `quadro` | `\addquadro` | Tabelas com informações qualitativas |
+
+### Exemplo de Uso
+
+```latex
+\begin{figura}[h!]
+  \centering
+  \addfigura % OBRIGATÓRIO para gerar a lista
+  \includegraphics[width=0.8\textwidth]{figuras/diagrama.png}
+  \caption{Diagrama de arquitetura do sistema}
+  \vspace{0em}
+  \begin{minipage}{\textwidth}
+    FONTE: O autor
+  \end{minipage}
+  \label{fig:arquitetura}
+\end{figura}
+```
+
+### Listas Automáticas
+
+As listas são geradas **automaticamente** apenas se houver pelo menos um elemento de cada tipo:
+- Lista de Figuras
+- Lista de Fotografias  
+- Lista de Gráficos
+- Lista de Quadros
+
+### Arquivos de Exemplo
+
+- `exemplos_ilustracoes.tex` - Exemplos completos de uso
+- `teste_ilustracoes.tex` - Documento de teste funcional
+- `ILUSTRACOES_README.md` - Documentação detalhada
+
+### Características do Template
 
 ### Formatação ABNT
 - Margens conforme ABNT NBR 14724

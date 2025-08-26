@@ -14,6 +14,8 @@
 \usepackage{ragged2e}  % Fornece comandos para justificar ou ajustar o alinhamento de texto.
 \usepackage{lipsum}    % Para gerar texto Lorem Ipsum
 \usepackage{enumitem} % Customizar alíneas
+\usepackage[toc,page]{appendix} % Para gerenciar apêndices
+\usepackage{pgfmath} % Para cálculos matemáticos nos apêndices
 
 \setlength{\parindent}{0pt}  % Paragráfos sem identação, conforme modelo da FAI
 \setstretch{1.5}  % This also sets 1.5 line spacing
@@ -258,13 +260,81 @@
 \makeatletter
 \renewcommand{\@cftmakeloftitle}{} % Completely remove title generation
 \makeatother
-% Configure the figure entries
+% Configure the figure entries with uppercase and dash
 \renewcommand{\cftfigpresnum}{FIGURA }
-\setlength{\cftfignumwidth}{2.2cm} % Reduce this width to avoid line breaking
+\renewcommand{\cftfigaftersnum}{ -- }
+\setlength{\cftfignumwidth}{2.5cm} % Adjust width for new format
 \setlength{\cftfigindent}{0pt} % No indentation
-% Remove extra spacing between number and title
-\renewcommand{\cftfigpresnum}{FIGURA }
-\renewcommand{\cftfigaftersnum}{ - }
+
+% Note: List formatting for other illustration types (fotografia, grafico, quadro)
+% is handled by the newfloat package automatically. The caption formatting
+% below will ensure consistent appearance in both captions and lists.
 % ------------------------------------------------------------------------------------
+
+\usepackage{caption}
+
+\newcommand{\fonte}[1]{%
+  \vspace{0em}%
+  \begin{minipage}{\textwidth}%
+    \raggedright%
+    \footnotesize%
+    FONTE: #1%
+  \end{minipage}%
+}
+
+% Create \legenda as alias for \caption with full functionality
+\NewCommandCopy{\legenda}{\caption}
+
+% Custom caption formatting for all illustration types
+% Using footnote size, capital letters, and dash separator
+\captionsetup[quadro]{
+    justification=raggedright,
+    singlelinecheck=false,
+    font={footnotesize},
+    labelfont={footnotesize},
+    labelformat=simple,
+    labelsep=none,
+    format=plain
+}
+
+\captionsetup[figura]{
+    justification=raggedright,
+    singlelinecheck=false,
+    font={footnotesize},
+    labelfont={footnotesize},
+    labelformat=simple,
+    labelsep=none,
+    format=plain
+}
+
+\captionsetup[grafico]{
+    justification=raggedright,
+    singlelinecheck=false,
+    font={footnotesize},
+    labelfont={footnotesize},
+    labelformat=simple,
+    labelsep=none,
+    format=plain
+}
+
+\captionsetup[fotografia]{
+    justification=raggedright,
+    singlelinecheck=false,
+    font={footnotesize},
+    labelfont={footnotesize},
+    labelformat=simple,
+    labelsep=none,
+    format=plain
+}
+
+% Custom label formatting to use uppercase names with dashes
+\DeclareCaptionLabelFormat{customdash}{\MakeUppercase{#1} #2 -- }
+
+% Apply custom label format to all illustration types
+\captionsetup[quadro]{labelformat=customdash}
+\captionsetup[figura]{labelformat=customdash}
+\captionsetup[grafico]{labelformat=customdash}
+\captionsetup[fotografia]{labelformat=customdash}
+
 
 \addbibresource{bib/references.bib}  % Adiciona o arquivo de bibliografia (bib/references.bib) como fonte para as referências bibliográficas.

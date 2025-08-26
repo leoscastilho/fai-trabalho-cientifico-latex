@@ -29,6 +29,79 @@ Esta é a oitava edição do manual "Diretrizes para elaboração de trabalhos c
 └── Makefile                  # Wrapper para facilitar o build
 ```
 
+## 🗂️ Sistema de Apêndices Automático
+
+O template agora inclui um **sistema automatizado de apêndices** que facilita a adição e gerenciamento de apêndices no seu documento **sem precisar modificar arquivos de código**.
+
+### Características do Sistema
+
+- ✅ **Configuração Centralizada**: Todos os apêndices listados em um arquivo de configuração
+- ✅ **Numeração Automática**: Apêndices são numerados automaticamente como A, B, C, etc.
+- ✅ **Inclusão no Sumário**: Aparecem automaticamente no sumário
+- ✅ **Referências**: Podem ser referenciados no texto principal
+- ✅ **Múltiplas Páginas**: Cada apêndice pode ter várias páginas
+- ✅ **Gerenciamento Simples**: Scripts para adicionar e remover apêndices
+- ✅ **Sem Modificação de Código**: Não precisa editar `src/definitions.tex`
+
+### Como Usar
+
+#### Adicionar Apêndices
+```bash
+# Adicionar um novo apêndice
+./add_appendix.sh nome_do_arquivo "TÍTULO DO APÊNDICE"
+
+# Exemplo
+./add_appendix.sh questionario_satisfacao "QUESTIONÁRIO DE SATISFAÇÃO"
+```
+
+#### Remover Apêndices
+```bash
+# Remover um apêndice
+./remove_appendix.sh nome_do_arquivo
+
+# Exemplo
+./remove_appendix.sh questionario_satisfacao
+```
+
+#### Método Manual
+1. Crie um arquivo `.tex` na pasta `apendices/`
+2. Adicione uma linha em `apendices/appendix_list.tex`:
+   ```latex
+   \appendixentry{nome_do_arquivo}{TÍTULO DO APÊNDICE}
+   ```
+
+### Estrutura dos Apêndices
+
+```
+apendices/
+├── README.md                    # Documentação do sistema
+├── appendix_list.tex            # Configuração dos apêndices
+├── exemplo_apendice_a.tex       # Exemplo básico
+├── questionario_pesquisa.tex    # Exemplo de questionário
+├── codigo_fonte.tex             # Exemplo de código
+└── [seus_apendices].tex         # Seus apêndices personalizados
+```
+
+### Referenciando Apêndices
+
+No texto principal, use:
+```latex
+Como pode ser visto no Apêndice \ref{apendice:A}...
+```
+
+### Reordenando Apêndices
+
+Para alterar a ordem, simplesmente reordene as linhas no arquivo `apendices/appendix_list.tex`.
+
+### Exemplos Incluídos
+
+O sistema já vem com exemplos funcionais:
+- **Apêndice A**: Exemplo básico de estrutura
+- **Apêndice B**: Questionário de pesquisa
+- **Apêndice C**: Código fonte de sistema
+
+Para mais detalhes, consulte `apendices/README.md`.
+
 ## 🚀 Como Usar
 
 ### Pré-requisitos

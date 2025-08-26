@@ -253,8 +253,56 @@
     
 }{}
 
+% ============================================================================
+% SISTEMA DE APÊNDICES AUTOMÁTICO
+% ============================================================================
+
+\newcommand{\myAppendixHeading}[1]{%
+    \vspace{2em}%
+    \begin{center}%
+    \Large\bfseries #1%
+    \end{center}%
+    \vspace{1em}%
+}
+
+% Contador para apêndices
+\newcounter{appendixcounter}
+\setcounter{appendixcounter}{0}
+
+% Comando para processar uma entrada de apêndice
+\newcommand{\appendixentry}[2]{%
+    \IfFileExists{apendices/#1.tex}{%
+        \stepcounter{appendixcounter}%
+        \clearpage%
+        \thispagestyle{numbered}%
+        {\noindent\normalsize APÊNDICE \Alph{appendixcounter} -- \MakeUppercase{#2}}%
+        \vspace{1em}%
+        \addtocontents{toc}{%
+            \protect\vspace{0em}%
+            \protect\noindent\normalsize APÊNDICE \Alph{appendixcounter} -- \MakeUppercase{#2}%
+            \protect\cftdotfill{\cftdotsep}\normalsize\thepage\protect\par%
+        }%
+        \label{apendice:\Alph{appendixcounter}}%
+        \input{apendices/#1}%
+    }{%
+        \PackageWarning{appendix}{Arquivo apendices/#1.tex não encontrado}%
+    }%
+}
+
+% Comando para incluir todos os apêndices automaticamente
+% Lê a configuração do arquivo appendix_list.tex
+\newcommand{\includeallappendices}{%
+    \IfFileExists{apendices/appendix_list.tex}{%
+        \input{apendices/appendix_list.tex}%
+    }{%
+        \PackageError{appendix}{Arquivo apendices/appendix_list.tex não encontrado}{%
+            Crie o arquivo apendices/appendix_list.tex com a lista de apêndices%
+        }%
+    }%
+}
+
 \newenvironment{Apendice}{
-    
+    \includeallappendices
 }{}
 
 \newenvironment{Anexo}{

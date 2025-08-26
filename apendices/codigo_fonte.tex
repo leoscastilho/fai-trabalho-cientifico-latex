@@ -1,0 +1,61 @@
+% APÊNDICE C - CÓDIGO FONTE DO SISTEMA
+% Exemplo de código fonte incluído como apêndice
+
+Este apêndice contém o código fonte principal do sistema desenvolvido.
+
+\textbf{Arquivo: main.py}
+
+\begin{verbatim}
+#!/usr/bin/env python3
+"""
+Sistema de Gerenciamento Acadêmico
+Autor: Nome do Autor
+Data: 2024
+"""
+
+class GerenciadorAcademico:
+    def __init__(self):
+        self.alunos = []
+        self.professores = []
+        self.disciplinas = []
+    
+    def adicionar_aluno(self, nome, matricula):
+        """Adiciona um novo aluno ao sistema"""
+        aluno = {
+            'nome': nome,
+            'matricula': matricula,
+            'disciplinas': []
+        }
+        self.alunos.append(aluno)
+        return aluno
+    
+    def listar_alunos(self):
+        """Lista todos os alunos cadastrados"""
+        for aluno in self.alunos:
+            print(f"Nome: {aluno['nome']}")
+            print(f"Matrícula: {aluno['matricula']}")
+            print("-" * 30)
+
+if __name__ == "__main__":
+    sistema = GerenciadorAcademico()
+    sistema.adicionar_aluno("João Silva", "2024001")
+    sistema.adicionar_aluno("Maria Santos", "2024002")
+    sistema.listar_alunos()
+\end{verbatim}
+
+\textbf{Arquivo: config.py}
+
+\begin{verbatim}
+"""
+Configurações do sistema
+"""
+
+DATABASE_URL = "sqlite:///academico.db"
+DEBUG = True
+SECRET_KEY = "sua-chave-secreta-aqui"
+
+# Configurações de email
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+\end{verbatim}

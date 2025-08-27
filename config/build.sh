@@ -25,7 +25,7 @@ build_pdf() {
 clean_build() {
     echo "Cleaning build and pdf directories..."
     rm -rf "$BUILD_DIR"/*
-    rm -rf "$PDF_DIR"/*
+    rm -rf "$PDF_DIR"/artigo.pdf
     echo "Directories cleaned."
 }
 

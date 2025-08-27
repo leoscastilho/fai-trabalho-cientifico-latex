@@ -114,6 +114,9 @@ Para mais detalhes, consulte `apendices/README.md`.
 ### Compilação
 
 #### Opção 1: Usando Make (Recomendado)
+
+Com o terminal aberto na pasta config, execute os comandos abaixo:
+
 ```bash
 # Compilar o documento
 make pdf

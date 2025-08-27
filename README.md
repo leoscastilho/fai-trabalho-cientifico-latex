@@ -65,7 +65,7 @@ O template agora inclui um **sistema automatizado de apêndices** que facilita a
 
 #### Método Manual
 1. Crie um arquivo `.tex` na pasta `apendices/`
-2. Adicione uma linha em `apendices/appendix_list.tex`:
+2. Adicione uma linha em `apendices/apendices.tex`:
    ```latex
    \appendixentry{nome_do_arquivo}{TÍTULO DO APÊNDICE}
    ```
@@ -75,7 +75,7 @@ O template agora inclui um **sistema automatizado de apêndices** que facilita a
 ```
 apendices/
 ├── README.md                    # Documentação do sistema
-├── appendix_list.tex            # Configuração dos apêndices
+├── apendices.tex            # Configuração dos apêndices
 ├── exemplo_apendice_a.tex       # Exemplo básico
 ├── questionario_pesquisa.tex    # Exemplo de questionário
 ├── codigo_fonte.tex             # Exemplo de código
@@ -91,7 +91,7 @@ Como pode ser visto no Apêndice \ref{apendice:A}...
 
 ### Reordenando Apêndices
 
-Para alterar a ordem, simplesmente reordene as linhas no arquivo `apendices/appendix_list.tex`.
+Para alterar a ordem, simplesmente reordene as linhas no arquivo `apendices/apendices.tex`.
 
 ### Exemplos Incluídos
 

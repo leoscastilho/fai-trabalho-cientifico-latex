@@ -290,13 +290,13 @@
 }
 
 % Comando para incluir todos os apêndices automaticamente
-% Lê a configuração do arquivo appendix_list.tex
+% Lê a configuração do arquivo apendices.tex
 \newcommand{\includeallappendices}{%
-    \IfFileExists{apendices/appendix_list.tex}{%
-        \input{apendices/appendix_list.tex}%
+    \IfFileExists{apendices/apendices.tex}{%
+        \input{apendices/apendices.tex}%
     }{%
-        \PackageError{appendix}{Arquivo apendices/appendix_list.tex não encontrado}{%
-            Crie o arquivo apendices/appendix_list.tex com a lista de apêndices%
+        \PackageError{appendix}{Arquivo apendices/apendices.tex não encontrado}{%
+            Crie o arquivo apendices/apendices.tex com a lista de apêndices%
         }%
     }%
 }

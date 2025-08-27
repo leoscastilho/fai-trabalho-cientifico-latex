@@ -4,7 +4,7 @@ Este diretório contém o sistema de apêndices automatizado para o template LaT
 
 ## Como Funciona
 
-O sistema usa um arquivo de configuração (`appendix_list.tex`) que lista todos os apêndices a serem incluídos. Você não precisa mais modificar o arquivo `src/definitions.tex` manualmente!
+O sistema usa um arquivo de configuração (`apendices.tex`) que lista todos os apêndices a serem incluídos. Você não precisa mais modificar o arquivo `src/definitions.tex` manualmente!
 
 ## Como Usar
 
@@ -12,7 +12,7 @@ O sistema usa um arquivo de configuração (`appendix_list.tex`) que lista todos
 
 **Método Manual:**
 1. Crie um arquivo `.tex` nesta pasta (`apendices/`)
-2. Adicione uma linha em `appendix_list.tex`:
+2. Adicione uma linha em `apendices.tex`:
    ```latex
    \appendixentry{nome_do_arquivo}{TÍTULO DO APÊNDICE}
    ```
@@ -40,7 +40,7 @@ Mais conteúdo...
 
 ### 3. Arquivo de Configuração
 
-O arquivo `appendix_list.tex` contém a lista de todos os apêndices:
+O arquivo `apendices.tex` contém a lista de todos os apêndices:
 
 ```latex
 \appendixentry{exemplo_apendice_a}{EXEMPLO DE PRIMEIRO APÊNDICE}
@@ -70,14 +70,14 @@ Os labels são gerados automaticamente como `apendice:A`, `apendice:B`, etc.
 
 ### 6. Reordenando Apêndices
 
-Para alterar a ordem dos apêndices, simplesmente reordene as linhas no arquivo `appendix_list.tex`.
+Para alterar a ordem dos apêndices, simplesmente reordene as linhas no arquivo `apendices.tex`.
 
 ### 7. Removendo Apêndices
 
 Para remover um apêndice:
 
 1. **Método 1**: Delete o arquivo `.tex` correspondente (o sistema irá ignorá-lo automaticamente)
-2. **Método 2**: Comente ou remova a linha correspondente em `appendix_list.tex`
+2. **Método 2**: Comente ou remova a linha correspondente em `apendices.tex`
 3. **Método 3**: Delete tanto o arquivo quanto a linha de configuração
 
 ### 8. Exemplos Incluídos
@@ -94,7 +94,7 @@ Este diretório já contém quatro exemplos:
 ```
 apendices/
 ├── README.md                    # Este arquivo
-├── appendix_list.tex            # Configuração dos apêndices
+├── apendices.tex            # Configuração dos apêndices
 ├── exemplo_apendice_a.tex       # Exemplo básico
 ├── questionario_pesquisa.tex    # Exemplo de questionário
 ├── codigo_fonte.tex             # Exemplo de código

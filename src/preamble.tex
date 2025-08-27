@@ -68,8 +68,8 @@
 } % Define as margens da página (esquerda = 3cm, direita = 2cm, topo = 3cm, fundo = 2cm)
 
 % Configuração das alíneas
-\newlist{alphaitemize}{enumerate}{1}
-\setlist[alphaitemize,1]{
+\newlist{alinea}{enumerate}{1}
+\setlist[alinea,1]{
     label=\alph*), % c) as alíneas devem ser indicadas alfabeticamente, em letra minúscula, seguida de parêntese fechado. Utilizam-se letras dobradas, quando esgotadas as letras do alfabeto;
     leftmargin=1cm,        % Total indentation from current margin
     itemindent=0pt,        % No additional item indentation
@@ -285,6 +285,9 @@
 % Create \legenda as alias for \caption with full functionality
 \NewCommandCopy{\legenda}{\caption}
 
+% Create \equacao as alias for \equacao with full functionality
+\newenvironment{equacao}{\begin{equation}}{\end{equation}}
+
 % Custom caption formatting for all illustration types
 % Using footnote size, capital letters, and dash separator
 \captionsetup[quadro]{
@@ -328,7 +331,7 @@
 }
 
 % Custom label formatting to use uppercase names with dashes
-\DeclareCaptionLabelFormat{customdash}{\MakeUppercase{#1} #2 -- }
+\DeclareCaptionLabelFormat{customdash}{\MakeUppercase{#1} #2 - }
 
 % Apply custom label format to all illustration types
 \captionsetup[quadro]{labelformat=customdash}

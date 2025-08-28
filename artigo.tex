@@ -3,33 +3,6 @@
 \input{src/definitions} % Formatação das páginas
 \input{metadata} % Definições de Título, instituição, autores...
 
-% ============================================================================
-% RESUMO - EDITE O TEXTO ABAIXO ENTRE {}
-% ============================================================================
-\newcommand{\theabstract}{
-Esta é a oitava edição do manual "Diretrizes para elaboração de trabalhos científicos: padrão ABNT e adaptação às normas institucionais da FAI", onde se encontram as normas e os procedimentos para a produção acadêmica da Instituição. Este manual contém um conjunto de recomendações necessárias à elaboração de textos acadêmicos de acordo com as normas da Associação Brasileira de Normas Técnicas (ABNT). Para aqueles itens que as normas não estabelecem critérios, estabeleceram-se procedimentos próprios e pertinentes à comunidade acadêmica da FAI. Em suas edições anteriores, contou-se com a colaboração dos professores e das bibliotecárias da FAI. As particularidades de cada área do conhecimento presentes nos vários cursos, cada qual com seu estilo, foram trabalhadas para se obter a concisão de ideias e estabelecer o padrão adotado pela FAI como um todo.
-}
-
-% ============================================================================
-% PALAVRAS-CHAVE - EDITE O TEXTO ABAIXO ENTRE {} (separe com ponto e espaço)
-% ============================================================================
-\newcommand{\thekeywords}{
-Normalização. Procedimentos. Diretrizes. ABNT.
-}
-
-% ============================================================================
-% RESUMO EM INGLÊS - EDITE O TEXTO ABAIXO ENTRE {}
-% ============================================================================
-\newcommand{\theabstractenglish}{
-This is the eighth edition of the manual "Guidelines for the preparation of scientific papers: ABNT standard and adaptation to FAI institutional norms", which contains the norms and procedures for the Institution's academic production. This manual contains a set of recommendations necessary for the preparation of academic texts in accordance with the norms of the Associação Brasileira de Normas Técnicas (ABNT). For those items that the norms do not establish criteria, proper procedures were established and pertinent to the academic community of the FAI. In previous editions, FAI teachers and librarians collaborated. The particularities of each area of knowledge present in the various courses, each with its own style, were worked on to obtain concise ideas and establish the standard adopted by the FAI as a whole.
-}
-% ============================================================================
-% PALAVRAS-CHAVE EM INGLÊS - EDITE O TEXTO ABAIXO ENTRE {} (separe com ponto e espaço)
-% ============================================================================
-\newcommand{\thekeywordsenglish}{
-Standardization. Procedures. Guidelines. ABNT.
-}
-
 \begin{document}
 \newcounter{savepage}
 
@@ -71,38 +44,28 @@ Standardization. Procedures. Guidelines. ABNT.
 % ============================================================================
 \ifdefstring{\thedocumenttype}{Monografia}{\input{epigrafe.tex}}{}
 
-
-\begin{Resumo} % -------------------------------------------------------------
-\end{Resumo}
+% ============================================================================
+% (NÃO EDITAR) RESUMO - EDITE O ARQUIVO resumo.tex QUANDO NECESSÁRIO
+% ============================================================================
+\ifdefstring{\thedocumenttype}{Monografia}{\input{resumo.tex}}{}
 
 % ============================================================================
 % (NÃO EDITAR) LISTAS DE ILUSTRAÇÕES. SOMENTE DISPONÍVEIS CASO HAJA ELEMENTOS
 % ============================================================================
-\ListaDeIlustracoes
-\ListaDeFiguras
-\ListaDeFotografias
-\ListaDeGraficos
-\ListaDeQuadros
+\ifdefstring{\thedocumenttype}{Monografia}{\ListaDeIlustracoes}{}
+\ifdefstring{\thedocumenttype}{Monografia}{\ListaDeFiguras}{}
+\ifdefstring{\thedocumenttype}{Monografia}{\ListaDeFotografias}{}
+\ifdefstring{\thedocumenttype}{Monografia}{\ListaDeGraficos}{}
+\ifdefstring{\thedocumenttype}{Monografia}{\ListaDeQuadros}{}
 
 \begin{ListaDeTabelas} % -----------------------------------------------------
 \end{ListaDeTabelas}
 
 % ============================================================================
-% ABREVIAÇÕES - ADICIONE ABREVIAÇÕES ABAIXO NO FORMAT \sigla{ABREVIAÇÃO}{DESCRIÇÃO}
-%    Só irá mostrar a página caso haja mais que 9 siglas
+% (NÃO EDITAR) ABREVIATURAS. EDITE O ARQUIVO abreviaturas.tex QUANDO NECESSÁRIO
+%    Só irá mostrar a página caso haja mais que 9 siglas/abreviaturas
 % ============================================================================
-\begin{ListaAbrevESiglas} % ---------------------------------------------------
-\sigla{ABNT}{Associação Brasileira de Normas Técnicas}
-\sigla{FAI}{Centro de Ensino Superior em Gestão, Tecnologia e Educação}
-\sigla{IBGE}{Instituto Brasileiro de Geografia e Estatística}
-\sigla{ISBN}{Número Internacional Normalizado para Livros}
-\sigla{ISSN}{Número Internacional Normalizado para Publicações Seriadas}
-\sigla{JSP}{\textit{Java Server Pages}}
-\sigla{NBR}{Norma Brasileira}
-\sigla{ORG}{Organização}
-\sigla{PHP}{\textit{Hypertext Pre-processor}}
-\sigla{TCC}{Trabalho de Conclusão de Curso}
-\end{ListaAbrevESiglas}
+\ifdefstring{\thedocumenttype}{Monografia}{\input{abreviaturas.tex}}{}
 
 \begin{ListaDeSimbolos} % ------------------------------------------------------
 \end{ListaDeSimbolos}

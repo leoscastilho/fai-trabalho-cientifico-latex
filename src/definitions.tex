@@ -1,3 +1,9 @@
+% Define o tipo de Documento. Usado para condicionar elementos textuais
+\def\@monografia{Monografia}
+\def\@projeto{Projeto de Pesquisa}
+\def\@relatorio{Relatório de Estágio}
+\def\@trabalhos{Trabalhos acadêmicos}
+
 % Definições por grupos de elementos textuais
 \newenvironment{ElementosExternos}{
     \pagenumbering{roman}
@@ -10,9 +16,9 @@
 
 \newenvironment{ElementosTextuais}{
     \clearpage
-    \setcounter{savepage}{\value{page}} % Save current page number
+    \setcounter{savepage}{\value{page}} % Salva o número da página atual
     \pagenumbering{arabic}
-    \setcounter{page}{\value{savepage}} % Restore the page number
+    \setcounter{page}{\value{savepage}} % Restaura o número da página
     \pagestyle{numbered}
 }{
     \newpage
@@ -101,7 +107,6 @@
     \end{minipage}
     \end{flushright}
     \vspace{1cm}
-    
     \newpage
 }
 
@@ -160,7 +165,7 @@
 
 \makeatother
 
-% Lista unificada de ilustrações (quando há menos de 2 de cada tipo)
+% Lista unificada de ilustrações (quando há menos de 2 de algum tipo)
 \newcommand{\ListaDeIlustracoes}{%
     % Verifica se alguma categorias têm menos de 9 itens
     \ifhasanyillustration{%

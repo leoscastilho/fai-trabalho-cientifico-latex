@@ -1,7 +1,7 @@
 \documentclass[a4paper,12pt]{article}  % Tipo de documento como artigo, com tamanho de fonte 12pt e formato A4
 \input{src/preamble} % Definições de formato e estilo do documento seguindo diretrizes da FAI
-\input{metadata} % Definições de Título, instituição, autores...
 \input{src/definitions} % Formatação das páginas
+\input{metadata} % Definições de Título, instituição, autores...
 
 % ============================================================================
 % RESUMO - EDITE O TEXTO ABAIXO ENTRE {}
@@ -60,20 +60,17 @@ Standardization. Procedures. Guidelines. ABNT.
 \end{Dedicatoria}
 
 % ============================================================================
-% AGRADECIMENTOS - EDITE O TEXTO ABAIXO (Entre aspas, com referência ao autor)
+% (NÃO EDITAR) AGRADECIMENTOS - EDITE O ARQUIVO agradecimentos.tex SE NECESSÁRIO
 % ============================================================================
-\begin{Agradecimentos} % -----------------------------------------------------
-Aos alunos, professores, colaboradores e revisores pelo apoio e pelas discussões que muito enriqueceram e contribuíram para a realização deste trabalho.
-
-Agradecimento especial ao acadêmico do I e II períodos de 2017, Michel Liberato de Sousa, do Curso de Administração, que revisou todo o documento no final daquele ano, por iniciativa própria, baseado no conteúdo nele contido e no aprendizado obtido na disciplina de Metodologia da Pesquisa Científica, cursada no I período.
-\end{Agradecimentos}
+\ifdefstring{\thedocumenttype}{Monografia}{\input{agradecimentos.tex}}{}
+\ifdefstring{\thedocumenttype}{Relatório de Estágio}{\input{agradecimentos.tex}}{}
+\ifdefstring{\thedocumenttype}{Trabalhos acadêmicos}{\input{agradecimentos.tex}}{}
 
 % ============================================================================
-% EPÍGRAFE - EDITE O TEXTO ABAIXO (Entre aspas, com referência ao autor)
+% (NÃO EDITAR) EPÍGRAFE - EDITE O ARQUIVO epigrafe.tex SE NECESSÁRIO
 % ============================================================================
-\begin{Epigrafe} % -----------------------------------------------------------
-"O cientista não só tem que fazer ciência, mas também escrevê-la" (DAY, 1990).
-\end{Epigrafe}
+\ifdefstring{\thedocumenttype}{Monografia}{\input{epigrafe.tex}}{}
+
 
 \begin{Resumo} % -------------------------------------------------------------
 \end{Resumo}

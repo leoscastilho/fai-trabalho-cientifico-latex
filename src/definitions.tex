@@ -135,8 +135,55 @@
 
 % Comandos para listas condicionais de ilustrações
 % Usando sistema de duas passadas com arquivo auxiliar
+
+% Comandos auxiliares para verificar quantidades
+\makeatletter
+\newcommand{\ifmorethanninefiguras}[2]{\ifnum\@totalfiguras>9\relax #1\else #2\fi}
+\newcommand{\ifmorethanninetotos}[2]{\ifnum\@totalfotografias>9\relax #1\else #2\fi}
+\newcommand{\ifmorethanninegraficos}[2]{\ifnum\@totalgraficos>9\relax #1\else #2\fi}
+\newcommand{\ifmorethanninequadros}[2]{\ifnum\@totalquadros>9\relax #1\else #2\fi}
+
+\newcommand{\iflessthantenfiguras}[2]{\ifnum\@totalfiguras<10\relax #1\else #2\fi}
+\newcommand{\iflessthantenfotos}[2]{\ifnum\@totalfotografias<10\relax #1\else #2\fi}
+\newcommand{\iflessthantengraficos}[2]{\ifnum\@totalgraficos<10\relax #1\else #2\fi}
+\newcommand{\iflessthantenquadros}[2]{\ifnum\@totalquadros<10\relax #1\else #2\fi}
+
+\newcommand{\ifhasanyillustration}[2]{%
+  \newif\ifanyillustration%
+  \anyillustrationfalse%
+  \ifnum\@totalfiguras>0\relax \ifnum\@totalfiguras<10\relax \anyillustrationtrue\fi\fi%
+  \ifnum\@totalfotografias>0\relax \ifnum\@totalfotografias<10\relax \anyillustrationtrue\fi\fi%
+  \ifnum\@totalgraficos>0\relax \ifnum\@totalgraficos<10\relax \anyillustrationtrue\fi\fi%
+  \ifnum\@totalquadros>0\relax \ifnum\@totalquadros<10\relax \anyillustrationtrue\fi\fi%
+  \ifanyillustration#1\else#2\fi%
+}
+
+\makeatother
+
+% Lista unificada de ilustrações (quando há menos de 2 de cada tipo)
+\newcommand{\ListaDeIlustracoes}{%
+    % Verifica se alguma categorias têm menos de 9 itens
+    \ifhasanyillustration{%
+        \clearpage
+        \begin{center}
+        \textbf{LISTA DE ILUSTRAÇÕES}
+        \vspace{0.3cm}
+        \end{center}
+        % Inclui figuras se existirem
+        \iflessthantenfiguras{\listoffigura}{}%
+        % Inclui fotografias se existirem
+        \iflessthantenfotos{\listoffotografia}{}%
+        % Inclui gráficos se existirem
+        \iflessthantengraficos{\listofgrafico}{}%
+        % Inclui quadros se existirem
+        \iflessthantenquadros{\listofquadro}{}%
+        \clearpage
+    }{}%
+}
+
 \newcommand{\ListaDeFiguras}{%
-    \ifhasfiguras{
+    % Só mostra lista individual se há 10 ou mais figuras
+    \ifmorethanninefiguras{%
         \clearpage
         \begin{center}
         \textbf{LISTA DE FIGURAS}
@@ -144,11 +191,12 @@
         \end{center}
         \listoffigura
         \clearpage
-    }{}
+    }{}%
 }
 
 \newcommand{\ListaDeFotografias}{%
-    \ifhasfotografias{
+    % Só mostra lista individual se há 10 ou mais fotografias
+    \ifmorethanninetotos{%
         \clearpage
         \begin{center}
         \textbf{LISTA DE FOTOGRAFIAS}
@@ -156,11 +204,12 @@
         \end{center}
         \listoffotografia
         \clearpage
-    }{}
+    }{}%
 }
 
 \newcommand{\ListaDeGraficos}{%
-    \ifhasgraficos{
+    % Só mostra lista individual se há 10 ou mais gráficos
+    \ifmorethanninegraficos{%
         \clearpage
         \begin{center}
         \textbf{LISTA DE GRÁFICOS}
@@ -168,11 +217,12 @@
         \end{center}
         \listofgrafico
         \clearpage
-    }{}
+    }{}%
 }
 
 \newcommand{\ListaDeQuadros}{%
-    \ifhasquadros{
+    % Só mostra lista individual se há 10 ou mais quadros
+    \ifmorethanninequadros{%
         \clearpage
         \begin{center}
         \textbf{LISTA DE QUADROS}
@@ -180,7 +230,7 @@
         \end{center}
         \listofquadro
         \clearpage
-    }{}
+    }{}%
 }
 
 \newenvironment{ListaDeTabelas}{

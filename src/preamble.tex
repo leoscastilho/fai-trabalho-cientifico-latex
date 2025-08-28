@@ -193,14 +193,14 @@
 
 % Definir novos tipos de float
 \DeclareFloatingEnvironment[
-    fileext=lof,
+    fileext=fig,
     listname={Lista de Figuras},
     name=Figura,
     placement=htbp,
 ]{figura}
 
 \DeclareFloatingEnvironment[
-    fileext=lop,
+    fileext=fot,
     listname={Lista de Fotografias},
     name=Fotografia,
     placement=htbp,
@@ -214,7 +214,7 @@
 ]{grafico}
 
 \DeclareFloatingEnvironment[
-    fileext=loq,
+    fileext=qua,
     listname={Lista de Quadros},
     name=Quadro,
     placement=htbp,
@@ -262,11 +262,67 @@
 \makeatletter
 \renewcommand{\@cftmakeloftitle}{} % Completely remove title generation
 \makeatother
+
 % Configure the figure entries with uppercase and dash
 \renewcommand{\cftfigpresnum}{FIGURA }
 \renewcommand{\cftfigaftersnum}{ -- }
 \setlength{\cftfignumwidth}{2.5cm} % Adjust width for new format
 \setlength{\cftfigindent}{0pt} % No indentation
+
+% Define formatting for other illustration types
+% The newfloat package creates \l@<environment> commands that we can customize
+\makeatletter
+% Custom formatting for quadro entries
+\renewcommand*{\l@quadro}[2]{%
+  \ifnum \c@tocdepth >\z@
+    \addpenalty\@secpenalty
+    \setlength\@tempdima{2.5cm}%
+    \begingroup
+      \parindent \z@ \rightskip \@pnumwidth
+      \parfillskip -\@pnumwidth
+      \leavevmode
+      \advance\leftskip\@tempdima
+      \hskip -\leftskip
+      QUADRO #1\nobreak
+      \leaders\hbox{$\m@th\mkern \@dotsep mu\hbox{.}\mkern \@dotsep mu$}\hfill
+      \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
+    \endgroup
+  \fi}
+
+% Custom formatting for fotografia entries  
+\renewcommand*{\l@fotografia}[2]{%
+  \ifnum \c@tocdepth >\z@
+    \addpenalty\@secpenalty
+    \setlength\@tempdima{3cm}%
+    \begingroup
+      \parindent \z@ \rightskip \@pnumwidth
+      \parfillskip -\@pnumwidth
+      \leavevmode
+      \advance\leftskip\@tempdima
+      \hskip -\leftskip
+      FOTOGRAFIA #1\nobreak
+      \leaders\hbox{$\m@th\mkern \@dotsep mu\hbox{.}\mkern \@dotsep mu$}\hfill
+      \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
+    \endgroup
+  \fi}
+
+% Custom formatting for grafico entries
+\renewcommand*{\l@grafico}[2]{%
+  \ifnum \c@tocdepth >\z@
+    \addpenalty\@secpenalty
+    \setlength\@tempdima{2.5cm}%
+    \begingroup
+      \parindent \z@ \rightskip \@pnumwidth
+      \parfillskip -\@pnumwidth
+      \leavevmode
+      \advance\leftskip\@tempdima
+      \hskip -\leftskip
+      GRÁFICO #1\nobreak
+      \leaders\hbox{$\m@th\mkern \@dotsep mu\hbox{.}\mkern \@dotsep mu$}\hfill
+      \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
+    \endgroup
+  \fi}
+\makeatother
 
 % Note: List formatting for other illustration types (fotografia, grafico, quadro)
 % is handled by the newfloat package automatically. The caption formatting

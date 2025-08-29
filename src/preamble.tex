@@ -16,6 +16,8 @@
 \usepackage{enumitem} % Customizar alíneas
 \usepackage[toc,page]{appendix} % Para gerenciar apêndices
 \usepackage{pgfmath} % Para cálculos matemáticos nos apêndices
+\usepackage{tabularx}
+\usepackage{calc}
 
 \setlength{\parindent}{0pt}  % Paragráfos sem identação, conforme modelo da FAI
 \setstretch{1.5}  % This also sets 1.5 line spacing
@@ -82,6 +84,14 @@
     align=left,
     before={\setlength{\parskip}{0pt}},  % h) Entre as alíneas, inclusive a primeira delas, os parágrafos são formatados com zero ponto ante e zero depois
     after={\setlength{\parskip}{12pt}}   % i) O próximo parágrafo, após a última alínea, volta a ter formatação normal com 12 pontos antes e 12 depois.
+}
+
+\newcommand{\listaalinhada}[2]{%
+  \noindent%
+  \begin{tabularx}{\textwidth}{lX}
+  {#1}: & \parbox[t]{\linewidth}{\raggedright #2}
+  \end{tabularx}%
+  \\
 }
 
 \usepackage[sorting=nyt]{biblatex}  % Carrega o pacote BibLaTeX para bibliografia e define o estilo de ordenação como "nyt" (nome, ano, título).

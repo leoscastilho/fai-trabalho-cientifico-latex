@@ -370,7 +370,7 @@
 \setcounter{appendixcounter}{0}
 
 % Comando para processar uma entrada de apêndice
-\newcommand{\appendixentry}[2]{%
+\newcommand{\apendice}[2]{%
     \IfFileExists{apendices/#1.tex}{%
         \stepcounter{appendixcounter}%
         \clearpage%
@@ -405,8 +405,56 @@
     \includeallappendices
 }{}
 
+% ============================================================================
+% SISTEMA DE ANEXOS AUTOMÁTICO
+% ============================================================================
+
+\newcommand{\myAnexoHeading}[1]{%
+    \vspace{2em}%
+    \begin{center}%
+    \Large\bfseries #1%
+    \end{center}%
+    \vspace{1em}%
+}
+
+% Contador para anexos
+\newcounter{anexocounter}
+\setcounter{anexocounter}{0}
+
+% Comando para processar uma entrada de apêndice
+\newcommand{\anexo}[2]{%
+    \IfFileExists{anexos/#1.tex}{%
+        \stepcounter{anexocounter}%
+        \clearpage%
+        \thispagestyle{numbered}%
+        {\noindent\normalsize ANEXO \Alph{anexocounter} -- \MakeUppercase{#2}}%
+        \vspace{1em}%
+        \addtocontents{toc}{%
+            \protect\vspace{0em}%
+            \protect\noindent\normalsize ANEXO \Alph{anexocounter} -- \MakeUppercase{#2}%
+            \protect\cftdotfill{\cftdotsep}\normalsize\thepage\protect\par%
+        }%
+        \label{anexo:\Alph{anexocounter}}%
+        \input{anexos/#1}%
+    }{%
+        \PackageWarning{appendix}{Arquivo anexos/#1.tex não encontrado}%
+    }%
+}
+
+% Comando para incluir todos os anexos automaticamente
+% Lê a configuração do arquivo apendices.tex
+\newcommand{\includeallanexos}{%
+    \IfFileExists{anexos/anexos.tex}{%
+        \input{anexos/anexos.tex}%
+    }{%
+        \PackageError{appendix}{Arquivo anexos/anexos.tex não encontrado}{%
+            Crie o arquivo anexos/anexos.tex com a lista de apêndices%
+        }%
+    }%
+}
+
 \newenvironment{Anexo}{
-    
+    \includeallanexos
 }{}
 
 \newenvironment{Indice}{

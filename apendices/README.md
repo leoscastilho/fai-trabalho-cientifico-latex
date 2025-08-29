@@ -4,7 +4,7 @@ Este diretório contém o sistema de apêndices automatizado para o template LaT
 
 ## Como Funciona
 
-O sistema usa um arquivo de configuração (`apendices.tex`) que lista todos os apêndices a serem incluídos. Você não precisa mais modificar o arquivo `src/definitions.tex` manualmente!
+O sistema usa um arquivo de configuração (`apendices.tex`) que lista todos os apêndices a serem incluídos.
 
 ## Como Usar
 
@@ -14,7 +14,7 @@ O sistema usa um arquivo de configuração (`apendices.tex`) que lista todos os 
 1. Crie um arquivo `.tex` nesta pasta (`apendices/`)
 2. Adicione uma linha em `apendices.tex`:
    ```latex
-   \appendixentry{nome_do_arquivo}{TÍTULO DO APÊNDICE}
+   \apendice{nome_do_arquivo}{TÍTULO DO APÊNDICE}
    ```
 
 ### 2. Estrutura dos Arquivos de Apêndice
@@ -43,9 +43,9 @@ Mais conteúdo...
 O arquivo `apendices.tex` contém a lista de todos os apêndices:
 
 ```latex
-\appendixentry{exemplo_apendice_a}{EXEMPLO DE PRIMEIRO APÊNDICE}
+\apendice{exemplo_apendice_a}{EXEMPLO DE PRIMEIRO APÊNDICE}
 % Adicione novos apêndices aqui:
-% \appendixentry{nome_do_arquivo}{TÍTULO DO APÊNDICE}
+% \apendice{nome_do_arquivo}{TÍTULO DO APÊNDICE}
 ```
 
 ### 4. Referenciando Apêndices no Texto

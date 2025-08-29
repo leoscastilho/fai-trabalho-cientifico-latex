@@ -67,7 +67,7 @@ O template agora inclui um **sistema automatizado de apêndices** que facilita a
 1. Crie um arquivo `.tex` na pasta `apendices/`
 2. Adicione uma linha em `apendices/apendices.tex`:
    ```latex
-   \appendixentry{nome_do_arquivo}{TÍTULO DO APÊNDICE}
+   \apendice{nome_do_arquivo}{TÍTULO DO APÊNDICE}
    ```
 
 ### Estrutura dos Apêndices

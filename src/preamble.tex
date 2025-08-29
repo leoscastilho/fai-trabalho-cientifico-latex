@@ -293,20 +293,28 @@
 \renewcommand*{\l@quadro}[2]{%
   \ifnum \c@tocdepth >\z@
     \addpenalty\@secpenalty
-    \setlength\@tempdima{2.5cm}%
+    \setlength\@tempdima{0.5cm}%
     \begingroup
       \parindent \z@ \rightskip \@pnumwidth
       \parfillskip -\@pnumwidth
       \leavevmode
       \advance\leftskip\@tempdima
       \hskip -\leftskip
-      QUADRO #1 -- \nobreak
+      % --- The robust fix is here ---
+      \def\numberline##1##2{%
+        QUADRO ##1{} -- ##2%
+      }%
+      #1%
+      \nobreak
+      % --- End of fix ---
+      \renewcommand{\@dotsep}{0.3}%
       \leaders\hbox{$\m@th\mkern \@dotsep mu\hbox{.}\mkern \@dotsep mu$}\hfill
       \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
     \endgroup
   \fi}
 
 % Custom formatting for fotografia entries  
+% Custom formatting for fotografia entries
 \renewcommand*{\l@fotografia}[2]{%
   \ifnum \c@tocdepth >\z@
     \addpenalty\@secpenalty
@@ -317,7 +325,14 @@
       \leavevmode
       \advance\leftskip\@tempdima
       \hskip -\leftskip
-      FOTOGRAFIA #1 -- \nobreak
+      % --- The robust fix is here ---
+      \def\numberline##1##2{%
+        FOTOGRAFIA ##1 -- ##2%
+      }%
+      #1%
+      \nobreak
+      % --- End of fix ---
+      \renewcommand{\@dotsep}{0.5}%
       \leaders\hbox{$\m@th\mkern \@dotsep mu\hbox{.}\mkern \@dotsep mu$}\hfill
       \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
     \endgroup
@@ -334,7 +349,14 @@
       \leavevmode
       \advance\leftskip\@tempdima
       \hskip -\leftskip
-      GRÁFICO #1 -- \nobreak
+      % --- The robust fix is here ---
+      \def\numberline##1##2{%
+        GRÁFICO ##1 -- ##2%
+      }%
+      #1%
+      \nobreak
+      % --- End of fix ---
+      \renewcommand{\@dotsep}{0.5}%
       \leaders\hbox{$\m@th\mkern \@dotsep mu\hbox{.}\mkern \@dotsep mu$}\hfill
       \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
     \endgroup

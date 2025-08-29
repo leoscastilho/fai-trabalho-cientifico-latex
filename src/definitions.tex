@@ -287,11 +287,11 @@
     
 }{}
 
-% Create a counter for siglas
-\newcounter{siglacount}
-
-% Create a temporary storage for siglas
-\newtoks\siglacontent
+% ============================================================================
+% SISTEMA DE SIGLAS E ABREVIATURAS AUTOMÁTICO
+% ============================================================================
+\newcounter{siglacount} % Create a counter for siglas
+\newtoks\siglacontent % Create a temporary storage for siglas
 
 % Modified sigla command that increments counter and stores content
 \newcommand{\sigla}[2]{%
@@ -319,6 +319,7 @@
     \clearpage
   \fi
 }
+% ============================================================================
 
 \newenvironment{ListaDeSimbolos}{
     
@@ -349,9 +350,30 @@
     \printbibliography
 }
 
-\newenvironment{Glossario}{
-    
-}{}
+% ============================================================================
+% SISTEMA DE GLOSSÁRIO AUTOMÁTICO
+% ============================================================================
+\newcounter{glossarycount} % Create a counter for glossary entries
+\newtoks\glossarycontent % Create a temporary storage for glossary content
+
+% Command to add a glossary entry, taking the term and its definition
+\newcommand{\glossario}[2]{%
+  \glossarycontent\expandafter{\the\glossarycontent \textbf{#1:} #2 \\ [0.8em]}%
+}
+
+% Environment that checks the counter and prints the glossary if needed
+\newenvironment{Glossario}{%
+  \glossarycontent{}%
+}{
+    \clearpage
+    \begin{center}
+    \textbf{GLOSSÁRIO}
+    \end{center}
+    \vspace{0.5cm}
+    \the\glossarycontent
+    \clearpage
+}
+% ============================================================================
 
 % ============================================================================
 % SISTEMA DE APÊNDICES AUTOMÁTICO

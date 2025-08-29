@@ -6,13 +6,6 @@
 \begin{document}
 \newcounter{savepage}
 
-% ============================================================================
-% (NÃO EDITAR) CONFIGURAÇÃO DOS ELEMENTOS EXTERNOS SEGUNDO DIRETRIZES DA FAI
-% ============================================================================
-\begin{ElementosExternos}
-\begin{Capa} \end{Capa}
-\begin{Lombada} \end{Lombada}
-\end{ElementosExternos}
 % =============================================================================
 
 % ============================================================================
@@ -20,43 +13,41 @@
 % ============================================================================
 \begin{ElementosPreTextuais}
 
-\begin{FolhaDeRosto} % --------------------------------------------------------
+\begin{CapaOuFalsaFolhaDeRosto} 
+\end{CapaOuFalsaFolhaDeRosto}
+
+\begin{FolhaDeRosto}
 \end{FolhaDeRosto}
 
-\begin{Errata} % --------------------------------------------------------------
-\end{Errata}
+\ifdefstring{\tipodedocumento}{Monografia}{ \begin{FolhaDeAprovacao} \end{FolhaDeAprovacao} }{}
 
-\begin{FolhaDeAprovacao} % ----------------------------------------------------
-\end{FolhaDeAprovacao}
-
-\begin{Dedicatoria} % ---------------------------------------------------------
-\end{Dedicatoria}
+\ifdefstring{\tipodedocumento}{Monografia}{\input{dedicatoria.tex}}{}
 
 % ============================================================================
 % (NÃO EDITAR) AGRADECIMENTOS - EDITE O ARQUIVO agradecimentos.tex SE NECESSÁRIO
 % ============================================================================
-\ifdefstring{\thedocumenttype}{Monografia}{\input{agradecimentos.tex}}{}
-\ifdefstring{\thedocumenttype}{Relatório de Estágio}{\input{agradecimentos.tex}}{}
-\ifdefstring{\thedocumenttype}{Trabalhos acadêmicos}{\input{agradecimentos.tex}}{}
+\ifdefstring{\tipodedocumento}{Monografia}{\input{agradecimentos.tex}}{}
+\ifdefstring{\tipodedocumento}{Relatório de Estágio}{\input{agradecimentos.tex}}{}
+\ifdefstring{\tipodedocumento}{Trabalhos acadêmicos}{\input{agradecimentos.tex}}{}
 
 % ============================================================================
 % (NÃO EDITAR) EPÍGRAFE - EDITE O ARQUIVO epigrafe.tex SE NECESSÁRIO
 % ============================================================================
-\ifdefstring{\thedocumenttype}{Monografia}{\input{epigrafe.tex}}{}
+\ifdefstring{\tipodedocumento}{Monografia}{\input{epigrafe.tex}}{}
 
 % ============================================================================
 % (NÃO EDITAR) RESUMO - EDITE O ARQUIVO resumo.tex QUANDO NECESSÁRIO
 % ============================================================================
-\ifdefstring{\thedocumenttype}{Monografia}{\input{resumo.tex}}{}
+\ifdefstring{\tipodedocumento}{Monografia}{\input{resumo.tex}}{}
 
 % ============================================================================
 % (NÃO EDITAR) LISTAS DE ILUSTRAÇÕES. SOMENTE DISPONÍVEIS CASO HAJA ELEMENTOS
 % ============================================================================
-\ifdefstring{\thedocumenttype}{Monografia}{\ListaDeIlustracoes}{}
-\ifdefstring{\thedocumenttype}{Monografia}{\ListaDeFiguras}{}
-\ifdefstring{\thedocumenttype}{Monografia}{\ListaDeFotografias}{}
-\ifdefstring{\thedocumenttype}{Monografia}{\ListaDeGraficos}{}
-\ifdefstring{\thedocumenttype}{Monografia}{\ListaDeQuadros}{}
+\ifdefstring{\tipodedocumento}{Monografia}{\ListaDeIlustracoes}{}
+\ifdefstring{\tipodedocumento}{Monografia}{\ListaDeFiguras}{}
+\ifdefstring{\tipodedocumento}{Monografia}{\ListaDeFotografias}{}
+\ifdefstring{\tipodedocumento}{Monografia}{\ListaDeGraficos}{}
+\ifdefstring{\tipodedocumento}{Monografia}{\ListaDeQuadros}{}
 
 \begin{ListaDeTabelas} % -----------------------------------------------------
 \end{ListaDeTabelas}
@@ -65,7 +56,7 @@
 % (NÃO EDITAR) ABREVIATURAS. EDITE O ARQUIVO abreviaturas.tex QUANDO NECESSÁRIO
 %    Só irá mostrar a página caso haja mais que 9 siglas/abreviaturas
 % ============================================================================
-\ifdefstring{\thedocumenttype}{Monografia}{\input{abreviaturas.tex}}{}
+\ifdefstring{\tipodedocumento}{Monografia}{\input{abreviaturas.tex}}{}
 
 \begin{ListaDeSimbolos} % ------------------------------------------------------
 \end{ListaDeSimbolos}

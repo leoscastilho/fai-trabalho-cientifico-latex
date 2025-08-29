@@ -5,11 +5,6 @@
 \def\@trabalhos{Trabalhos acadêmicos}
 
 % Definições por grupos de elementos textuais
-\newenvironment{ElementosExternos}{
-    \pagenumbering{roman}
-    \pagestyle{numbered}
-}{}
-
 \newenvironment{ElementosPreTextuais}{
     \pagestyle{numbered}
 }{}
@@ -30,62 +25,112 @@
 }{}
 
 % Definições por tipos de conteúdo
-\newenvironment{Capa}{
+\newenvironment{CapaOuFalsaFolhaDeRosto}{
+    \pagenumbering{roman}
+    \pagestyle{numbered}
     \setcounter{page}{1}
     \thispagestyle{empty} % Remove numeração da primeira página
     \begin{center}
 }{
-    \textbf{\theinstitution}
-    
-    \vfill
-    
-    \textbf{\fontsize{12}{14}\selectfont\MakeUppercase{\thetitle}}
-    
-    \vfill
-    \textbf{\theplace}\\
-    \textbf{\theyear}
-    \end{center}
-    \newpage
-}
+    \textbf{\instituicao}
 
-\newenvironment{Lombada}{
-    \begin{center}
-}{
-    \textbf{\theinstitution}
+    \textbf{\curso}
+
+    \vfill
+
+    \imprimirautores
     
     \vfill
-    
-    \begin{center}
-        \PrintAuthorsLombada
-    \end{center}
+
+    \textbf{\fontsize{12}{14}\selectfont\MakeUppercase{\titulo: \subtitulo}}
     
     \vfill
-    
-    \textbf{\fontsize{12}{14}\selectfont\MakeUppercase{\thetitle}}
+
+    \vspace{\theauthorcount\baselineskip} % Mesmo espaço da lista de autores para que o título fique centralizado
     
     \vfill
-    
-    \textbf{\theplace}\\
-    \textbf{\theyear}
+
+    \textbf{\local}\\
+    \textbf{\ano}
     \end{center}
     \newpage
 }
 
 \newenvironment{FolhaDeRosto}{
-    
-}{}
+    \begin{center}
+}{
+    \textbf{\instituicao}
 
-\newenvironment{Errata}{
+    \textbf{\curso}
     
-}{}
+    \vspace{2\baselineskip}
+
+    \vfill
+
+    \imprimirautores
+
+    \vspace{2\baselineskip}
+
+    
+    \vfill
+    
+    \textbf{\fontsize{12}{14}\selectfont\MakeUppercase{\titulo: \subtitulo}}
+    
+    \vfill
+
+    {\singlespacing\justifying\hspace{7cm}\parbox{\dimexpr\textwidth-7cm}{
+    \natureza
+    }}
+
+    \vfill
+    \textbf{\local}\\
+    \textbf{\ano}
+    \end{center}
+    \newpage
+}
 
 \newenvironment{FolhaDeAprovacao}{
+    \begin{center}
+    \fontsize{12}{14}\selectfont
+    \bfseries
+}{
+    \instituicao
+
+    \curso
+
+    \end{center}
+
+    \vfill
+
+    \textbf{AUTORES:} \imprimirautores
+    \textbf{TÍTULO:} \textbf{\fontsize{12}{14}\selectfont\MakeUppercase{\titulo}}
+
+    \vfill
     
-}{}
+    \textbf{BANCA EXAMINADORA}
+
+    \vspace{2\baselineskip}
+
+    \imprimirbancaexaminadora
+
+    \textbf\local \quad \textbf{\fontsize{12}{14}\selectfont\MakeUppercase{\_\_/\_\_/\_\_.}}
+
+    \newpage
+}
 
 \newenvironment{Dedicatoria}{
-    
-}{}
+    \vspace*{\fill}
+    \begin{flushright}
+    \begin{minipage}{0.5\textwidth}
+    \raggedleft
+    \singlespacing
+    \justifying
+}{
+    \end{minipage}
+    \end{flushright}
+    \vspace{1cm}
+    \newpage
+}
 
 \newenvironment{Agradecimentos}{
     \begin{center}
@@ -117,10 +162,10 @@
     
     \justifying
     \begin{singlespace}
-    \theabstract
+    \resumo
     \end{singlespace}
     
-    \textbf{Palavras-chave:} \thekeywords
+    \textbf{Palavras-chave:} \palavraschave
     
     \vspace{1cm}
     \begin{center}
@@ -129,10 +174,10 @@
     
     \justifying
     \begin{singlespace}
-    \theabstractenglish
+    \resumoingles
     \end{singlespace}
     
-    \textbf{Keywords:} \thekeywordsenglish
+    \textbf{Keywords:} \palavraschaveingles
 }{
     \newpage
 }

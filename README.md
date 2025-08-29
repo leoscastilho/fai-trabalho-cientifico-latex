@@ -179,11 +179,11 @@ Edite o arquivo `metadata.tex` para definir:
 #### 2. Resumo e Palavras-chave
 No arquivo `artigo.tex`, edite as seções:
 ```latex
-\newcommand{\theabstract}{
+\newcommand{\resumo}{
     Seu resumo aqui...
 }
 
-\newcommand{\thekeywords}{
+\newcommand{\palavraschave}{
     Palavra1. Palavra2. Palavra3.
 }
 ```

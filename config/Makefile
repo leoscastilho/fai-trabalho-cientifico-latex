@@ -3,7 +3,8 @@
 # This file is located in config/ but operates on the parent directory
 
 # Variables
-MAIN = artigo
+MAIN = main
+OUT = artigo
 BUILD_DIR = ../build
 PDF_DIR = ../pdf
 SRC_DIR = ../src
@@ -23,7 +24,7 @@ $(PDF_DIR):
 # Build PDF using XeLaTeX
 pdf: $(BUILD_DIR) $(PDF_DIR)
 	cd $(ROOT_DIR) && latexmk -r config/.latexmkrc -xelatex -synctex=1 -interaction=nonstopmode -file-line-error -outdir=build $(MAIN).tex
-	cp $(BUILD_DIR)/$(MAIN).pdf $(PDF_DIR)/$(MAIN).pdf
+	cp $(BUILD_DIR)/$(MAIN).pdf $(PDF_DIR)/$(OUT).pdf
 
 # Build PDF using XeLaTeX (alternative method)
 xelatex: $(BUILD_DIR) $(PDF_DIR)
@@ -31,7 +32,7 @@ xelatex: $(BUILD_DIR) $(PDF_DIR)
 	cd $(ROOT_DIR) && biber build/$(MAIN)
 	cd $(ROOT_DIR) && xelatex -synctex=1 -interaction=nonstopmode -file-line-error -output-directory=build $(MAIN).tex
 	cd $(ROOT_DIR) && xelatex -synctex=1 -interaction=nonstopmode -file-line-error -output-directory=build $(MAIN).tex
-	cp $(BUILD_DIR)/$(MAIN).pdf $(PDF_DIR)/$(MAIN).pdf
+	cp $(BUILD_DIR)/$(MAIN).pdf $(PDF_DIR)/$(OUT).pdf
 
 # Clean build directory
 clean:

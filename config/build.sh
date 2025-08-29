@@ -9,7 +9,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 BUILD_DIR="$PROJECT_ROOT/build"
 PDF_DIR="$PROJECT_ROOT/pdf"
-MAIN_FILE="artigo.tex"
+MAIN_FILE="main.tex"
 
 # Functions
 build_pdf() {
@@ -18,13 +18,14 @@ build_pdf() {
     mkdir -p "$PDF_DIR"
     cd "$PROJECT_ROOT"
     latexmk -r config/.latexmkrc -xelatex -synctex=1 -interaction=nonstopmode -file-line-error -outdir=build "$MAIN_FILE"
-    cp "$BUILD_DIR/artigo.pdf" "$PDF_DIR/artigo.pdf"
+    cp "$BUILD_DIR/main.pdf" "$PDF_DIR/artigo.pdf"
     echo "PDF built successfully in $PDF_DIR/artigo.pdf"
 }
 
 clean_build() {
     echo "Cleaning build and pdf directories..."
     rm -rf "$BUILD_DIR"/*
+    rm -rf "$PDF_DIR"/main.pdf
     rm -rf "$PDF_DIR"/artigo.pdf
     echo "Directories cleaned."
 }

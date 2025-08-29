@@ -26,4 +26,4 @@ $pdf_previewer = 'open %O %S';  # macOS default PDF viewer
 $do_cd = 0;
 
 # Custom success hook to copy PDF to pdf folder
-$success_cmd = 'mkdir -p pdf && cp build/artigo.pdf pdf/artigo.pdf';
+$success_cmd = 'mkdir -p pdf && cp build/main.pdf pdf/artigo.pdf';

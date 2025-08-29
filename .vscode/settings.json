@@ -28,7 +28,7 @@
             "command": "cp",
             "args": [
                 "%OUTDIR%/%DOCFILE%.pdf",
-                "%WORKSPACE_FOLDER%/pdf/%DOCFILE%.pdf"
+                "%WORKSPACE_FOLDER%/pdf/artigo.pdf"
             ]
         }
     ],

@@ -24,7 +24,7 @@ Esta é a oitava edição do manual "Diretrizes para elaboração de trabalhos c
 ├── pdf/                      # Arquivo PDF final gerado
 ├── .vscode/                  # Configurações do VS Code
 │   └── settings.json         # Configurações do LaTeX Workshop
-├── artigo.tex                # Arquivo principal do documento
+├── main.tex                # Arquivo principal do documento
 ├── metadata.tex              # Metadados (título, autor, etc.)
 └── Makefile                  # Wrapper para facilitar o build
 ```
@@ -155,10 +155,10 @@ make help
 #### Opção 3: Usando LaTeX diretamente
 ```bash
 # Compilar com XeLaTeX
-latexmk -xelatex -synctex=1 -interaction=nonstopmode -file-line-error -outdir=build artigo.tex
+latexmk -xelatex -synctex=1 -interaction=nonstopmode -file-line-error -outdir=build main.tex
 
 # Ou usando a configuração personalizada
-latexmk -r config/.latexmkrc -xelatex -outdir=build artigo.tex
+latexmk -r config/.latexmkrc -xelatex -outdir=build main.tex
 ```
 
 #### Opção 4: Usando VS Code
@@ -177,7 +177,7 @@ Edite o arquivo `metadata.tex` para definir:
 - Outras informações específicas
 
 #### 2. Resumo e Palavras-chave
-No arquivo `artigo.tex`, edite as seções:
+No arquivo `main.tex`, edite as seções:
 ```latex
 \newcommand{\resumo}{
     Seu resumo aqui...
@@ -189,7 +189,7 @@ No arquivo `artigo.tex`, edite as seções:
 ```
 
 #### 3. Conteúdo Principal
-Adicione seu conteúdo no arquivo `artigo.tex` ou crie arquivos separados e inclua-os usando `\input{arquivo.tex}`.
+Adicione seu conteúdo no arquivo `main.tex` ou crie arquivos separados e inclua-os usando `\input{arquivo.tex}`.
 
 #### 4. Bibliografia
 Adicione suas referências no arquivo `bib/references.bib` no formato BibTeX.

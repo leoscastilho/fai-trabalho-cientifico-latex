@@ -93,106 +93,6 @@
   \end{tabularx}%
   \\
 }
-\usepackage[style=authoryear, sorting=nyt, backend=bibtex]{biblatex}
-\renewcommand*{\bibfont}{\raggedright}
-\setlength{\bibhang}{0pt}
-\setlength{\bibitemsep}{1em} % or another value like 0.5em, to control spacing between references
-
-% Configurações para formato ABNT
-\DeclareFieldFormat{title}{\textbf{#1}}
-\DeclareFieldFormat[article]{title}{\textbf{#1}}
-\DeclareNameAlias{sortname}{family-given}
-\DeclareDelimFormat{nameyeardelim}{\addcomma\space}
-
-% Formato do nome: SOBRENOME, Nome
-\DeclareNameFormat{family-given}{%
-  \ifgiveninits
-    {\usebibmacro{name:family-given}
-      {\namepartfamily}
-      {\namepartgiveni}
-      {\namepartprefix}
-      {\namepartsuffix}}
-    {\usebibmacro{name:family-given}
-      {\namepartfamily}
-      {\namepartgiven}
-      {\namepartprefix}
-      {\namepartsuffix}}%
-  \usebibmacro{name:andothers}}
-
-\renewbibmacro*{name:family-given}[4]{%
-  \ifuseprefix
-    {\usebibmacro{name:delim}{#3#1}%
-     \usebibmacro{name:hook}{#3#1}%
-     \ifblank{#3}{}{%
-       \ifcapital
-         {\mkbibnameprefix{\MakeCapital{#3}}\isdot}
-         {\mkbibnameprefix{#3}\isdot}%
-       \ifpunctmark{'}{}{\bibnamedelimc}}%
-     \mkbibnamefamily{\MakeUppercase{#1}}\isdot
-     \ifblank{#2}{}{\revsdnamepunct\bibnamedelimd\mkbibnamegiven{#2}\isdot}%
-     \ifblank{#4}{}{\bibnamedelimd\mkbibnamesuffix{#4}\isdot}}
-    {\usebibmacro{name:delim}{#1}%
-     \usebibmacro{name:hook}{#1}%
-     \mkbibnamefamily{\MakeUppercase{#1}}\isdot
-     \ifblank{#2}{}{\revsdnamepunct\bibnamedelimd\mkbibnamegiven{#2}\isdot}%
-     \ifblank{#4}{}{\bibnamedelimd\mkbibnamesuffix{#4}\isdot}}}
-
-% Remove parênteses do ano e coloca no final
-\renewbibmacro*{date+extradate}{%
-  \iffieldundef{labelyear}
-    {}
-    {\printtext{\printfield{labelyear}%
-     \printfield{extradate}}}}
-
-% Redefine o driver para livros (books)
-\DeclareBibliographyDriver{book}{%
-  \usebibmacro{bibindex}%
-  \usebibmacro{begentry}%
-  \usebibmacro{author/editor+others/translator+others}%
-  \setunit{\labelnamepunct}\newblock
-  \usebibmacro{maintitle+title}%
-  \newunit
-  \printlist{language}%
-  \newunit\newblock
-  \usebibmacro{byauthor}%
-  \newunit\newblock
-  \usebibmacro{byeditor+others}%
-  \newunit\newblock
-  \printfield{edition}%
-  \newunit
-  \iflistundef{location}
-    {}
-    {\printlist{location}}%
-  \iflistundef{publisher}
-    {}
-    {\setunit*{\addcolon\space}%
-     \printlist{publisher}}%
-  \setunit*{\addcomma\space}%
-  \usebibmacro{date+extradate}%
-  \newunit\newblock
-  \iftoggle{bbx:isbn}
-    {\printfield{isbn}}
-    {}%
-  \newunit\newblock
-  \usebibmacro{doi+eprint+url}%
-  \newunit\newblock
-  \usebibmacro{addendum+pubstate}%
-  \setunit{\bibpagerefpunct}\newblock
-  \usebibmacro{pageref}%
-  \newunit\newblock
-  \iftoggle{bbx:related}
-    {\usebibmacro{related:init}%
-     \usebibmacro{related}}
-    {}%
-  \usebibmacro{finentry}
-}
-
-% Redefine o título da seção de referências para maiúsculas e centralizado
-\defbibheading{bibliography}{%
-  \begin{center}
-    \textbf{\MakeUppercase{Referências}}
-  \end{center}
-}
 
 % Customização do Sumário ----------------------------------------------------------
 \usepackage{tocloft}
@@ -541,5 +441,140 @@
 \let\secaosecundaria\subsection
 \let\secaoterciaria\subsubsection
 
+% Configuração do BibLaTeX ==========================================================================================
+\usepackage[style=authoryear, sorting=nyt, backend=bibtex]{biblatex}
+\renewcommand*{\bibfont}{\raggedright}
+\setlength{\bibhang}{0pt}
+\setlength{\bibitemsep}{1em} % or another value like 0.5em, to control spacing between references
+
+% Configurações para formato ABNT
+\DeclareFieldFormat{title}{\textbf{#1}}
+\DeclareFieldFormat[article]{title}{\textbf{#1}}
+\DeclareNameAlias{sortname}{family-given}
+\DeclareDelimFormat{nameyeardelim}{\addcomma\space}
+
+% Add this new renewbibmacro to separate maintitle and subtitle with a colon
+\renewbibmacro*{title+subtitle}{%
+  \printfield{title}%
+  \ifbibstring{\thefield{subtitle}}{}%
+    {\setunit{\addcolon\space}%
+     \printfield{subtitle}}}
+
+\renewbibmacro*{labelname}{%
+  \ifnameundef{labelname}
+    {}
+    {\printnames{labelname}}}
+
+% Formato do nome: SOBRENOME, Nome
+\DeclareNameFormat{family-given}{%
+  \ifgiveninits
+    {\usebibmacro{name:family-given}
+      {\namepartfamily}
+      {\namepartgiveni}
+      {\namepartprefix}
+      {\namepartsuffix}}
+    {\usebibmacro{name:family-given}
+      {\namepartfamily}
+      {\namepartgiven}
+      {\namepartprefix}
+      {\namepartsuffix}}%
+  \usebibmacro{name:andothers}}
+
+% Remove the year from after the author and move it to the end
+\renewbibmacro*{author/editor+others/translator+others}{%
+  \ifboolexpr{
+    test \ifuseauthor
+    and
+    not test {\ifnameundef{author}}
+  }
+    {\usebibmacro{author}}
+    {\ifboolexpr{
+       test \ifuseeditor
+       and
+       not test {\ifnameundef{editor}}
+     }
+       {\usebibmacro{editor+others}}
+       {\usebibmacro{translator+others}}}}
+
+\renewbibmacro*{name:family-given}[4]{%
+  \ifuseprefix
+    {\usebibmacro{name:delim}{#3#1}%
+     \usebibmacro{name:hook}{#3#1}%
+     \ifblank{#3}{}{%
+       \ifcapital
+         {\mkbibnameprefix{\MakeCapital{#3}}\isdot}
+         {\mkbibnameprefix{#3}\isdot}%
+       \ifpunctmark{'}{}{\bibnamedelimc}}%
+     \mkbibnamefamily{\MakeUppercase{#1}}\isdot
+     \ifblank{#2}{}{\revsdnamepunct\bibnamedelimd\mkbibnamegiven{#2}\isdot}%
+     \ifblank{#4}{}{\bibnamedelimd\mkbibnamesuffix{#4}\isdot}}
+    {\usebibmacro{name:delim}{#1}%
+     \usebibmacro{name:hook}{#1}%
+     \mkbibnamefamily{\MakeUppercase{#1}}\isdot
+     \ifblank{#2}{}{\revsdnamepunct\bibnamedelimd\mkbibnamegiven{#2}\isdot}%
+     \ifblank{#4}{}{\bibnamedelimd\mkbibnamesuffix{#4}\isdot}}}
+
+% Remove parênteses do ano e coloca no final
+\renewbibmacro*{date+extradate}{%
+  \iffieldundef{labelyear}
+    {}
+    {\printtext{\printfield{labelyear}%
+     \printfield{extradate}}}}
+
+% Redefine o driver para livros (books)
+\DeclareBibliographyDriver{book}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{author/editor+others/translator+others}%
+  \setunit{\labelnamepunct}\newblock
+  \usebibmacro{title+subtitle}%
+  \newunit
+  \printlist{language}%
+  \newunit\newblock
+  % REMOVE THIS LINE: \usebibmacro{byauthor}%
+  \newunit\newblock
+  \usebibmacro{byeditor+others}%
+  \newunit\newblock
+  \printfield{edition}%
+  \newunit
+  \iflistundef{location}
+    {}
+    {\printlist{location}}%
+  \iflistundef{publisher}
+    {}
+    {\setunit*{\addcolon\space}%
+     \printlist{publisher}}%
+  \setunit*{\addcomma\space}%
+  \usebibmacro{date+extradate}%
+  \newunit\newblock
+  \iftoggle{bbx:isbn}
+    {\printfield{isbn}}
+    {}%
+  \newunit\newblock
+  \usebibmacro{doi+eprint+url}%
+  \newunit\newblock
+  \usebibmacro{addendum+pubstate}%
+  \setunit{\bibpagerefpunct}\newblock
+  \usebibmacro{pageref}%
+  \newunit\newblock
+  \iftoggle{bbx:related}
+    {\usebibmacro{related:init}%
+     \usebibmacro{related}}
+    {}%
+  \usebibmacro{finentry}
+}
+
+% Redefine o título da seção de referências para maiúsculas e centralizado
+\defbibheading{bibliography}{%
+  \begin{center}
+    \textbf{\MakeUppercase{Referências}}
+  \end{center}
+}
+
+% Separar autores na bibliografia final com ponto e vírgula.
+\DeclareDelimFormat{multinamedelim}{\addsemicolon\space}
+\DeclareDelimFormat{finalnamedelim}{\addsemicolon\space}
+\DeclareDelimFormat{multicite}{\addcomma\space} % Isso garantirá que múltiplas citações dentro de um único comando (por exemplo, \parencite{author1, author2}) sejam separadas por uma vírgula.
 
 \addbibresource{referencias/referencias.bib}  % Adiciona o arquivo de bibliografia (referencias/referencias.bib) como fonte para as referências bibliográficas.
+% ==================================================================================================

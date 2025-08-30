@@ -93,16 +93,16 @@
   \end{tabularx}%
   \\
 }
-
-\usepackage[style=authoryear, sorting=nyt, backend=bibtex]{biblatex}  % Carrega o pacote BibLaTeX para bibliografia e define o estilo de ordenação como "nyt" (nome, ano, título).
-\renewcommand*{\bibfont}{\raggedright\singlespacing}  % Alinha a bibliografia à esquerda com espaçamento simples.
+\usepackage[style=authoryear, sorting=nyt, backend=bibtex]{biblatex}
+\renewcommand*{\bibfont}{\raggedright}
 \setlength{\bibhang}{0pt}
+\setlength{\bibitemsep}{1em} % or another value like 0.5em, to control spacing between references
 
 % Configurações para formato ABNT
 \DeclareFieldFormat{title}{\textbf{#1}}
 \DeclareFieldFormat[article]{title}{\textbf{#1}}
 \DeclareNameAlias{sortname}{family-given}
-\DeclareFieldFormat{nameyeardelim}{\addcomma\space}
+\DeclareDelimFormat{nameyeardelim}{\addcomma\space}
 
 % Formato do nome: SOBRENOME, Nome
 \DeclareNameFormat{family-given}{%
@@ -184,7 +184,8 @@
     {\usebibmacro{related:init}%
      \usebibmacro{related}}
     {}%
-  \usebibmacro{finentry}}
+  \usebibmacro{finentry}
+}
 
 % Redefine o título da seção de referências para maiúsculas e centralizado
 \defbibheading{bibliography}{%

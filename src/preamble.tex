@@ -98,6 +98,94 @@
 \renewcommand*{\bibfont}{\raggedright\singlespacing}  % Alinha a bibliografia à esquerda com espaçamento simples.
 \setlength{\bibhang}{0pt}
 
+% Configurações para formato ABNT
+\DeclareFieldFormat{title}{\textbf{#1}}
+\DeclareFieldFormat[article]{title}{\textbf{#1}}
+\DeclareNameAlias{sortname}{family-given}
+\DeclareFieldFormat{nameyeardelim}{\addcomma\space}
+
+% Formato do nome: SOBRENOME, Nome
+\DeclareNameFormat{family-given}{%
+  \ifgiveninits
+    {\usebibmacro{name:family-given}
+      {\namepartfamily}
+      {\namepartgiveni}
+      {\namepartprefix}
+      {\namepartsuffix}}
+    {\usebibmacro{name:family-given}
+      {\namepartfamily}
+      {\namepartgiven}
+      {\namepartprefix}
+      {\namepartsuffix}}%
+  \usebibmacro{name:andothers}}
+
+\renewbibmacro*{name:family-given}[4]{%
+  \ifuseprefix
+    {\usebibmacro{name:delim}{#3#1}%
+     \usebibmacro{name:hook}{#3#1}%
+     \ifblank{#3}{}{%
+       \ifcapital
+         {\mkbibnameprefix{\MakeCapital{#3}}\isdot}
+         {\mkbibnameprefix{#3}\isdot}%
+       \ifpunctmark{'}{}{\bibnamedelimc}}%
+     \mkbibnamefamily{\MakeUppercase{#1}}\isdot
+     \ifblank{#2}{}{\revsdnamepunct\bibnamedelimd\mkbibnamegiven{#2}\isdot}%
+     \ifblank{#4}{}{\bibnamedelimd\mkbibnamesuffix{#4}\isdot}}
+    {\usebibmacro{name:delim}{#1}%
+     \usebibmacro{name:hook}{#1}%
+     \mkbibnamefamily{\MakeUppercase{#1}}\isdot
+     \ifblank{#2}{}{\revsdnamepunct\bibnamedelimd\mkbibnamegiven{#2}\isdot}%
+     \ifblank{#4}{}{\bibnamedelimd\mkbibnamesuffix{#4}\isdot}}}
+
+% Remove parênteses do ano e coloca no final
+\renewbibmacro*{date+extradate}{%
+  \iffieldundef{labelyear}
+    {}
+    {\printtext{\printfield{labelyear}%
+     \printfield{extradate}}}}
+
+% Redefine o driver para livros (books)
+\DeclareBibliographyDriver{book}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{author/editor+others/translator+others}%
+  \setunit{\labelnamepunct}\newblock
+  \usebibmacro{maintitle+title}%
+  \newunit
+  \printlist{language}%
+  \newunit\newblock
+  \usebibmacro{byauthor}%
+  \newunit\newblock
+  \usebibmacro{byeditor+others}%
+  \newunit\newblock
+  \printfield{edition}%
+  \newunit
+  \iflistundef{location}
+    {}
+    {\printlist{location}}%
+  \iflistundef{publisher}
+    {}
+    {\setunit*{\addcolon\space}%
+     \printlist{publisher}}%
+  \setunit*{\addcomma\space}%
+  \usebibmacro{date+extradate}%
+  \newunit\newblock
+  \iftoggle{bbx:isbn}
+    {\printfield{isbn}}
+    {}%
+  \newunit\newblock
+  \usebibmacro{doi+eprint+url}%
+  \newunit\newblock
+  \usebibmacro{addendum+pubstate}%
+  \setunit{\bibpagerefpunct}\newblock
+  \usebibmacro{pageref}%
+  \newunit\newblock
+  \iftoggle{bbx:related}
+    {\usebibmacro{related:init}%
+     \usebibmacro{related}}
+    {}%
+  \usebibmacro{finentry}}
+
 % Redefine o título da seção de referências para maiúsculas e centralizado
 \defbibheading{bibliography}{%
   \begin{center}
@@ -454,4 +542,3 @@
 
 
 \addbibresource{referencias/referencias.bib}  % Adiciona o arquivo de bibliografia (referencias/referencias.bib) como fonte para as referências bibliográficas.
-\DeclareDelimFormat{nameyeardelim}{\addcomma\space} % Separa autor e ano por virgula Ex: (Autor, ano)

@@ -94,8 +94,9 @@
   \\
 }
 
-\usepackage[sorting=nyt]{biblatex}  % Carrega o pacote BibLaTeX para bibliografia e define o estilo de ordenação como "nyt" (nome, ano, título).
-\renewcommand*{\bibfont}{\raggedright}  % Alinha a bibliografia à esquerda (de forma justificada).
+\usepackage[style=authoryear, sorting=nyt, backend=bibtex]{biblatex}  % Carrega o pacote BibLaTeX para bibliografia e define o estilo de ordenação como "nyt" (nome, ano, título).
+\renewcommand*{\bibfont}{\raggedright\singlespacing}  % Alinha a bibliografia à esquerda com espaçamento simples.
+\setlength{\bibhang}{0pt}
 
 % Redefine o título da seção de referências para maiúsculas e centralizado
 \defbibheading{bibliography}{%
@@ -452,4 +453,5 @@
 \let\secaoterciaria\subsubsection
 
 
-\addbibresource{bib/references.bib}  % Adiciona o arquivo de bibliografia (bib/references.bib) como fonte para as referências bibliográficas.
+\addbibresource{referencias/referencias.bib}  % Adiciona o arquivo de bibliografia (referencias/referencias.bib) como fonte para as referências bibliográficas.
+\DeclareDelimFormat{nameyeardelim}{\addcomma\space} % Separa autor e ano por virgula Ex: (Autor, ano)

@@ -346,8 +346,10 @@
 
 \newenvironment{Referencias}{
     \thispagestyle{empty} % Remove numeração da primeira página
+    \addcontentsline{toc}{section}{REFERÊNCIAS} % Adiciona ao sumário
+    \singlespacing % Espaçamento simples para bibliografia
 }{
-    \printbibliography
+    \printbibliography[heading=bibliography]
 }
 
 % ============================================================================

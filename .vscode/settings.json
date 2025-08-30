@@ -30,6 +30,14 @@
                 "%OUTDIR%/%DOCFILE%.pdf",
                 "%WORKSPACE_FOLDER%/pdf/artigo.pdf"
             ]
+        },
+        {
+            "name": "biber",
+            "command": "biber",
+            "args": [
+                "--output-directory=%OUTDIR%",
+                "%DOCFILE%"
+            ]
         }
     ],
     "latex-workshop.latex.recipes": [
@@ -43,6 +51,16 @@
         {
             "name": "xelatex + Copy PDF",
             "tools": [
+                "xelatex",
+                "copy-pdf"
+            ]
+        },
+        {
+            "name": "xelatex -> biber -> xelatex*2",
+            "tools": [
+                "xelatex",
+                "biber",
+                "xelatex",
                 "xelatex",
                 "copy-pdf"
             ]

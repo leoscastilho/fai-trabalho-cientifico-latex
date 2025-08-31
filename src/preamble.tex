@@ -489,7 +489,12 @@
     and
     not test {\ifnameundef{author}}
   }
-    {\usebibmacro{author-no-year}}
+    {%
+      \printnames[family-given]{author}%
+      \addspace%
+      \ifnumgreater{\value{listtotal}}{\value{liststop}}
+        {\mkbibemph{et\addabbrvspace al\adddot}}
+        {}}%
     {\ifboolexpr{
        test \ifuseeditor
        and
@@ -571,10 +576,6 @@
   \begin{center}
     \textbf{\MakeUppercase{Referências}}
   \end{center}
-}
-
-\DefineBibliographyStrings{portuguese}{%
-  et-al = {\mkbibemph{et\addabbrvspace al\adddot}}
 }
 
 % Separar autores na bibliografia final com ponto e vírgula.

@@ -4,21 +4,15 @@ Este diretório contém o sistema de apêndices automatizado para o template LaT
 
 ## Como Funciona
 
-O sistema usa um arquivo de configuração (`apendices.tex`) que lista todos os apêndices a serem incluídos.
+O sistema usa um arquivo de configuração (`apendices.tex`) que lista todos os apêndices a serem incluídos no documento.
 
-## Como Usar
+## Como Criar um Novo Apêndice
 
-### 1. Adicionando Novos Apêndices
+### Passo 1: Criar o Arquivo do Apêndice
+1. Crie um novo arquivo `.tex` nesta pasta (`apendices/`)
+2. Use um nome descritivo (ex: `questionario_satisfacao.tex`)
 
-**Método Manual:**
-1. Crie um arquivo `.tex` nesta pasta (`apendices/`)
-2. Adicione uma linha em `apendices.tex`:
-   ```latex
-   \apendice{nome_do_arquivo}{TÍTULO DO APÊNDICE}
-   ```
-
-### 2. Estrutura dos Arquivos de Apêndice
-
+### Passo 2: Estrutura do Arquivo
 Cada arquivo de apêndice deve conter apenas o conteúdo, **sem** o título principal. O título é gerado automaticamente pelo sistema.
 
 **Exemplo de arquivo de apêndice:**
@@ -38,77 +32,79 @@ Conteúdo da subseção...
 Mais conteúdo...
 ```
 
-### 3. Arquivo de Configuração
-
-O arquivo `apendices.tex` contém a lista de todos os apêndices:
-
-```latex
-\apendice{exemplo_apendice_a}{EXEMPLO DE PRIMEIRO APÊNDICE}
-% Adicione novos apêndices aqui:
-% \apendice{nome_do_arquivo}{TÍTULO DO APÊNDICE}
-```
-
-### 4. Referenciando Apêndices no Texto
-
-Para referenciar um apêndice no texto principal, use:
+### Passo 3: Registrar no Arquivo de Configuração
+Adicione uma linha no arquivo `apendices.tex`:
 
 ```latex
-Como pode ser visto no Apêndice \ref{apendice:A}...
+\apendice{nome_do_arquivo}{TÍTULO DO APÊNDICE}{apendice:label_personalizado}
 ```
 
-Os labels são gerados automaticamente como `apendice:A`, `apendice:B`, etc.
+**Exemplo:**
+```latex
+\apendice{questionario_satisfacao}{QUESTIONÁRIO DE SATISFAÇÃO}{apendice:questionario_satisfacao}
+```
 
-### 5. Características do Sistema
+### Passo 4: Referenciar no Texto Principal
+Para referenciar o apêndice no texto principal, use:
 
-- ✅ **Configuração Centralizada**: Todos os apêndices listados em um só arquivo
-- ✅ **Numeração Automática**: Os apêndices são numerados automaticamente como A, B, C, etc.
-- ✅ **Sumário**: Os apêndices aparecem automaticamente no sumário
-- ✅ **Múltiplas Páginas**: Cada apêndice pode ter várias páginas
-- ✅ **Título Único**: Apenas a primeira página de cada apêndice tem o título principal
-- ✅ **Referências**: Cada apêndice pode ser referenciado no texto principal
-- ✅ **Verificação de Arquivos**: O sistema verifica se os arquivos existem antes de incluí-los
+```latex
+Como pode ser visto no Apêndice \ref{apendice:questionario_satisfacao}...
+```
 
-### 6. Reordenando Apêndices
+## Arquivo de Configuração Atual
 
+O arquivo `apendices.tex` contém a lista de todos os apêndices configurados:
+
+```latex
+\apendice{modelo_capa_falsa_folha_rosto}{MODELO DE CAPA OU FALSA FOLHA DE ROSTO}{apendice:modelo_capa_falsa_folha_rosto}
+\apendice{questionario_pesquisa}{QUESTIONÁRIO DA PESQUISA}{apendice:questionario_pesquisa}
+\apendice{codigo_fonte}{CÓDIGO FONTE DO SISTEMA}{apendice:codigo_fonte}
+\apendice{teste_appendice}{OUTRO QUESTIONÁRIO}{apendice:teste_appendice}
+```
+
+## Apêndices Disponíveis
+
+Este diretório atualmente contém os seguintes apêndices:
+
+1. **modelo_capa_falsa_folha_rosto.tex** - Modelo de capa ou falsa folha de rosto
+2. **questionario_pesquisa.tex** - Exemplo de questionário de pesquisa
+3. **codigo_fonte.tex** - Exemplo de código fonte
+4. **teste_appendice.tex** - Exemplo de outro questionário
+
+## Gerenciamento de Apêndices
+
+### Reordenando Apêndices
 Para alterar a ordem dos apêndices, simplesmente reordene as linhas no arquivo `apendices.tex`.
 
-### 7. Removendo Apêndices
-
+### Removendo Apêndices
 Para remover um apêndice:
 
 1. **Método 1**: Delete o arquivo `.tex` correspondente (o sistema irá ignorá-lo automaticamente)
 2. **Método 2**: Comente ou remova a linha correspondente em `apendices.tex`
 3. **Método 3**: Delete tanto o arquivo quanto a linha de configuração
 
-### 8. Exemplos Incluídos
+### Características do Sistema
 
-Este diretório já contém quatro exemplos:
-
-1. **exemplo_apendice_a.tex** - Exemplo básico de apêndice
-2. **questionario_pesquisa.tex** - Exemplo de questionário
-3. **codigo_fonte.tex** - Exemplo de código fonte
-4. **teste_script.tex** - Exemplo criado pelo script
+- ✅ **Configuração Centralizada**: Todos os apêndices listados em um só arquivo
+- ✅ **Numeração Automática**: Os apêndices são numerados automaticamente como A, B, C, etc.
+- ✅ **Sumário**: Os apêndices aparecem automaticamente no sumário
+- ✅ **Múltiplas Páginas**: Cada apêndice pode ter várias páginas
+- ✅ **Título Único**: Apenas a primeira página de cada apêndice tem o título principal
+- ✅ **Referências Personalizadas**: Cada apêndice pode ter seu próprio label personalizado
+- ✅ **Verificação de Arquivos**: O sistema verifica se os arquivos existem antes de incluí-los
 
 ## Estrutura de Arquivos
 
 ```
 apendices/
-├── README.md                    # Este arquivo
-├── apendices.tex            # Configuração dos apêndices
-├── exemplo_apendice_a.tex       # Exemplo básico
-├── questionario_pesquisa.tex    # Exemplo de questionário
-├── codigo_fonte.tex             # Exemplo de código
-├── teste_script.tex             # Exemplo do script
-└── [seus_apendices].tex         # Seus apêndices personalizados
+├── README.md                           # Este arquivo de instruções
+├── apendices.tex                       # Configuração dos apêndices
+├── modelo_capa_falsa_folha_rosto.tex   # Modelo de capa ou falsa folha de rosto
+├── questionario_pesquisa.tex           # Exemplo de questionário
+├── codigo_fonte.tex                    # Exemplo de código fonte
+├── teste_appendice.tex                 # Exemplo de outro questionário
+└── [seus_apendices].tex                # Seus apêndices personalizados
 ```
-
-## Vantagens do Novo Sistema
-
-- **Sem modificação de código**: Não precisa mais editar `src/definitions.tex`
-- **Configuração simples**: Apenas uma linha por apêndice
-- **Flexibilidade**: Fácil reordenação e remoção
-- **Manutenção**: Sistema mais limpo e organizad
-- **Automação**: Script para adicionar novos apêndices automaticamente
 
 ## Dicas
 

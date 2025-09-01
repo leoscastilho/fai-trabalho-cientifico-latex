@@ -107,30 +107,30 @@ Segundo \citacaoindiretanotexto{rubio1999psicologia}, a psicologia do esporte é
 ### 3. `\citacaodireta[página]{chave}`
 **Uso**: Citação direta com indicação de página
 ```latex
-"O exercício físico é fundamental para a saúde" \citacaodireta[p. 87]{fims1997exercicio}.
+"O exercício físico é fundamental para a saúde" \citacaodireta[87]{fims1997exercicio}.
 ```
 **Resultado**: "O exercício físico é fundamental para a saúde" (FIMS, 1997, p. 87).
 
 ### 4. `\citacaodiretanotexto[página]{chave}`
 **Uso**: Citação direta integrada ao texto
 ```latex
-\citacaodiretanotexto[p. 25]{santos2001} afirma que "a metodologia é essencial".
+\citacaodiretanotexto[25]{santos2001} afirma que "a metodologia é essencial".
 ```
 **Resultado**: Santos (2001, p. 25) afirma que "a metodologia é essencial".
 
 ### 5. `\citacaodiretagrifonosso[página]{chave}`
 **Uso**: Citação direta com grifo nosso (destaque adicionado pelos autores)
 ```latex
-"O **esporte** é fundamental" \citacaodiretagrifonosso[p. 15]{vieira2010psicologia}.
+"O \textbf{esporte} é fundamental" \citacaodiretagrifonosso[15]{vieira2010psicologia}.
 ```
 **Resultado**: "O **esporte** é fundamental" (VIEIRA et al., 2010, p. 15, grifo nosso).
 
 ### 6. `\citacaodiretagrifodoautor[página]{chave}`
 **Uso**: Citação direta com grifo do autor original
 ```latex
-"O esporte é _fundamental_" \citacaodiretagrifodoautor[p. 20]{sanches2011pratica}.
+"O esporte é \underline{fundamental}" \citacaodiretagrifodoautor[20]{sanches2011pratica}.
 ```
-**Resultado**: "O esporte é _fundamental_" (SANCHES; RUBIO, 2011, p. 20, grifo do autor).
+**Resultado**: "O esporte é <ins>fundamental</ins>" (SANCHES; RUBIO, 2011, p. 20, grifo do autor).
 
 ### 7. `\citacaodecitacao{fonte_nao_consultada}{fonte_consultada}`
 **Uso**: Citação de citação (apud)
@@ -143,9 +143,8 @@ Segundo \citacaoindiretanotexto{rubio1999psicologia}, a psicologia do esporte é
 **Uso**: Citações diretas longas (mais de 3 linhas)
 ```latex
 \begin{citacaodiretalonga}
-Esta é uma citação longa que deve ser formatada com recuo de 4cm da margem esquerda, fonte menor (10pt) e espaçamento simples, conforme as normas ABNT para citações longas.
+Esta é uma citação longa que deve ser formatada com recuo de 4cm da margem esquerda, fonte menor (10pt) e espaçamento simples, conforme as normas ABNT para citações longas. \citacaodireta[45]{autor2020}
 \end{citacaodiretalonga}
-\citacaodireta[p. 45]{autor2020}
 ```
 
 ## 📋 Formatação Automática das Referências

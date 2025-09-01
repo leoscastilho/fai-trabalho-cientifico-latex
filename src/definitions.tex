@@ -392,11 +392,15 @@
 % Contador para apêndices
 \newcounter{appendixcounter}
 \setcounter{appendixcounter}{0}
+\renewcommand{\theappendixcounter}{\Alph{appendixcounter}}
 
 % Comando para processar uma entrada de apêndice
-\newcommand{\apendice}[2]{%
+\newcommand{\apendice}[3]{%
+    % #1: filename (without .tex)
+    % #2: Title for the appendix
+    % #3: Custom label for cross-referencing
     \IfFileExists{apendices/#1.tex}{%
-        \stepcounter{appendixcounter}%
+        \refstepcounter{appendixcounter}%
         \clearpage%
         \thispagestyle{numbered}%
         {\noindent\normalsize APÊNDICE \Alph{appendixcounter} -- \MakeUppercase{#2}}%
@@ -406,7 +410,7 @@
             \protect\noindent\normalsize APÊNDICE \Alph{appendixcounter} -- \MakeUppercase{#2}%
             \protect\cftdotfill{\cftdotsep}\normalsize\thepage\protect\par%
         }%
-        \label{apendice:\Alph{appendixcounter}}%
+        \label{#3}% <-- Updated line
         \input{apendices/#1}%
     }{%
         \PackageWarning{appendix}{Arquivo apendices/#1.tex não encontrado}%
@@ -444,11 +448,15 @@
 % Contador para anexos
 \newcounter{anexocounter}
 \setcounter{anexocounter}{0}
+\renewcommand{\theanexocounter}{\Alph{anexocounter}}
 
 % Comando para processar uma entrada de apêndice
-\newcommand{\anexo}[2]{%
+\newcommand{\anexo}[3]{%
+    % #1: filename (without .tex)
+    % #2: Title for the appendix
+    % #3: Custom label for cross-referencing
     \IfFileExists{anexos/#1.tex}{%
-        \stepcounter{anexocounter}%
+        \refstepcounter{anexocounter}%
         \clearpage%
         \thispagestyle{numbered}%
         {\noindent\normalsize ANEXO \Alph{anexocounter} -- \MakeUppercase{#2}}%
@@ -458,7 +466,7 @@
             \protect\noindent\normalsize ANEXO \Alph{anexocounter} -- \MakeUppercase{#2}%
             \protect\cftdotfill{\cftdotsep}\normalsize\thepage\protect\par%
         }%
-        \label{anexo:\Alph{anexocounter}}%
+        \label{#3}% <-- This is the updated line
         \input{anexos/#1}%
     }{%
         \PackageWarning{appendix}{Arquivo anexos/#1.tex não encontrado}%

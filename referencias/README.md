@@ -169,16 +169,19 @@ O sistema produz automaticamente:
 ## 🔧 Dicas de Uso
 
 ### Múltiplos Autores
+Separe os autores pela palavra "and"
 ```bibtex
 author = {Primeiro Autor and Segundo Autor and Terceiro Autor}
 ```
 
 ### Autor Institucional
+Quando o autor é uma instituição (ABNT, FAI, ...)
 ```bibtex
 author = {{Nome da Instituição}}
 ```
 
 ### Subtítulos
+Separe Títulos de Subtítulos
 ```bibtex
 title = {Título Principal},
 subtitle = {Subtítulo da Obra}
@@ -203,8 +206,6 @@ note = {Acesso em: 15 jan. 2025}
 3. **Caracteres Especiais**: Use `\textit{}` para itálico, `\textbf{}` para negrito
 
 4. **Páginas**: Use `--` para intervalos (ex: `pages = {10--25}`)
-
-5. **Idioma**: Adicione `language = {pt}` para textos em português
 
 ## 🎯 Resultado Final
 

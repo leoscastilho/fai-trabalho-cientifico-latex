@@ -449,7 +449,6 @@
 
 % Configurações para formato ABNT
 \DeclareFieldFormat{title}{\textbf{#1}}
-\DeclareFieldFormat[article]{title}{\textbf{#1}}
 \DeclareNameAlias{sortname}{family-given}
 \DeclareDelimFormat{nameyeardelim}{\addcomma\space}
 
@@ -570,6 +569,85 @@
     {}%
   \usebibmacro{finentry}
 }
+
+% --- Custom title format for theses (bold, no quotes) ---
+\DeclareFieldFormat{thesistitle}{\mkbibbold{#1}}
+
+\newbibmacro*{thesis:year+pages+type+institution+location+year}{%
+  \printfield{year}\adddot\space%
+  \printfield{pages}\addabbrvspace{p}\adddot\space%
+  \printfield{type}%
+  \setunit{\addcomma\space}%
+  \printlist{institution}%
+  \setunit{\addcomma\space}%
+  \printlist{location}%
+  \setunit{\addcomma\space}%
+  \printfield{year}\adddot%
+}
+
+\DeclareBibliographyDriver{thesis}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{author/editor+others/translator+others}%
+  \setunit{\labelnamepunct}\newblock
+  \printfield[thesistitle]{title}%
+  \iflistundef{subtitle}
+    {}
+    {\setunit{\addcolon\space}\printfield{subtitle}}%
+  \adddot\space%
+  \usebibmacro{thesis:year+pages+type+institution+location+year}%
+  \usebibmacro{finentry}%
+}
+
+
+% Article:
+% --- New macro for article journal info ---
+\DeclareFieldFormat[article]{title}{#1}
+\DeclareFieldFormat{pages}{#1}
+
+\newbibmacro*{article:journal+location+volume+number+month}{%
+  \printfield[journaltitle]{journaltitle}%
+  \setunit{\addcomma\space}%
+  \iflistundef{location}
+    {}
+    {\printlist{location}\addcomma\space}%
+  \printtext{v.\adddot\space}%
+  \printfield{volume}%
+  \setunit{\addcomma\space}%
+  \printtext{n.\adddot\space}%
+  \printfield{number}%
+  \setunit{\addcomma\space}%
+  \printtext{p.\adddot\space}%
+  \printfield{pages}%
+  \setunit{\addcomma\space}% FIXME: Esta mostrando um . ao invés de , depois da página
+  \printfield{month}
+}
+
+% --- Redefine the driver for articles ---
+\DeclareBibliographyDriver{article}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{author/editor+others/translator+others}%
+  \setunit{\labelnamepunct}\newblock
+  \printfield{title}\adddot\space
+  \printfield{subtitle}%
+  \newunit\newblock
+  \usebibmacro{article:journal+location+volume+number+month}%
+  \newunit\newblock
+  \printfield{month}\adddot\space%
+  \usebibmacro{date+extradate}\adddot%
+  \newunit\newblock
+  \usebibmacro{doi+eprint+url}%
+  \newunit\newblock
+  \usebibmacro{addendum+pubstate}%
+  \setunit{\bibpagerefpunct}\newblock
+  \usebibmacro{pageref}%
+  \usebibmacro{finentry}%
+}
+
+% --- Custom formatting for the journal title to be bold ---
+\DeclareFieldFormat[article]{journaltitle}{\mkbibbold{#1}}
+
 
 % Redefine o título da seção de referências para maiúsculas e centralizado
 \defbibheading{bibliography}{%

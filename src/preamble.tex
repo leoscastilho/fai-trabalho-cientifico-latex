@@ -607,6 +607,9 @@
 
 \newbibmacro*{article:journal+location+volume+number+month}{%
   \printfield[journaltitle]{journaltitle}%
+  \iflistundef{institution}
+    {}
+    {\setunit{\addcomma\space}\printlist{institution}}%
   \setunit{\addcomma\space}%
   \iflistundef{location}
     {}
@@ -663,3 +666,26 @@
 
 \addbibresource{referencias/referencias.bib}  % Adiciona o arquivo de bibliografia (referencias/referencias.bib) como fonte para as referências bibliográficas.
 % ==================================================================================================
+
+\DeclareBibliographyCategory{exclude}%
+\makeatletter
+\newcommand*{\apud}[2]{%
+  \addtocategory{exclude}{#1} % Referencia somente da obra consultada
+  \begingroup%
+    \renewcommand*{\multinamedelim}{\addcomma\addspace}%
+    \renewcommand*{\finalnamedelim}{\addspace e \addspace}%
+    \citeauthor{#1} 
+  \endgroup%
+  % if we haven't seen this key before, define a marker and insert the footnote
+  \@ifundefined{apud@seen@#1}{%
+    \expandafter\gdef\csname apud@seen@#1\endcsname{}%
+    \footnote{\fullcite{#1}}%
+  }{}%
+  \space
+  (%
+    \citeyear{#1} \textit{apud} %
+    \citeauthor{#2}%
+    , \citeyear{#2}%
+  )%
+}
+\makeatother

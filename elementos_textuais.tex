@@ -44,24 +44,35 @@ Seguem as definições da NBR 14724 (ABNT, 2011) e da NBR 6022 (ABNT, 2003), par
 \end{alinea}
 
 Santos (2001, p. 37) conceitua monografia como:
-\begin{citacaodireta}
+\begin{citacaodiretalonga}
 Um texto de primeira mão resultante de pesquisa científica e que contém a identificação, o posicionamento, o tratamento, e o fechamento competente de um tema/problema que essencialmente analisa, em que o objeto (o tema, o problema é geralmente bem delimitado em extensão, a monografia permite o aprofundamento do estudo). Fundamenta-se na organização e na interpretação analítica e avaliativa de dados, conforme objetivos (linhas de raciocínio) pré-estabelecidos. A matéria prima do raciocínio são os dados, que basicamente se constituem de axiomas científicos (verdadeiros aceitos por diversas ciências), da autoridade de autores consagrados, com suas ilustrações, testemunhos e, até mesmo, da sua experiência pessoal coerente de pesquisador. O raciocínio é desenvolvido de forma indutiva (parte-se de experiências e observações particulares para se chegar a um princípio geral), ou de forma dedutiva (parte-se de um principio geral para verificá-la em casos particulares).
-\end{citacaodireta}
+\end{citacaodiretalonga}
 
 Segundo França e Vasconcelos (2008) a monografia, por ser uma primeira experiência de relato científico, constitui-se numa preparação metodologia para futuras investigações. Conforme Salomon (1979, p. 36),
 
-\begin{citacaodireta}
+\begin{citacaodiretalonga}
 O trabalho científico é identificado, frequentemente, com a investigação científica ou com o seu resultado, quando este é comunicado. Perfeitamente válida a identificação, uma vez que dá à investigação o seu devido lugar e, ao mesmo tempo, mostra a importância da comunicação no processo de elaboração dos trabalhos científicos.
-\end{citacaodireta}
+\end{citacaodiretalonga}
 
-\parencite{knuth1984}
 Definidos, de forma bastante resumida, os vários tipos de trabalhos científicos existentes, passa- se às informações sobre a estrutura de composição desses documentos.
 
-Parencite: \parencite{santos2001}
+Citação direta: \citacaodireta[36]{santos2001}
 
-Parencite page: \parencite[36]{santos2001}
+Citação direta grifo nosso: \citacaodiretagrifonosso[36]{santos2001}
 
-Textcite: \textcite[36]{santos2001} conceitua que 
+Citação direta grifo do autor: \citacaodiretagrifodoautor[36]{santos2001}
+
+Citação direta no texto: \citacaodiretanotexto[36]{santos2001}
+
+Citação indireta: \citacaoindireta{antonioetal2001}
+
+Citação indireta no texto: \citacaoindiretanotexto{antonioetal2001}
+
+Citação de citação: \citacaodecitacao{silvestre2006abordagens}{lorena2013cluster}
+
+Citação longa: \begin{citacaodiretalonga}
+Um trabalho científico é identificado, frequentemente, com a investigação científica ou com o seu resultado, quando este é comunicado. Perfeitamente válida a identificação, uma vez que dá à investigação o seu devido lugar e, ao mesmo tempo, mostra a importância da comunicação no processo de elaboração dos trabalhos científicos. \citacaodireta[36]{santos2001}
+\end{citacaodiretalonga}
 
 Cite: \cite{santos2001}
 
@@ -89,7 +100,7 @@ A estrutura de trabalhos acadêmicos (ou científicos) tais como relatórios de 
 
 O Quadro \ref{quadro:EspecificacaoElementos} especifica os elementos em função do tipo de trabalho. Note-se que nas partes pré- textuais e pós-textuais há elementos de inclusão obrigatória, opcional e condicional (opcional, mas com indicação de inclusão em determinados casos). Já as partes textuais são obrigatórias para todos os tipos de documentos acadêmico-científicos.
 
-\apud{silvestre2006abordagens}{lorena2013cluster}
+\citacaodecitacao{silvestre2006abordagens}{lorena2013cluster}
 
 \begin{quadro} [h!]
   \centering

@@ -18,6 +18,7 @@
 \usepackage{pgfmath} % Para cálculos matemáticos nos apêndices
 \usepackage{tabularx}
 \usepackage{calc}
+\usepackage{textcase}
 
 \setlength{\parindent}{0pt}  % Paragráfos sem identação, conforme modelo da FAI
 \setstretch{1.5}  % This also sets 1.5 line spacing
@@ -179,29 +180,6 @@
     }%
 }
 
-% ------------------------------------------------------------------------------------
-
-% Funções para Citação Direta ---------------------------------
-\newenvironment{citacaodireta}
-{\par\addvspace{\baselineskip}% Add exactly one line space before
- \begingroup
- \list{}{\leftmargin=4cm
-         \rightmargin=0pt
-         \parsep=0pt
-         \itemsep=0pt
-         \topsep=0pt}
- \item\relax
- \singlespacing
- \fontsize{10}{12}\selectfont
- \justifying}
-{\endlist
- \endgroup
- \par\addvspace{\baselineskip}}% Add exactly one line space after
-
-% Usar:
-% \begin{citacaodireta}
-% ...
-% \end{citacaodireta}
 % ------------------------------------------------------------------------------------
 
 % Customização das Listas de Ilustrações ---------------------------------
@@ -527,6 +505,9 @@
     {\printtext{\printfield{labelyear}%
      \printfield{extradate}}}}
 
+\DeclareFieldFormat{edition}{#1\adddot ed\adddot}
+\DeclareFieldFormat[book]{pages}{#1\addspace p\adddot}
+
 % Redefine o driver para livros (books)
 \DeclareBibliographyDriver{book}{%
   \usebibmacro{bibindex}%
@@ -541,15 +522,20 @@
   \newunit\newblock
   \usebibmacro{byeditor+others}%
   \newunit\newblock
-  \printfield{edition}%
+  \printfield[edition]{edition}%
   \newunit
   \iflistundef{location}
-    {}
-    {\printlist{location}}%
-  \iflistundef{publisher}
-    {}
-    {\setunit*{\addcolon\space}%
-     \printlist{publisher}}%
+    {\iflistundef{publisher}
+        {. [S.l.:S.n.].}
+        {. [S.l.]:\setunit*{\addcolon\space}%
+        \printlist{publisher}}%
+    }
+    {\printlist{location}%
+    \iflistundef{publisher}
+        {: [S.n.].}
+        {\setunit*{\addcolon\space}%
+        \printlist{publisher}}%
+    }%
   \setunit*{\addcomma\space}%
   \usebibmacro{date+extradate}%
   \newunit\newblock
@@ -560,9 +546,8 @@
   \usebibmacro{doi+eprint+url}%
   \newunit\newblock
   \usebibmacro{addendum+pubstate}%
-  \setunit{\bibpagerefpunct}\newblock
-  \usebibmacro{pageref}%
   \newunit\newblock
+  \printfield[pages]{pages}
   \iftoggle{bbx:related}
     {\usebibmacro{related:init}%
      \usebibmacro{related}}
@@ -572,6 +557,7 @@
 
 % --- Custom title format for theses (bold, no quotes) ---
 \DeclareFieldFormat{thesistitle}{\mkbibbold{#1}}
+\DeclareFieldFormat[thesis]{pages}{#1}
 
 \newbibmacro*{thesis:year+pages+type+institution+location+year}{%
   \printfield{year}\adddot\space%
@@ -603,7 +589,7 @@
 % Article:
 % --- New macro for article journal info ---
 \DeclareFieldFormat[article]{title}{#1}
-\DeclareFieldFormat{pages}{#1}
+\DeclareFieldFormat[article]{pages}{#1}
 
 \newbibmacro*{article:journal+location+volume+number+month}{%
   \printfield[journaltitle]{journaltitle}%
@@ -632,8 +618,7 @@
   \usebibmacro{begentry}%
   \usebibmacro{author/editor+others/translator+others}%
   \setunit{\labelnamepunct}\newblock
-  \printfield{title}\adddot\space
-  \printfield{subtitle}%
+  \usebibmacro{title+subtitle}%
   \newunit\newblock
   \usebibmacro{article:journal+location+volume+number+month}%
   \newunit\newblock
@@ -689,3 +674,84 @@
   )%
 }
 \makeatother
+
+% Funções para Citação Direta ---------------------------------
+\newenvironment{citacaodiretalonga}
+{\par\addvspace{\baselineskip}% Add exactly one line space before
+ \begingroup
+ \list{}{\leftmargin=4cm
+         \rightmargin=0pt
+         \parsep=0pt
+         \itemsep=0pt
+         \topsep=0pt}
+ \item\relax
+ \singlespacing
+ \fontsize{10}{12}\selectfont
+ \justifying}
+{\endlist
+ \endgroup
+ \par\addvspace{\baselineskip}}% Add exactly one line space after
+
+% Usar:
+% \begin{citacaodiretalonga}
+% ...
+% \end{citacaodiretalonga}
+% ------------------------------------------------------------------------------------
+
+% Alias em portugues para alguns comandos
+\NewDocumentCommand{\citacaodecitacao}{ m m }{%
+  \apud{#1}{#2}%
+}
+
+\NewDocumentCommand{\citacaodireta}{ o m }{%
+  \IfValueT{#1}{%
+    {\protected\def\mkbibnamefamily##1{\MakeTextUppercase{##1}}%
+     \parencite[#1]{#2}}%
+  }%
+  \IfNoValueT{#1}{%
+    {\protected\def\mkbibnamefamily##1{\MakeTextUppercase{##1}}%
+     \parencite{#2}}%
+  }%
+}
+
+% Usado quando os autores destacarem um trecho, EM NEGRITO
+\NewDocumentCommand{\citacaodiretagrifonosso}{ o m }{%
+  \IfValueT{#1}{%
+    {\protected\def\mkbibnamefamily##1{\MakeTextUppercase{##1}}%
+     \parencite[][p. #1, grifo nosso]{#2}}%
+  }%
+  \IfNoValueT{#1}{%
+    {\protected\def\mkbibnamefamily##1{\MakeTextUppercase{##1}}%
+     \parencite[][grifo nosso]{#2}}%
+  }%
+}
+
+% Usado quando o autor original destacar um trecho, SUBLINHADO
+\NewDocumentCommand{\citacaodiretagrifodoautor}{ o m }{%
+  \IfValueT{#1}{%
+    {\protected\def\mkbibnamefamily##1{\MakeTextUppercase{##1}}%
+     \parencite[][p. #1, grifo do autor]{#2}}%
+  }%
+  \IfNoValueT{#1}{%
+    {\protected\def\mkbibnamefamily##1{\MakeTextUppercase{##1}}%
+     \parencite[][grifo do autor]{#2}}%
+  }%
+}
+
+\NewDocumentCommand{\citacaodiretanotexto}{ o m }{%
+  \IfValueT{#1}{%
+    \textcite[#1]{#2}%
+  }
+  \IfNoValueT{#1}{%
+    \textcite{#2}%
+  }
+}
+
+\NewDocumentCommand{\citacaoindireta}{ m }{%
+    {\protected\def\mkbibnamefamily##1{\MakeTextUppercase{##1}}%
+     \parencite{#1}}%
+}
+
+\NewDocumentCommand{\citacaoindiretanotexto}{ m }{%
+  \textcite{#1}%
+}

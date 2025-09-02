@@ -2,6 +2,8 @@
 
 Este é um template LaTeX completo para elaboração de trabalhos científicos seguindo as diretrizes da Faculdade de Americana (FAI). O sistema é automatizado e permite a criação de monografias, relatórios de estágio e trabalhos acadêmicos de forma padronizada.
 
+📖 **[Diretrizes Oficiais da FAI](pdf/Diretrizes%20para%20elaboração%20de%20trabalhos%20científicos%20-%20Padrão%20ABNT%20e%20adaptação%20às%20normas%20institucionais%20da%20FAI%208a%20Edição.pdf)** - Documento oficial que serve como base para este template.
+
 ## Como Usar
 
 ### ⚠️ Arquivo Principal - NÃO MODIFICAR
@@ -10,7 +12,6 @@ O arquivo [`main.tex`](main.tex) **NÃO deve ser modificado**. Ele contém toda 
 ### Configuração Inicial
 1. **Configure os metadados**: Edite o arquivo [`metadados.tex`](metadados.tex) com as informações do seu trabalho (título, autor, orientador, etc.)
 2. **Edite o conteúdo**: Modifique os arquivos de conteúdo conforme necessário
-3. **Compile**: Execute `pdflatex main.tex` ou use seu editor LaTeX preferido
 
 ## Estrutura do Documento
 
@@ -44,6 +45,12 @@ Documentos não elaborados pelo autor (leis, regulamentos, tabelas oficiais, etc
 
 📁 **[Pasta anexos/](anexos/)** - [Ver instruções completas](anexos/README.md)
 
+## Referências
+
+Sistema de gerenciamento de referências bibliográficas seguindo as normas ABNT.
+
+📁 **[Pasta referencias/](referencias/)** - [Ver instruções completas](referencias/README.md)
+
 ## Ilustrações
 
 O sistema suporta diferentes tipos de ilustrações organizadas em pastas específicas:
@@ -64,6 +71,7 @@ O sistema suporta diferentes tipos de ilustrações organizadas em pastas espec�
     \centering
     \includegraphics[width=0.8\textwidth]{ilustracoes/figuras/nome_da_figura.png}
     \caption{Título da figura}
+    \fonte{Autor da figura ou fonte consultada}
     \label{fig:nome_da_figura}
 \end{figure}
 ```
@@ -74,6 +82,7 @@ O sistema suporta diferentes tipos de ilustrações organizadas em pastas espec�
     \centering
     \includegraphics[width=0.6\textwidth]{ilustracoes/fotografias/nome_da_foto.jpg}
     \caption{Título da fotografia}
+    \fonte{Autor da fotografia ou fonte consultada}
     \label{foto:nome_da_foto}
 \end{fotografia}
 ```
@@ -84,6 +93,7 @@ O sistema suporta diferentes tipos de ilustrações organizadas em pastas espec�
     \centering
     \includegraphics[width=0.7\textwidth]{ilustracoes/graficos/nome_do_grafico.png}
     \caption{Título do gráfico}
+    \fonte{Autor do gráfico ou fonte consultada}
     \label{graf:nome_do_grafico}
 \end{grafico}
 ```
@@ -94,6 +104,7 @@ O sistema suporta diferentes tipos de ilustrações organizadas em pastas espec�
     \centering
     \includegraphics[width=0.9\textwidth]{ilustracoes/quadros/nome_do_quadro.png}
     \caption{Título do quadro}
+    \fonte{Autor do quadro ou fonte consultada}
     \label{quad:nome_do_quadro}
 \end{quadro}
 ```
@@ -137,21 +148,6 @@ O sistema suporta diferentes tipos de ilustrações organizadas em pastas espec�
 ├── src/                      # Arquivos de configuração do sistema
 ├── config/                   # Configurações adicionais
 └── build/                    # Arquivos temporários de compilação
-```
-
-## Compilação
-
-### Método Recomendado:
-```bash
-pdflatex main.tex
-bibtex main
-pdflatex main.tex
-pdflatex main.tex
-```
-
-### Usando Latexmk (se disponível):
-```bash
-latexmk -pdf main.tex
 ```
 
 ## Dicas Importantes

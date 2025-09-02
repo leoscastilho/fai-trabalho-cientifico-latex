@@ -1,0 +1,763 @@
+%Referência de Modelo para a FAI: https://www.fai-mg.br/biblio/images/publicacoes/modelo/ModeloArtigoCientifico.pdf %
+
+\usepackage[brazil]{babel}  % Usa o idioma português (Brasil) para definir as convenções de idioma, como a separação de sílabas e tradução de termos.
+\usepackage[utf8]{inputenc}  % Define a codificação de entrada como UTF-8 para permitir caracteres acentuados corretamente.
+\usepackage[T1]{fontenc}  % Define a codificação de saída de fontes como T1, permitindo o uso correto de caracteres especiais.
+\usepackage{times}     % Fonte Times New Roman
+\usepackage{parskip}   % Remove a identação dos parágrafos
+\usepackage{geometry}  % Permite personalizar as margens e o layout da página.
+\usepackage{graphicx}  % Permite inserir gráficos, imagens e ajustar o tamanho deles.
+\usepackage{titlesec}  % Fornece comandos para personalizar o formato dos títulos das seções.
+\usepackage{fancyhdr}  % Permite personalizar os cabeçalhos e rodapés do documento.
+\usepackage{setspace}  % Controla o espaçamento entre linhas no documento (aqui é usado para espaçamento de 1,5 linha).
+\usepackage{csquotes}  % Fornece suporte para citações, garantindo que o estilo de aspas seja correto em diferentes idiomas.
+\usepackage{ragged2e}  % Fornece comandos para justificar ou ajustar o alinhamento de texto.
+\usepackage{lipsum}    % Para gerar texto Lorem Ipsum
+\usepackage{enumitem} % Customizar alíneas
+\usepackage[toc,page]{appendix} % Para gerenciar apêndices
+\usepackage{pgfmath} % Para cálculos matemáticos nos apêndices
+\usepackage{tabularx}
+\usepackage{calc}
+\usepackage{textcase}
+
+% Desabilitar hifenização
+\tolerance=1
+\emergencystretch=\maxdimen
+\hyphenpenalty=10000
+\hbadness=10000
+
+\setlength{\parindent}{0pt}  % Paragráfos sem identação, conforme modelo da FAI
+\setstretch{1.5}  % This also sets 1.5 line spacing
+\setlength{\parskip}{12pt}  % Espaçament ode 12pt entre paragrafos
+
+% Define a numeração da página
+\fancypagestyle{numbered}{
+    \fancyhf{}
+    \fancyhead[R]{{\fontsize{10pt}{12pt}\selectfont\thepage}}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% Quanto à separação entre títulos, subtítulos e texto, observa-se o seguinte:
+\let\oldsection\section
+\renewcommand{\section}[1]{%
+    \clearpage % os títulos de capítulos estão sempre no início de uma nova página;
+    \thispagestyle{empty} % No page number on this page
+    \oldsection{#1}
+}
+% seções primárias: os títulos dessas seções devem ser em caixa alta, fonte 12 e em negrito;
+\titleformat{\section}{\normalfont\fontsize{12}{12}\selectfont\bfseries}{\thesection}{0.3em}{\MakeUppercase}
+
+\let\oldsubsection\subsection
+\renewcommand{\subsection}[1]{%
+    \par\vspace{2\parskip}
+    \oldsubsection{#1}
+    \par\vspace{0.5\parskip} % separação entre o texto e os subtítulos: pula-se uma linha em branco.
+}
+% seções secundárias: os títulos dessas seções devem ser iguais aos das primárias, porém sem negrito;
+\titleformat{\subsection}{\normalfont\fontsize{12}{12}\selectfont}{\thesubsection}{0.3em}{\MakeUppercase}
+
+% Define spacing for subsubsection
+\let\oldsubsubsection\subsubsection
+\renewcommand{\subsubsection}[1]{%
+    \par\vspace{2\parskip}
+    \oldsubsubsection{#1}
+    \par\vspace{0.5\parskip}% Add paragraph break after
+}
+% seções terciárias: os títulos dessas seções devem ser em negrito, somente com a primeira letra maiúscula;
+\titleformat{\subsubsection}{\normalfont\fontsize{12}{14.4}\bfseries}{\thesubsubsection}{0.3em}{}
+
+\geometry{
+    left=3cm,
+    right=2cm,
+    top=3cm,
+    bottom=2cm,
+    headsep=35pt,
+    footskip=0pt
+    % , showframe
+} % Define as margens da página (esquerda = 3cm, direita = 2cm, topo = 3cm, fundo = 2cm)
+
+% Configuração das alíneas
+\newlist{alinea}{enumerate}{1}
+\setlist[alinea,1]{
+    label=\alph*), % c) as alíneas devem ser indicadas alfabeticamente, em letra minúscula, seguida de parêntese fechado. Utilizam-se letras dobradas, quando esgotadas as letras do alfabeto;
+    leftmargin=1cm,        % Total indentation from current margin
+    itemindent=0pt,        % No additional item indentation
+    labelsep=0pt,          % No space between label and text
+    labelwidth=13pt,       % d) as letras indicativas das alíneas devem apresentar recuo de 0,5 cm em relação à margem esquerda;
+    itemsep=0pt,
+    parsep=0pt,
+    topsep=0pt,
+    partopsep=0pt,
+    align=left,
+    before={\setlength{\parskip}{0pt}},  % h) Entre as alíneas, inclusive a primeira delas, os parágrafos são formatados com zero ponto ante e zero depois
+    after={\setlength{\parskip}{12pt}}   % i) O próximo parágrafo, após a última alínea, volta a ter formatação normal com 12 pontos antes e 12 depois.
+}
+
+\newcommand{\listaalinhada}[2]{%
+  \noindent%
+  \begin{tabularx}{\textwidth}{lX}
+  {#1}: & \parbox[t]{\linewidth}{\raggedright #2}
+  \end{tabularx}%
+  \\
+}
+
+% Customização do Sumário ----------------------------------------------------------
+\usepackage{tocloft}
+\usepackage{xstring}
+\usepackage{textcase}
+
+\setcounter{tocdepth}{2} % Incluir apenas secao primaria e secundaria
+
+\renewcommand{\contentsname}{SUMÁRIO}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\setlength{\cftbeforetoctitleskip}{0pt}
+\setlength{\cftaftertoctitleskip}{0.4cm}
+\renewcommand{\cfttoctitlefont}{\hfil\bfseries}
+
+
+\renewcommand{\cfttoctitlefont}{\hfil\rmfamily\bfseries\MakeUppercase} % Título maiúsculo
+\renewcommand{\cftdotsep}{0.1} % Adiciona mais pontos. Menor numero = Mais pontos
+\setlength{\cftbeforesecskip}{0em} % Espaço entre as linhas de seção
+\setlength{\cftbeforesubsecskip}{0em} % Espaço entre as linhas de subseção
+\setlength{\cftbeforesubsubsecskip}{0em} % Espaço entre as linhas de subsubseção
+\setlength{\cftsecindent}{0em} % Remove identação das seções
+\setlength{\cftsubsecindent}{0em}   % Remove identação das subseções
+\setlength{\cftsubsubsecindent}{0em} % Remove identação das subsubseções
+
+\setlength{\cftsecnumwidth}{1.2em} % Espaço entre número da seção e texto
+\setlength{\cftsubsecnumwidth}{1.5em} % Espaço entre número da subseção e texto
+\setlength{\cftsubsubsecnumwidth}{2.3em} % Espaço entre número da subsubseção e texto
+
+% Seção, subseção e subsubseção em maiúsculo no Sumário
+\makeatletter
+\let\oldcontentsline\contentsline
+\renewcommand{\contentsline}[4]{%
+  \expandafter\ifx\csname l@#1\endcsname\l@section
+    \oldcontentsline{#1}{\MakeUppercase{#2}}{#3}{#4}%
+  \else
+    \expandafter\ifx\csname l@#1\endcsname\l@subsection
+      \oldcontentsline{#1}{\MakeUppercase{#2}}{#3}{#4}%
+    \else
+      \expandafter\ifx\csname l@#1\endcsname\l@subsubsection
+        \oldcontentsline{#1}{\MakeUppercase{#2}}{#3}{#4}%
+      \else
+        \oldcontentsline{#1}{#2}{#3}{#4}%
+      \fi
+    \fi
+  \fi
+}
+\makeatother
+% ------------------------------------------------------------------------------------
+
+% Funções customizadas para criar e imprimir autores ---------------------------------
+\usepackage{pgffor}
+
+\newcounter{authorcount} % Counter para autores
+
+% Comando para adicionar novos autores
+\newcommand{\AdicionarAutor}[2]{% #1 = nome, #2 = email
+    \stepcounter{authorcount}
+    \expandafter\def\csname author\theauthorcount\endcsname{#1}
+    \expandafter\def\csname email\theauthorcount\endcsname{#2}
+}
+
+% Comando para imprimir os autores
+\newcommand{\imprimirautores}{%
+    \foreach \i in {1,...,\theauthorcount} {%
+        \textbf{\fontsize{12}{14}\selectfont\MakeUppercase{\csname author\i\endcsname}} \\
+    }%
+}
+
+%  ------------------------------------------------------------------------
+\newcounter{avaliadorcount}
+
+\newcommand{\AdicionarBancaExaminadora}[2]{%
+    \stepcounter{avaliadorcount}
+    \expandafter\def\csname tipo\theavaliadorcount\endcsname{#1}
+    \expandafter\def\csname nome\theavaliadorcount\endcsname{#2}
+}
+
+\newcommand{\imprimirbancaexaminadora}{%
+    \foreach \i in {1,...,\theavaliadorcount} {%
+        \underline{\hspace*{8cm}} \\
+        \textbf{\fontsize{12}{14}\selectfont{\csname tipo\i\endcsname}} \textbf{\fontsize{12}{14}\selectfont{\csname nome\i\endcsname}} \\[2em]
+    }%
+}
+
+% ------------------------------------------------------------------------------------
+
+% Customização das Listas de Ilustrações ---------------------------------
+\usepackage[labelfont=bf]{caption}
+\usepackage{newfloat} % Para criar novos tipos de float
+
+% Definir novos tipos de float
+\DeclareFloatingEnvironment[
+    fileext=fig,
+    listname={Lista de Figuras},
+    name=Figura,
+    placement=htbp,
+]{figura}
+
+\DeclareFloatingEnvironment[
+    fileext=fot,
+    listname={Lista de Fotografias},
+    name=Fotografia,
+    placement=htbp,
+]{fotografia}
+
+\DeclareFloatingEnvironment[
+    fileext=grf,
+    listname={Lista de Gráficos},
+    name=Gráfico,
+    placement=htbp,
+]{grafico}
+
+\DeclareFloatingEnvironment[
+    fileext=qua,
+    listname={Lista de Quadros},
+    name=Quadro,
+    placement=htbp,
+]{quadro}
+
+% Contadores para cada tipo
+\newcounter{totalfiguras}
+\newcounter{totalfotografias}
+\newcounter{totalgraficos}
+\newcounter{totalquadros}
+
+% Comandos para incrementar contadores
+\newcommand{\addfigura}{\stepcounter{totalfiguras}}
+\newcommand{\addfotografia}{\stepcounter{totalfotografias}}
+\newcommand{\addgrafico}{\stepcounter{totalgraficos}}
+\newcommand{\addquadro}{\stepcounter{totalquadros}}
+
+% Sistema de duas passadas para listas condicionais
+\makeatletter
+% Escrever contadores no arquivo auxiliar ao final do documento
+\AtEndDocument{%
+    \immediate\write\@auxout{\string\gdef\string\@totalfiguras{\arabic{totalfiguras}}}%
+    \immediate\write\@auxout{\string\gdef\string\@totalfotografias{\arabic{totalfotografias}}}%
+    \immediate\write\@auxout{\string\gdef\string\@totalgraficos{\arabic{totalgraficos}}}%
+    \immediate\write\@auxout{\string\gdef\string\@totalquadros{\arabic{totalquadros}}}%
+}
+
+% Definir valores padrão se não existirem (primeira compilação)
+\@ifundefined{@totalfiguras}{\gdef\@totalfiguras{0}}{}
+\@ifundefined{@totalfotografias}{\gdef\@totalfotografias{0}}{}
+\@ifundefined{@totalgraficos}{\gdef\@totalgraficos{0}}{}
+\@ifundefined{@totalquadros}{\gdef\@totalquadros{0}}{}
+
+% Comandos condicionais usando os valores da compilação anterior
+\newcommand{\ifhasfiguras}[2]{\ifnum\@totalfiguras>0 #1\else #2\fi}
+\newcommand{\ifhasfotografias}[2]{\ifnum\@totalfotografias>0 #1\else #2\fi}
+\newcommand{\ifhasgraficos}[2]{\ifnum\@totalgraficos>0 #1\else #2\fi}
+\newcommand{\ifhasquadros}[2]{\ifnum\@totalquadros>0 #1\else #2\fi}
+\makeatother
+% ------------------------------------------------------------------------------------
+
+% Customização da Lista de Figuras ---------------------------------
+\usepackage[labelfont=bf]{caption}
+\usepackage[figure]{totalcount} % Add this package
+\makeatletter
+\renewcommand{\@cftmakeloftitle}{} % Completely remove title generation
+\makeatother
+
+% Configure the figure entries with uppercase and dash
+\renewcommand{\cftfigpresnum}{FIGURA }
+\renewcommand{\cftfigaftersnum}{ -- }
+\setlength{\cftfignumwidth}{2.5cm} % Adjust width for new format
+\setlength{\cftfigindent}{0pt} % No indentation
+
+% Define formatting for other illustration types
+% The newfloat package creates \l@<environment> commands that we can customize
+\makeatletter
+% Custom formatting for quadro entries
+\renewcommand*{\l@quadro}[2]{%
+  \ifnum \c@tocdepth >\z@
+    \addpenalty\@secpenalty
+    \setlength\@tempdima{0.5cm}%
+    \begingroup
+      \parindent \z@ \rightskip \@pnumwidth
+      \parfillskip -\@pnumwidth
+      \leavevmode
+      \advance\leftskip\@tempdima
+      \hskip -\leftskip
+      % --- The robust fix is here ---
+      \def\numberline##1##2{%
+        QUADRO ##1{} -- ##2%
+      }%
+      #1%
+      \nobreak
+      % --- End of fix ---
+      \renewcommand{\@dotsep}{0.3}%
+      \leaders\hbox{$\m@th\mkern \@dotsep mu\hbox{.}\mkern \@dotsep mu$}\hfill
+      \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
+    \endgroup
+  \fi}
+
+% Custom formatting for fotografia entries  
+% Custom formatting for fotografia entries
+\renewcommand*{\l@fotografia}[2]{%
+  \ifnum \c@tocdepth >\z@
+    \addpenalty\@secpenalty
+    \setlength\@tempdima{3cm}%
+    \begingroup
+      \parindent \z@ \rightskip \@pnumwidth
+      \parfillskip -\@pnumwidth
+      \leavevmode
+      \advance\leftskip\@tempdima
+      \hskip -\leftskip
+      % --- The robust fix is here ---
+      \def\numberline##1##2{%
+        FOTOGRAFIA ##1 -- ##2%
+      }%
+      #1%
+      \nobreak
+      % --- End of fix ---
+      \renewcommand{\@dotsep}{0.5}%
+      \leaders\hbox{$\m@th\mkern \@dotsep mu\hbox{.}\mkern \@dotsep mu$}\hfill
+      \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
+    \endgroup
+  \fi}
+
+% Custom formatting for grafico entries
+\renewcommand*{\l@grafico}[2]{%
+  \ifnum \c@tocdepth >\z@
+    \addpenalty\@secpenalty
+    \setlength\@tempdima{2.5cm}%
+    \begingroup
+      \parindent \z@ \rightskip \@pnumwidth
+      \parfillskip -\@pnumwidth
+      \leavevmode
+      \advance\leftskip\@tempdima
+      \hskip -\leftskip
+      % --- The robust fix is here ---
+      \def\numberline##1##2{%
+        GRÁFICO ##1 -- ##2%
+      }%
+      #1%
+      \nobreak
+      % --- End of fix ---
+      \renewcommand{\@dotsep}{0.5}%
+      \leaders\hbox{$\m@th\mkern \@dotsep mu\hbox{.}\mkern \@dotsep mu$}\hfill
+      \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
+    \endgroup
+  \fi}
+\makeatother
+
+% Note: List formatting for other illustration types (fotografia, grafico, quadro)
+% is handled by the newfloat package automatically. The caption formatting
+% below will ensure consistent appearance in both captions and lists.
+% ------------------------------------------------------------------------------------
+
+\usepackage{caption}
+
+\newcommand{\fonte}[1]{%
+  \vspace{0em}%
+  \begin{minipage}{\textwidth}%
+    \raggedright%
+    \footnotesize%
+    FONTE: #1%
+  \end{minipage}%
+}
+
+% Create \legenda as alias for \caption with full functionality
+\NewCommandCopy{\legenda}{\caption}
+
+% Create \equacao as alias for \equacao with full functionality
+\newenvironment{equacao}{\begin{equation}}{\end{equation}}
+
+% Custom caption formatting for all illustration types
+% Using footnote size, capital letters, and dash separator
+\captionsetup[quadro]{
+    justification=raggedright,
+    singlelinecheck=false,
+    font={footnotesize},
+    labelfont={footnotesize},
+    labelformat=simple,
+    labelsep=none,
+    format=plain
+}
+
+\captionsetup[figura]{
+    justification=raggedright,
+    singlelinecheck=false,
+    font={footnotesize},
+    labelfont={footnotesize},
+    labelformat=simple,
+    labelsep=none,
+    format=plain
+}
+
+\captionsetup[grafico]{
+    justification=raggedright,
+    singlelinecheck=false,
+    font={footnotesize},
+    labelfont={footnotesize},
+    labelformat=simple,
+    labelsep=none,
+    format=plain
+}
+
+\captionsetup[fotografia]{
+    justification=raggedright,
+    singlelinecheck=false,
+    font={footnotesize},
+    labelfont={footnotesize},
+    labelformat=simple,
+    labelsep=none,
+    format=plain
+}
+
+% Custom label formatting to use uppercase names with dashes
+\DeclareCaptionLabelFormat{customdash}{\MakeUppercase{#1} #2 - }
+
+% Apply custom label format to all illustration types
+\captionsetup[quadro]{labelformat=customdash}
+\captionsetup[figura]{labelformat=customdash}
+\captionsetup[grafico]{labelformat=customdash}
+\captionsetup[fotografia]{labelformat=customdash}
+
+% Definição de funções em português de acordo com a nomeclatura da FAI
+\let\secaoprimaria\section
+\let\secaosecundaria\subsection
+\let\secaoterciaria\subsubsection
+
+% Configuração do BibLaTeX ==========================================================================================
+\usepackage[style=authoryear, sorting=nyt, backend=bibtex]{biblatex}
+\renewcommand*{\bibfont}{\raggedright}
+\setlength{\bibhang}{0pt}
+\setlength{\bibitemsep}{1em} % or another value like 0.5em, to control spacing between references
+
+% Configurações para formato ABNT
+\DeclareFieldFormat{title}{\textbf{#1}}
+\DeclareNameAlias{sortname}{family-given}
+\DeclareDelimFormat{nameyeardelim}{\addcomma\space}
+
+% Add this new renewbibmacro to separate maintitle and subtitle with a colon
+\renewbibmacro*{title+subtitle}{%
+  \printfield{title}%
+  \ifbibstring{\thefield{subtitle}}{}%
+    {\setunit{\addcolon\space}%
+     \printfield{subtitle}}}
+
+% Formato do nome: SOBRENOME, Nome
+\DeclareNameFormat{family-given}{%
+  \ifgiveninits
+    {\usebibmacro{name:family-given}
+      {\namepartfamily}
+      {\namepartgiveni}
+      {\namepartprefix}
+      {\namepartsuffix}}
+    {\usebibmacro{name:family-given}
+      {\namepartfamily}
+      {\namepartgiven}
+      {\namepartprefix}
+      {\namepartsuffix}}%
+  \usebibmacro{name:andothers}}
+
+% Essa macro é usada pra imprimir o autor sem o ano
+\newbibmacro*{author-no-year}{%
+  \ifnameundef{labelname}
+    {}
+    {\printnames[family-given]{labelname}}%
+}
+
+% Remove the year from after the author and move it to the end
+\renewbibmacro*{author/editor+others/translator+others}{%
+  \ifboolexpr{
+    test \ifuseauthor
+    and
+    not test {\ifnameundef{author}}
+  }
+    {%
+      \printnames[family-given]{author}%
+      \addspace%
+      \ifnumgreater{\value{listtotal}}{\value{liststop}}
+        {\mkbibemph{et\addabbrvspace al\adddot}}
+        {}}%
+    {\ifboolexpr{
+       test \ifuseeditor
+       and
+       not test {\ifnameundef{editor}}
+     }
+       {\usebibmacro{editor+others}}
+       {\usebibmacro{translator+others}}}}
+
+\renewbibmacro*{name:family-given}[4]{%
+  \ifuseprefix
+    {\usebibmacro{name:delim}{#3#1}%
+     \usebibmacro{name:hook}{#3#1}%
+     \ifblank{#3}{}{%
+       \ifcapital
+         {\mkbibnameprefix{\MakeCapital{#3}}\isdot}
+         {\mkbibnameprefix{#3}\isdot}%
+       \ifpunctmark{'}{}{\bibnamedelimc}}%
+     \mkbibnamefamily{\MakeUppercase{#1}}\isdot
+     \ifblank{#2}{}{\revsdnamepunct\bibnamedelimd\mkbibnamegiven{#2}\isdot}%
+     \ifblank{#4}{}{\bibnamedelimd\mkbibnamesuffix{#4}\isdot}}
+    {\usebibmacro{name:delim}{#1}%
+     \usebibmacro{name:hook}{#1}%
+     \mkbibnamefamily{\MakeUppercase{#1}}\isdot
+     \ifblank{#2}{}{\revsdnamepunct\bibnamedelimd\mkbibnamegiven{#2}\isdot}%
+     \ifblank{#4}{}{\bibnamedelimd\mkbibnamesuffix{#4}\isdot}}}
+
+% Remove parênteses do ano e coloca no final
+\renewbibmacro*{date+extradate}{%
+  \iffieldundef{labelyear}
+    {}
+    {\printtext{\printfield{labelyear}%
+     \printfield{extradate}}}}
+
+\DeclareFieldFormat{edition}{#1\adddot ed\adddot}
+\DeclareFieldFormat[book]{pages}{#1\addspace p\adddot}
+
+% Redefine o driver para livros (books)
+\DeclareBibliographyDriver{book}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{author/editor+others/translator+others} %FIXME: Isso esta imprimindo o Ano no final
+  \setunit{\labelnamepunct}\newblock
+  \usebibmacro{title+subtitle}%
+  \newunit
+  \printlist{language}%
+  \newunit\newblock
+  % REMOVE THIS LINE: \usebibmacro{byauthor}%
+  \newunit\newblock
+  \usebibmacro{byeditor+others}%
+  \newunit\newblock
+  \printfield[edition]{edition}%
+  \newunit
+  \iflistundef{location}
+    {\iflistundef{publisher}
+        {. [S.l.:S.n.].}
+        {. [S.l.]:\setunit*{\addcolon\space}%
+        \printlist{publisher}}%
+    }
+    {\printlist{location}%
+    \iflistundef{publisher}
+        {: [S.n.].}
+        {\setunit*{\addcolon\space}%
+        \printlist{publisher}}%
+    }%
+  \setunit*{\addcomma\space}%
+  \usebibmacro{date+extradate}%
+  \newunit\newblock
+  \iftoggle{bbx:isbn}
+    {\printfield{isbn}}
+    {}%
+  \newunit\newblock
+  \usebibmacro{doi+eprint+url}%
+  \newunit\newblock
+  \usebibmacro{addendum+pubstate}%
+  \newunit\newblock
+  \printfield[pages]{pages}
+  \iftoggle{bbx:related}
+    {\usebibmacro{related:init}%
+     \usebibmacro{related}}
+    {}%
+  \usebibmacro{finentry}
+}
+
+% --- Custom title format for theses (bold, no quotes) ---
+\DeclareFieldFormat{thesistitle}{\mkbibbold{#1}}
+\DeclareFieldFormat[thesis]{pages}{#1}
+
+\newbibmacro*{thesis:year+pages+type+institution+location+year}{%
+  \printfield{year}\adddot\space%
+  \printfield{pages}\addabbrvspace{p}\adddot\space%
+  \printfield{type}%
+  \setunit{\addcomma\space}%
+  \printlist{institution}%
+  \setunit{\addcomma\space}%
+  \printlist{location}%
+  \setunit{\addcomma\space}%
+  \printfield{year}\adddot%
+}
+
+\DeclareBibliographyDriver{thesis}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{author/editor+others/translator+others}%
+  \setunit{\labelnamepunct}\newblock
+  \printfield[thesistitle]{title}%
+  \iflistundef{subtitle}
+    {}
+    {\setunit{\addcolon\space}\printfield{subtitle}}%
+  \adddot\space%
+  \usebibmacro{thesis:year+pages+type+institution+location+year}%
+  \usebibmacro{finentry}%
+}
+
+
+% Article:
+% --- New macro for article journal info ---
+\DeclareFieldFormat[article]{title}{#1}
+\DeclareFieldFormat[article]{pages}{#1}
+
+\newbibmacro*{article:journal+location+volume+number+month}{%
+  \printfield[journaltitle]{journaltitle}%
+  \iflistundef{institution}
+    {}
+    {\setunit{\addcomma\space}\printlist{institution}}%
+  \setunit{\addcomma\space}%
+  \iflistundef{location}
+    {}
+    {\printlist{location}\addcomma\space}%
+  \printtext{v.\adddot\space}%
+  \printfield{volume}%
+  \setunit{\addcomma\space}%
+  \printtext{n.\adddot\space}%
+  \printfield{number}%
+  \setunit{\addcomma\space}%
+  \printtext{p.\adddot\space}%
+  \printfield{pages}%
+  \setunit{\addcomma\space}% FIXME: Esta mostrando um . ao invés de , depois da página
+  \printfield{month}
+}
+
+% --- Redefine the driver for articles ---
+\DeclareBibliographyDriver{article}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{author/editor+others/translator+others}%
+  \setunit{\labelnamepunct}\newblock
+  \usebibmacro{title+subtitle}%
+  \newunit\newblock
+  \usebibmacro{article:journal+location+volume+number+month}%
+  \newunit\newblock
+  \printfield{month}\adddot\space%
+  \usebibmacro{date+extradate}\adddot%
+  \newunit\newblock
+  \usebibmacro{doi+eprint+url}%
+  \newunit\newblock
+  \usebibmacro{addendum+pubstate}%
+  \setunit{\bibpagerefpunct}\newblock
+  \usebibmacro{pageref}%
+  \usebibmacro{finentry}%
+}
+
+% --- Custom formatting for the journal title to be bold ---
+\DeclareFieldFormat[article]{journaltitle}{\mkbibbold{#1}}
+
+
+% Redefine o título da seção de referências para maiúsculas e centralizado
+\defbibheading{bibliography}{%
+  \begin{center}
+    \textbf{\MakeUppercase{Referências}}
+  \end{center}
+}
+
+% Separar autores na bibliografia final com ponto e vírgula.
+\DeclareDelimFormat{multinamedelim}{\addsemicolon\space}
+\DeclareDelimFormat{finalnamedelim}{\addsemicolon\space}
+\DeclareDelimFormat{multicite}{\addcomma\space} % Isso garantirá que múltiplas citações dentro de um único comando (por exemplo, \parencite{author1, author2}) sejam separadas por uma vírgula.
+
+\addbibresource{referencias/referencias.bib}  % Adiciona o arquivo de bibliografia (referencias/referencias.bib) como fonte para as referências bibliográficas.
+% ==================================================================================================
+
+\DeclareBibliographyCategory{exclude}%
+\makeatletter
+\newcommand*{\apud}[2]{%
+  \addtocategory{exclude}{#1} % Referencia somente da obra consultada
+  \begingroup%
+    \renewcommand*{\multinamedelim}{\addcomma\addspace}%
+    \renewcommand*{\finalnamedelim}{\addspace e \addspace}%
+    \citeauthor{#1} 
+  \endgroup%
+  % if we haven't seen this key before, define a marker and insert the footnote
+  \@ifundefined{apud@seen@#1}{%
+    \expandafter\gdef\csname apud@seen@#1\endcsname{}%
+    \footnote{\fullcite{#1}}%
+  }{}%
+  \space
+  (%
+    \citeyear{#1} \textit{apud} %
+    \citeauthor{#2}%
+    , \citeyear{#2}%
+  )%
+}
+\makeatother
+
+% Funções para Citação Direta ---------------------------------
+\newenvironment{citacaodiretalonga}
+{\par\addvspace{\baselineskip}% Add exactly one line space before
+ \begingroup
+ \list{}{\leftmargin=4cm
+         \rightmargin=0pt
+         \parsep=0pt
+         \itemsep=0pt
+         \topsep=0pt}
+ \item\relax
+ \singlespacing
+ \fontsize{10}{12}\selectfont
+ \justifying}
+{\endlist
+ \endgroup
+ \par\addvspace{\baselineskip}}% Add exactly one line space after
+
+% Usar:
+% \begin{citacaodiretalonga}
+% ...
+% \end{citacaodiretalonga}
+% ------------------------------------------------------------------------------------
+
+% Alias em portugues para alguns comandos
+\NewDocumentCommand{\citacaodecitacao}{ m m }{%
+  \apud{#1}{#2}%
+}
+
+\NewDocumentCommand{\citacaodireta}{ o m }{%
+  \IfValueT{#1}{%
+    {\protected\def\mkbibnamefamily##1{\MakeTextUppercase{##1}}%
+     \parencite[#1]{#2}}%
+  }%
+  \IfNoValueT{#1}{%
+    {\protected\def\mkbibnamefamily##1{\MakeTextUppercase{##1}}%
+     \parencite{#2}}%
+  }%
+}
+
+% Usado quando os autores destacarem um trecho, EM NEGRITO
+\NewDocumentCommand{\citacaodiretagrifonosso}{ o m }{%
+  \IfValueT{#1}{%
+    {\protected\def\mkbibnamefamily##1{\MakeTextUppercase{##1}}%
+     \parencite[][p. #1, grifo nosso]{#2}}%
+  }%
+  \IfNoValueT{#1}{%
+    {\protected\def\mkbibnamefamily##1{\MakeTextUppercase{##1}}%
+     \parencite[][grifo nosso]{#2}}%
+  }%
+}
+
+% Usado quando o autor original destacar um trecho, SUBLINHADO
+\NewDocumentCommand{\citacaodiretagrifodoautor}{ o m }{%
+  \IfValueT{#1}{%
+    {\protected\def\mkbibnamefamily##1{\MakeTextUppercase{##1}}%
+     \parencite[][p. #1, grifo do autor]{#2}}%
+  }%
+  \IfNoValueT{#1}{%
+    {\protected\def\mkbibnamefamily##1{\MakeTextUppercase{##1}}%
+     \parencite[][grifo do autor]{#2}}%
+  }%
+}
+
+\NewDocumentCommand{\citacaodiretanotexto}{ o m }{%
+  \IfValueT{#1}{%
+    \textcite[#1]{#2}%
+  }
+  \IfNoValueT{#1}{%
+    \textcite{#2}%
+  }
+}
+
+\NewDocumentCommand{\citacaoindireta}{ m }{%
+    {\protected\def\mkbibnamefamily##1{\MakeTextUppercase{##1}}%
+     \parencite{#1}}%
+}
+
+\NewDocumentCommand{\citacaoindiretanotexto}{ m }{%
+  \textcite{#1}%
+}

@@ -1,0 +1,64 @@
+% Caption formatting and source commands
+\newcommand{\fonte}[1]{%
+  \vspace{0em}%
+  \begin{minipage}{\textwidth}%
+    \raggedright%
+    \footnotesize%
+    FONTE: #1%
+  \end{minipage}%
+}
+
+% Create aliases
+\NewCommandCopy{\legenda}{\caption}
+
+\newenvironment{equacao}{\begin{equation}}{\end{equation}}
+
+% Custom caption formatting for all illustration types
+\captionsetup[quadro]{
+    justification=raggedright,
+    singlelinecheck=false,
+    font={footnotesize},
+    labelfont={footnotesize},
+    labelformat=simple,
+    labelsep=none,
+    format=plain
+}
+
+\captionsetup[figura]{
+    justification=raggedright,
+    singlelinecheck=false,
+    font={footnotesize},
+    labelfont={footnotesize},
+    labelformat=simple,
+    labelsep=none,
+    format=plain
+}
+
+\captionsetup[grafico]{
+    justification=raggedright,
+    singlelinecheck=false,
+    font={footnotesize},
+    labelfont={footnotesize},
+    labelformat=simple,
+    labelsep=none,
+    format=plain
+}
+
+\captionsetup[fotografia]{
+    justification=raggedright,
+    singlelinecheck=false,
+    font={footnotesize},
+    labelfont={footnotesize},
+    labelformat=simple,
+    labelsep=none,
+    format=plain
+}
+
+% Custom label formatting
+\DeclareCaptionLabelFormat{customdash}{\MakeUppercase{#1} #2 - }
+
+% Apply custom label format to all illustration types
+\captionsetup[quadro]{labelformat=customdash}
+\captionsetup[figura]{labelformat=customdash}
+\captionsetup[grafico]{labelformat=customdash}
+\captionsetup[fotografia]{labelformat=customdash}

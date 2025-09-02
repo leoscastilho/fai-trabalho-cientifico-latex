@@ -1,0 +1,141 @@
+% Illustrations and figures configuration
+\usepackage[labelfont=bf]{caption}
+\usepackage{newfloat}
+\usepackage[figure]{totalcount}
+
+% Define new float types
+\DeclareFloatingEnvironment[
+    fileext=fig,
+    listname={Lista de Figuras},
+    name=Figura,
+    placement=htbp,
+]{figura}
+
+\DeclareFloatingEnvironment[
+    fileext=fot,
+    listname={Lista de Fotografias},
+    name=Fotografia,
+    placement=htbp,
+]{fotografia}
+
+\DeclareFloatingEnvironment[
+    fileext=grf,
+    listname={Lista de Gráficos},
+    name=Gráfico,
+    placement=htbp,
+]{grafico}
+
+\DeclareFloatingEnvironment[
+    fileext=qua,
+    listname={Lista de Quadros},
+    name=Quadro,
+    placement=htbp,
+]{quadro}
+
+% Counters for each type
+\newcounter{totalfiguras}
+\newcounter{totalfotografias}
+\newcounter{totalgraficos}
+\newcounter{totalquadros}
+
+% Commands to increment counters
+\newcommand{\addfigura}{\stepcounter{totalfiguras}}
+\newcommand{\addfotografia}{\stepcounter{totalfotografias}}
+\newcommand{\addgrafico}{\stepcounter{totalgraficos}}
+\newcommand{\addquadro}{\stepcounter{totalquadros}}
+
+% Two-pass system for conditional lists
+\makeatletter
+\AtEndDocument{%
+    \immediate\write\@auxout{\string\gdef\string\@totalfiguras{\arabic{totalfiguras}}}%
+    \immediate\write\@auxout{\string\gdef\string\@totalfotografias{\arabic{totalfotografias}}}%
+    \immediate\write\@auxout{\string\gdef\string\@totalgraficos{\arabic{totalgraficos}}}%
+    \immediate\write\@auxout{\string\gdef\string\@totalquadros{\arabic{totalquadros}}}%
+}
+
+\@ifundefined{@totalfiguras}{\gdef\@totalfiguras{0}}{}
+\@ifundefined{@totalfotografias}{\gdef\@totalfotografias{0}}{}
+\@ifundefined{@totalgraficos}{\gdef\@totalgraficos{0}}{}
+\@ifundefined{@totalquadros}{\gdef\@totalquadros{0}}{}
+
+\newcommand{\ifhasfiguras}[2]{\ifnum\@totalfiguras>0 #1\else #2\fi}
+\newcommand{\ifhasfotografias}[2]{\ifnum\@totalfotografias>0 #1\else #2\fi}
+\newcommand{\ifhasgraficos}[2]{\ifnum\@totalgraficos>0 #1\else #2\fi}
+\newcommand{\ifhasquadros}[2]{\ifnum\@totalquadros>0 #1\else #2\fi}
+\makeatother
+
+% List formatting
+\makeatletter
+\renewcommand{\@cftmakeloftitle}{}
+\makeatother
+
+\renewcommand{\cftfigpresnum}{FIGURA }
+\renewcommand{\cftfigaftersnum}{ -- }
+\setlength{\cftfignumwidth}{2.5cm}
+\setlength{\cftfigindent}{0pt}
+
+% Custom formatting for other illustration types
+\makeatletter
+\renewcommand*{\l@quadro}[2]{%
+  \ifnum \c@tocdepth >\z@
+    \addpenalty\@secpenalty
+    \setlength\@tempdima{0.5cm}%
+    \begingroup
+      \parindent \z@ \rightskip \@pnumwidth
+      \parfillskip -\@pnumwidth
+      \leavevmode
+      \advance\leftskip\@tempdima
+      \hskip -\leftskip
+      \def\numberline##1##2{%
+        QUADRO ##1{} -- ##2%
+      }%
+      #1%
+      \nobreak
+      \renewcommand{\@dotsep}{0.3}%
+      \leaders\hbox{$\m@th\mkern \@dotsep mu\hbox{.}\mkern \@dotsep mu$}\hfill
+      \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
+    \endgroup
+  \fi}
+
+\renewcommand*{\l@fotografia}[2]{%
+  \ifnum \c@tocdepth >\z@
+    \addpenalty\@secpenalty
+    \setlength\@tempdima{3cm}%
+    \begingroup
+      \parindent \z@ \rightskip \@pnumwidth
+      \parfillskip -\@pnumwidth
+      \leavevmode
+      \advance\leftskip\@tempdima
+      \hskip -\leftskip
+      \def\numberline##1##2{%
+        FOTOGRAFIA ##1 -- ##2%
+      }%
+      #1%
+      \nobreak
+      \renewcommand{\@dotsep}{0.5}%
+      \leaders\hbox{$\m@th\mkern \@dotsep mu\hbox{.}\mkern \@dotsep mu$}\hfill
+      \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
+    \endgroup
+  \fi}
+
+\renewcommand*{\l@grafico}[2]{%
+  \ifnum \c@tocdepth >\z@
+    \addpenalty\@secpenalty
+    \setlength\@tempdima{2.5cm}%
+    \begingroup
+      \parindent \z@ \rightskip \@pnumwidth
+      \parfillskip -\@pnumwidth
+      \leavevmode
+      \advance\leftskip\@tempdima
+      \hskip -\leftskip
+      \def\numberline##1##2{%
+        GRÁFICO ##1 -- ##2%
+      }%
+      #1%
+      \nobreak
+      \renewcommand{\@dotsep}{0.5}%
+      \leaders\hbox{$\m@th\mkern \@dotsep mu\hbox{.}\mkern \@dotsep mu$}\hfill
+      \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
+    \endgroup
+  \fi}
+\makeatother

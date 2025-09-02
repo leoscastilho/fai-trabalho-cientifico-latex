@@ -1,0 +1,35 @@
+% Section formatting
+\let\oldsection\section
+\renewcommand{\section}[1]{%
+    \clearpage
+    \thispagestyle{empty}
+    \oldsection{#1}
+}
+
+% Primary sections: uppercase, font 12, bold
+\titleformat{\section}{\normalfont\fontsize{12}{12}\selectfont\bfseries}{\thesection}{0.3em}{\MakeUppercase}
+
+\let\oldsubsection\subsection
+\renewcommand{\subsection}[1]{%
+    \par\vspace{2\parskip}
+    \oldsubsection{#1}
+    \par\vspace{0.5\parskip}
+}
+
+% Secondary sections: uppercase, font 12, no bold
+\titleformat{\subsection}{\normalfont\fontsize{12}{12}\selectfont}{\thesubsection}{0.3em}{\MakeUppercase}
+
+\let\oldsubsubsection\subsubsection
+\renewcommand{\subsubsection}[1]{%
+    \par\vspace{2\parskip}
+    \oldsubsubsection{#1}
+    \par\vspace{0.5\parskip}
+}
+
+% Tertiary sections: bold, only first letter uppercase
+\titleformat{\subsubsection}{\normalfont\fontsize{12}{14.4}\bfseries}{\thesubsubsection}{0.3em}{}
+
+% Portuguese aliases for sections
+\let\secaoprimaria\section
+\let\secaosecundaria\subsection
+\let\secaoterciaria\subsubsection

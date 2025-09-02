@@ -1,0 +1,95 @@
+% Citation commands and styles
+\DeclareBibliographyCategory{exclude}%
+\makeatletter
+\newcommand*{\apud}[2]{%
+  \addtocategory{exclude}{#1}
+  \begingroup%
+    \renewcommand*{\multinamedelim}{\addcomma\addspace}%
+    \renewcommand*{\finalnamedelim}{\addspace e \addspace}%
+    \citeauthor{#1} 
+  \endgroup%
+  \@ifundefined{apud@seen@#1}{%
+    \expandafter\gdef\csname apud@seen@#1\endcsname{}%
+    \footnote{\fullcite{#1}}%
+  }{}%
+  \space
+  (%
+    \citeyear{#1} \textit{apud} %
+    \citeauthor{#2}%
+    , \citeyear{#2}%
+  )%
+}
+\makeatother
+
+% Long direct citation environment
+\newenvironment{citacaodiretalonga}
+{\par\addvspace{\baselineskip}%
+ \begingroup
+ \list{}{\leftmargin=4cm
+         \rightmargin=0pt
+         \parsep=0pt
+         \itemsep=0pt
+         \topsep=0pt}
+ \item\relax
+ \singlespacing
+ \fontsize{10}{12}\selectfont
+ \justifying}
+{\endlist
+ \endgroup
+ \par\addvspace{\baselineskip}}
+
+% Portuguese aliases for citation commands
+\NewDocumentCommand{\citacaodecitacao}{ m m }{%
+  \apud{#1}{#2}%
+}
+
+\NewDocumentCommand{\citacaodireta}{ o m }{%
+  \IfValueT{#1}{%
+    {\protected\def\mkbibnamefamily##1{\MakeTextUppercase{##1}}%
+     \parencite[#1]{#2}}%
+  }%
+  \IfNoValueT{#1}{%
+    {\protected\def\mkbibnamefamily##1{\MakeTextUppercase{##1}}%
+     \parencite{#2}}%
+  }%
+}
+
+\NewDocumentCommand{\citacaodiretagrifonosso}{ o m }{%
+  \IfValueT{#1}{%
+    {\protected\def\mkbibnamefamily##1{\MakeTextUppercase{##1}}%
+     \parencite[][p. #1, grifo nosso]{#2}}%
+  }%
+  \IfNoValueT{#1}{%
+    {\protected\def\mkbibnamefamily##1{\MakeTextUppercase{##1}}%
+     \parencite[][grifo nosso]{#2}}%
+  }%
+}
+
+\NewDocumentCommand{\citacaodiretagrifodoautor}{ o m }{%
+  \IfValueT{#1}{%
+    {\protected\def\mkbibnamefamily##1{\MakeTextUppercase{##1}}%
+     \parencite[][p. #1, grifo do autor]{#2}}%
+  }%
+  \IfNoValueT{#1}{%
+    {\protected\def\mkbibnamefamily##1{\MakeTextUppercase{##1}}%
+     \parencite[][grifo do autor]{#2}}%
+  }%
+}
+
+\NewDocumentCommand{\citacaodiretanotexto}{ o m }{%
+  \IfValueT{#1}{%
+    \textcite[#1]{#2}%
+  }
+  \IfNoValueT{#1}{%
+    \textcite{#2}%
+  }
+}
+
+\NewDocumentCommand{\citacaoindireta}{ m }{%
+    {\protected\def\mkbibnamefamily##1{\MakeTextUppercase{##1}}%
+     \parencite{#1}}%
+}
+
+\NewDocumentCommand{\citacaoindiretanotexto}{ m }{%
+  \textcite{#1}%
+}

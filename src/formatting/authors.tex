@@ -1,0 +1,34 @@
+% Author and examination board functions
+\usepackage{pgffor}
+
+\newcounter{authorcount}
+
+% Command to add new authors
+\newcommand{\AdicionarAutor}[2]{%
+    \stepcounter{authorcount}
+    \expandafter\def\csname author\theauthorcount\endcsname{#1}
+    \expandafter\def\csname email\theauthorcount\endcsname{#2}
+}
+
+% Command to print authors
+\newcommand{\imprimirautores}{%
+    \foreach \i in {1,...,\theauthorcount} {%
+        \textbf{\fontsize{12}{14}\selectfont\MakeUppercase{\csname author\i\endcsname}} \\
+    }%
+}
+
+% Examination board functions
+\newcounter{avaliadorcount}
+
+\newcommand{\AdicionarBancaExaminadora}[2]{%
+    \stepcounter{avaliadorcount}
+    \expandafter\def\csname tipo\theavaliadorcount\endcsname{#1}
+    \expandafter\def\csname nome\theavaliadorcount\endcsname{#2}
+}
+
+\newcommand{\imprimirbancaexaminadora}{%
+    \foreach \i in {1,...,\theavaliadorcount} {%
+        \underline{\hspace*{8cm}} \\
+        \textbf{\fontsize{12}{14}\selectfont{\csname tipo\i\endcsname}} \textbf{\fontsize{12}{14}\selectfont{\csname nome\i\endcsname}} \\[2em]
+    }%
+}

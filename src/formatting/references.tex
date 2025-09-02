@@ -1,0 +1,221 @@
+% Bibliography and references configuration
+\usepackage[style=authoryear, sorting=nyt, backend=bibtex]{biblatex}
+\renewcommand*{\bibfont}{\raggedright}
+\setlength{\bibhang}{0pt}
+\setlength{\bibitemsep}{1em}
+
+% ABNT format configurations
+\DeclareFieldFormat{title}{\textbf{#1}}
+\DeclareNameAlias{sortname}{family-given}
+\DeclareDelimFormat{nameyeardelim}{\addcomma\space}
+
+\newbibmacro*{title+subtitle}{%
+  \printfield{title}%
+  \ifbibstring{\thefield{subtitle}}{}%
+    {\setunit{\addcolon\space}%
+     \printfield{subtitle}}}
+
+% Name format: SURNAME, Name
+\DeclareNameFormat{family-given}{%
+  \ifgiveninits
+    {\usebibmacro{name:family-given}
+      {\namepartfamily}
+      {\namepartgiveni}
+      {\namepartprefix}
+      {\namepartsuffix}}
+    {\usebibmacro{name:family-given}
+      {\namepartfamily}
+      {\namepartgiven}
+      {\namepartprefix}
+      {\namepartsuffix}}%
+  \usebibmacro{name:andothers}}
+
+\newbibmacro*{author-no-year}{%
+  \ifnameundef{labelname}
+    {}
+    {\printnames[family-given]{labelname}}%
+}
+
+\renewbibmacro*{author/editor+others/translator+others}{%
+  \ifboolexpr{
+    test \ifuseauthor
+    and
+    not test {\ifnameundef{author}}
+  }
+    {%
+      \printnames[family-given]{author}%
+      \addspace%
+      \ifnumgreater{\value{listtotal}}{\value{liststop}}
+        {\mkbibemph{et\addabbrvspace al\adddot}}
+        {}}%
+    {\ifboolexpr{
+       test \ifuseeditor
+       and
+       not test {\ifnameundef{editor}}
+     }
+       {\usebibmacro{editor+others}}
+       {\usebibmacro{translator+others}}}}
+
+\renewbibmacro*{name:family-given}[4]{%
+  \ifuseprefix
+    {\usebibmacro{name:delim}{#3#1}%
+     \usebibmacro{name:hook}{#3#1}%
+     \ifblank{#3}{}{%
+       \ifcapital
+         {\mkbibnameprefix{\MakeCapital{#3}}\isdot}
+         {\mkbibnameprefix{#3}\isdot}%
+       \ifpunctmark{'}{}{\bibnamedelimc}}%
+     \mkbibnamefamily{\MakeUppercase{#1}}\isdot
+     \ifblank{#2}{}{\revsdnamepunct\bibnamedelimd\mkbibnamegiven{#2}\isdot}%
+     \ifblank{#4}{}{\bibnamedelimd\mkbibnamesuffix{#4}\isdot}}
+    {\usebibmacro{name:delim}{#1}%
+     \usebibmacro{name:hook}{#1}%
+     \mkbibnamefamily{\MakeUppercase{#1}}\isdot
+     \ifblank{#2}{}{\revsdnamepunct\bibnamedelimd\mkbibnamegiven{#2}\isdot}%
+     \ifblank{#4}{}{\bibnamedelimd\mkbibnamesuffix{#4}\isdot}}}
+
+\renewbibmacro*{date+extradate}{%
+  \iffieldundef{labelyear}
+    {}
+    {\printtext{\printfield{labelyear}%
+     \printfield{extradate}}}}
+
+\DeclareFieldFormat{edition}{#1\adddot ed\adddot}
+\DeclareFieldFormat[book]{pages}{#1\addspace p\adddot}
+
+% Book driver
+\DeclareBibliographyDriver{book}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{author/editor+others/translator+others}
+  \setunit{\labelnamepunct}\newblock
+  \usebibmacro{title+subtitle}%
+  \newunit
+  \printlist{language}%
+  \newunit\newblock
+  \newunit\newblock
+  \usebibmacro{byeditor+others}%
+  \newunit\newblock
+  \printfield[edition]{edition}%
+  \newunit
+  \iflistundef{location}
+    {\iflistundef{publisher}
+        {. [S.l.:S.n.].}
+        {. [S.l.]:\setunit*{\addcolon\space}%
+        \printlist{publisher}}%
+    }
+    {\printlist{location}%
+    \iflistundef{publisher}
+        {: [S.n.].}
+        {\setunit*{\addcolon\space}%
+        \printlist{publisher}}%
+    }%
+  \setunit*{\addcomma\space}%
+  \usebibmacro{date+extradate}%
+  \newunit\newblock
+  \iftoggle{bbx:isbn}
+    {\printfield{isbn}}
+    {}%
+  \newunit\newblock
+  \usebibmacro{doi+eprint+url}%
+  \newunit\newblock
+  \usebibmacro{addendum+pubstate}%
+  \newunit\newblock
+  \printfield[pages]{pages}
+  \iftoggle{bbx:related}
+    {\usebibmacro{related:init}%
+     \usebibmacro{related}}
+    {}%
+  \usebibmacro{finentry}
+}
+
+% Thesis formatting
+\DeclareFieldFormat{thesistitle}{\mkbibbold{#1}}
+\DeclareFieldFormat[thesis]{pages}{#1}
+
+\newbibmacro*{thesis:year+pages+type+institution+location+year}{%
+  \printfield{year}\adddot\space%
+  \printfield{pages}\addabbrvspace{p}\adddot\space%
+  \printfield{type}%
+  \setunit{\addcomma\space}%
+  \printlist{institution}%
+  \setunit{\addcomma\space}%
+  \printlist{location}%
+  \setunit{\addcomma\space}%
+  \printfield{year}\adddot%
+}
+
+\DeclareBibliographyDriver{thesis}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{author/editor+others/translator+others}%
+  \setunit{\labelnamepunct}\newblock
+  \printfield[thesistitle]{title}%
+  \iflistundef{subtitle}
+    {}
+    {\setunit{\addcolon\space}\printfield{subtitle}}%
+  \adddot\space%
+  \usebibmacro{thesis:year+pages+type+institution+location+year}%
+  \usebibmacro{finentry}%
+}
+
+% Article formatting
+\DeclareFieldFormat[article]{title}{#1}
+\DeclareFieldFormat[article]{pages}{#1}
+
+\newbibmacro*{article:journal+location+volume+number+month}{%
+  \printfield[journaltitle]{journaltitle}%
+  \iflistundef{institution}
+    {}
+    {\setunit{\addcomma\space}\printlist{institution}}%
+  \setunit{\addcomma\space}%
+  \iflistundef{location}
+    {}
+    {\printlist{location}\addcomma\space}%
+  \printtext{v.\adddot\space}%
+  \printfield{volume}%
+  \setunit{\addcomma\space}%
+  \printtext{n.\adddot\space}%
+  \printfield{number}%
+  \setunit{\addcomma\space}%
+  \printtext{p.\adddot\space}%
+  \printfield{pages}%
+  \setunit{\addcomma\space}%
+  \printfield{month}
+}
+
+\DeclareBibliographyDriver{article}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{author/editor+others/translator+others}%
+  \setunit{\labelnamepunct}\newblock
+  \usebibmacro{title+subtitle}%
+  \newunit\newblock
+  \usebibmacro{article:journal+location+volume+number+month}%
+  \newunit\newblock
+  \printfield{month}\adddot\space%
+  \usebibmacro{date+extradate}\adddot%
+  \newunit\newblock
+  \usebibmacro{doi+eprint+url}%
+  \newunit\newblock
+  \usebibmacro{addendum+pubstate}%
+  \setunit{\bibpagerefpunct}\newblock
+  \usebibmacro{pageref}%
+  \usebibmacro{finentry}%
+}
+
+\DeclareFieldFormat[article]{journaltitle}{\mkbibbold{#1}}
+
+% Bibliography heading
+\defbibheading{bibliography}{%
+  \begin{center}
+    \textbf{\MakeUppercase{Referências}}
+  \end{center}
+}
+
+% Separators
+\DeclareDelimFormat{multinamedelim}{\addsemicolon\space}
+\DeclareDelimFormat{finalnamedelim}{\addsemicolon\space}
+\DeclareDelimFormat{multicite}{\addcomma\space}
+
+\addbibresource{referencias/referencias.bib}

@@ -1,0 +1,46 @@
+% Table of contents customization
+\usepackage{tocloft}
+\usepackage{xstring}
+
+\setcounter{tocdepth}{2}
+
+\renewcommand{\contentsname}{SUMÁRIO}
+\renewcommand{\cftsecfont}{\bfseries}
+\renewcommand{\cftsecpagefont}{\bfseries}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\setlength{\cftbeforetoctitleskip}{0pt}
+\setlength{\cftaftertoctitleskip}{0.4cm}
+\renewcommand{\cfttoctitlefont}{\hfil\bfseries}
+
+\renewcommand{\cfttoctitlefont}{\hfil\rmfamily\bfseries\MakeUppercase}
+\renewcommand{\cftdotsep}{0.1}
+\setlength{\cftbeforesecskip}{0em}
+\setlength{\cftbeforesubsecskip}{0em}
+\setlength{\cftbeforesubsubsecskip}{0em}
+\setlength{\cftsecindent}{0em}
+\setlength{\cftsubsecindent}{0em}
+\setlength{\cftsubsubsecindent}{0em}
+
+\setlength{\cftsecnumwidth}{1.2em}
+\setlength{\cftsubsecnumwidth}{1.5em}
+\setlength{\cftsubsubsecnumwidth}{2.3em}
+
+% Uppercase sections in TOC
+\makeatletter
+\let\oldcontentsline\contentsline
+\renewcommand{\contentsline}[4]{%
+  \expandafter\ifx\csname l@#1\endcsname\l@section
+    \oldcontentsline{#1}{\MakeUppercase{#2}}{#3}{#4}%
+  \else
+    \expandafter\ifx\csname l@#1\endcsname\l@subsection
+      \oldcontentsline{#1}{\MakeUppercase{#2}}{#3}{#4}%
+    \else
+      \expandafter\ifx\csname l@#1\endcsname\l@subsubsection
+        \oldcontentsline{#1}{\MakeUppercase{#2}}{#3}{#4}%
+      \else
+        \oldcontentsline{#1}{#2}{#3}{#4}%
+      \fi
+    \fi
+  \fi
+}
+\makeatother

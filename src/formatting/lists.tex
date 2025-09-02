@@ -1,0 +1,24 @@
+% Lists and enumeration configuration
+\newlist{alinea}{enumerate}{1}
+\setlist[alinea,1]{
+    label=\alph*),
+    leftmargin=1cm,
+    itemindent=0pt,
+    labelsep=0pt,
+    labelwidth=13pt,
+    itemsep=0pt,
+    parsep=0pt,
+    topsep=0pt,
+    partopsep=0pt,
+    align=left,
+    before={\setlength{\parskip}{0pt}},
+    after={\setlength{\parskip}{12pt}}
+}
+
+\newcommand{\listaalinhada}[2]{%
+  \noindent%
+  \begin{tabularx}{\textwidth}{lX}
+  {#1}: & \parbox[t]{\linewidth}{\raggedright #2}
+  \end{tabularx}%
+  \\
+}

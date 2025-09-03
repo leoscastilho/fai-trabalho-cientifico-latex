@@ -47,7 +47,7 @@
   \IfValueT{#1}{%
     {\protected\def\mkbibnamefamily##1{\MakeTextUppercase{##1}}%
       \begingroup%
-        \renewcommand*{\multinamedelim}{\addspace e \addspace}%
+        \renewcommand*{\multinamedelim}{\addcomma\addspace}%
         \renewcommand*{\finalnamedelim}{\addspace e \addspace}%
         \parencite[#1]{#2}%
       \endgroup%
@@ -56,7 +56,7 @@
   \IfNoValueT{#1}{%
     {\protected\def\mkbibnamefamily##1{\MakeTextUppercase{##1}}%
       \begingroup%
-        \renewcommand*{\multinamedelim}{\addspace e \addspace}%
+        \renewcommand*{\multinamedelim}{\addcomma\addspace}%
         \renewcommand*{\finalnamedelim}{\addspace e \addspace}%
         \parencite{#2}%
       \endgroup%
@@ -68,7 +68,7 @@
   \IfValueT{#1}{%
     {\protected\def\mkbibnamefamily##1{\MakeTextUppercase{##1}}%
       \begingroup%
-        \renewcommand*{\multinamedelim}{\addspace e \addspace}%
+        \renewcommand*{\multinamedelim}{\addcomma\addspace}%
         \renewcommand*{\finalnamedelim}{\addspace e \addspace}%
         \parencite[][p. #1, grifo nosso]{#2}%
       \endgroup%
@@ -77,7 +77,7 @@
   \IfNoValueT{#1}{%
     {\protected\def\mkbibnamefamily##1{\MakeTextUppercase{##1}}%
       \begingroup%
-        \renewcommand*{\multinamedelim}{\addspace e \addspace}%
+        \renewcommand*{\multinamedelim}{\addcomma\addspace}%
         \renewcommand*{\finalnamedelim}{\addspace e \addspace}%
         \parencite[][grifo nosso]{#2}%
       \endgroup%
@@ -89,7 +89,7 @@
   \IfValueT{#1}{%
     {\protected\def\mkbibnamefamily##1{\MakeTextUppercase{##1}}%
       \begingroup%
-        \renewcommand*{\multinamedelim}{\addspace e \addspace}%
+        \renewcommand*{\multinamedelim}{\addcomma\addspace}%
         \renewcommand*{\finalnamedelim}{\addspace e \addspace}%
         \parencite[][p. #1, grifo do autor]{#2}%
       \endgroup%
@@ -98,7 +98,7 @@
   \IfNoValueT{#1}{%
     {\protected\def\mkbibnamefamily##1{\MakeTextUppercase{##1}}%
       \begingroup%
-        \renewcommand*{\multinamedelim}{\addspace e \addspace}%
+        \renewcommand*{\multinamedelim}{\addcomma\addspace}%
         \renewcommand*{\finalnamedelim}{\addspace e \addspace}%
         \parencite[][grifo do autor]{#2}%
       \endgroup%
@@ -109,14 +109,14 @@
 \NewDocumentCommand{\citacaodiretanotexto}{ o m }{%
   \IfValueT{#1}{%
     \begingroup%
-      \renewcommand*{\multinamedelim}{\addspace e \addspace}%
+      \renewcommand*{\multinamedelim}{\addcomma\addspace}%
       \renewcommand*{\finalnamedelim}{\addspace e \addspace}%
       \textcite[#1]{#2}%
     \endgroup%
   }%
   \IfNoValueT{#1}{%
     \begingroup%
-      \renewcommand*{\multinamedelim}{\addspace e \addspace}%
+      \renewcommand*{\multinamedelim}{\addcomma\addspace}%
       \renewcommand*{\finalnamedelim}{\addspace e \addspace}%
       \textcite{#2}%
     \endgroup%
@@ -126,7 +126,7 @@
 \NewDocumentCommand{\citacaoindireta}{ m }{%
     {\protected\def\mkbibnamefamily##1{\MakeTextUppercase{##1}}%
       \begingroup%
-        \renewcommand*{\multinamedelim}{\addspace e \addspace}%
+        \renewcommand*{\multinamedelim}{\addcomma\addspace}%
         \renewcommand*{\finalnamedelim}{\addspace e \addspace}%
         \parencite{#1}%
       \endgroup%
@@ -135,7 +135,7 @@
 
 \NewDocumentCommand{\citacaoindiretanotexto}{ m }{%
   \begingroup%
-    \renewcommand*{\multinamedelim}{\addspace e \addspace}%
+    \renewcommand*{\multinamedelim}{\addcomma\addspace}%
     \renewcommand*{\finalnamedelim}{\addspace e \addspace}%
     \textcite{#1}%
   \endgroup%

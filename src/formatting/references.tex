@@ -9,6 +9,10 @@
 \DeclareNameAlias{sortname}{family-given}
 \DeclareDelimFormat{nameyeardelim}{\addcomma\space}
 
+\DefineBibliographyStrings{brazil}{
+  andothers = {\textit{et al.}},
+}
+
 \newbibmacro*{title+subtitle}{%
   \printfield{title}%
   \ifbibstring{\thefield{subtitle}}{}%

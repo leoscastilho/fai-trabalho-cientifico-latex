@@ -22,21 +22,24 @@
 \makeatother
 
 % Long direct citation environment
-\newenvironment{citacaodiretalonga}
-{\par\addvspace{\baselineskip}%
- \begingroup
- \list{}{\leftmargin=4cm
+\newenvironment{citacaodiretalonga}{
+  % \par\addvspace{\baselineskip}%
+  \begingroup
+  \list{}{\leftmargin=4cm
          \rightmargin=0pt
          \parsep=0pt
          \itemsep=0pt
          \topsep=0pt}
- \item\relax
- \singlespacing
- \fontsize{10}{12}\selectfont
- \justifying}
-{\endlist
- \endgroup
- \par\addvspace{\baselineskip}}
+  \item\relax
+  \singlespacing
+  \fontsize{10}{12}\selectfont
+  \justifying
+}
+{
+  \endlist
+  \endgroup
+  % \par\addvspace{\baselineskip}
+}
 
 % Portuguese aliases for citation commands
 \NewDocumentCommand{\citacaodecitacao}{ m m }{%

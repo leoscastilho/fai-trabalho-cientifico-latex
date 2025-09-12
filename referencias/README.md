@@ -128,7 +128,7 @@ Segundo \citacaoindiretanotexto{rubio1999psicologia}, a psicologia do esporte é
 ### 6. `\citacaodiretagrifodoautor[página]{chave}`
 **Uso**: Citação direta com grifo do autor original
 ```latex
-"O esporte é \underline{fundamental}" \citacaodiretagrifodoautor[20]{sanches2011pratica}.
+"O esporte é \underline{fundamental}" \citacaodiretagrifodoautor[20]{sancheserubio2011}.
 ```
 **Resultado**: "O esporte é <ins>fundamental</ins>" (SANCHES; RUBIO, 2011, p. 20, grifo do autor).
 

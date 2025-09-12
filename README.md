@@ -1,3 +1,9 @@
+# Importar atualizações da formatação:
+Quando houver alterações na formatação no repositório original, basta rodar o comando abaixo:
+```bash
+git subtree pull --prefix=src/formatting original main --squash
+```
+
 # Template LaTeX - Diretrizes de Elaboração de Trabalho Científico da FAI
 
 Este é um template LaTeX completo para elaboração de trabalhos científicos seguindo as diretrizes da Faculdade de Americana (FAI). O sistema é automatizado e permite a criação de monografias, relatórios de estágio e trabalhos acadêmicos de forma padronizada.

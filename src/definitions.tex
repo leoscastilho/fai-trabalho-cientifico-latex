@@ -24,34 +24,65 @@
     \pagestyle{numbered}
 }{}
 
-% Definições por tipos de conteúdo
+% --- 1. Define boxes for ALL variable-height sections ---
+\newsavebox{\headerbox}
+\newsavebox{\authorbox}
+\newsavebox{\footerbox}
+
+% The Environment Definition
 \newenvironment{CapaOuFalsaFolhaDeRosto}{
     \pagenumbering{roman}
     \pagestyle{numbered}
     \setcounter{page}{1}
-    \thispagestyle{empty} % Remove numeração da primeira página
+    \thispagestyle{empty}
+    %
+    % --- 2. Capture ALL sections into their respective boxes to measure them ---
+    \begin{lrbox}{\headerbox}
+        \begin{minipage}{\textwidth}
+            \centering
+            \textbf{\instituicao} \\
+            \textbf{\curso}
+        \end{minipage}
+    \end{lrbox}
+    %
+    \begin{lrbox}{\authorbox}
+        \begin{minipage}{\textwidth}
+            \centering
+            \imprimirautores
+        \end{minipage}
+    \end{lrbox}
+    %
+    \begin{lrbox}{\footerbox}
+        \begin{minipage}{\textwidth}
+            \centering
+            \textbf{\local} \\
+            \textbf{\ano}
+        \end{minipage}
+    \end{lrbox}
+    %
     \begin{center}
 }{
-    \textbf{\instituicao}
-
-    \textbf{\curso}
-
+    % --- 3. The new, perfectly symmetrical layout ---
+    
+    % --- Top Group (Real content + Phantoms of bottom content) ---
+    \usebox{\headerbox}
     \vfill
-
-    \imprimirautores
+    \usebox{\authorbox}
+    \phantom{\usebox{\footerbox}} % Phantom to balance the real footer
     
     \vfill
-
+    
+    % --- The Title, now in the absolute page center ---
     \textbf{\fontsize{12}{14}\selectfont\MakeUppercase{\titulo: \subtitulo}}
     
     \vfill
-
-    \vspace{\theauthorcount\baselineskip} % Mesmo espaço da lista de autores para que o título fique centralizado
     
+    % --- Bottom Group (Real content + Phantoms of top content) ---
+    \phantom{\usebox{\authorbox}} % Phantom to balance the real authors
     \vfill
-
-    \textbf{\local}\\
-    \textbf{\ano}
+    \phantom{\usebox{\headerbox}} % Phantom to balance the real header
+    \usebox{\footerbox}
+    
     \end{center}
     \newpage
 }
@@ -412,6 +443,7 @@
         }%
         \label{#3}% <-- Updated line
         \input{apendices/#1}%
+        \clearpage
     }{%
         \PackageWarning{appendix}{Arquivo apendices/#1.tex não encontrado}%
     }%
@@ -468,6 +500,7 @@
         }%
         \label{#3}% <-- This is the updated line
         \input{anexos/#1}%
+        \clearpage
     }{%
         \PackageWarning{appendix}{Arquivo anexos/#1.tex não encontrado}%
     }%

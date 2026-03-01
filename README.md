@@ -7,6 +7,13 @@ Quando houver alterações na formatação no repositório original, basta rodar
 git subtree pull --prefix=src/formatting original main --squash
 ```
 
+## 📂 Gerenciando Múltiplos Projetos
+Se você deseja usar este repositório como base para todos os seus trabalhos acadêmicos e mantê-los todos sincronizados com a formatação oficial, veja o guia:
+
+👉 **[Como usar em múltiplos projetos (Submódulos)](COMO_USAR_MULTIPLOS_PROJETOS.md)**
+
+---
+
 # Template LaTeX - Diretrizes de Elaboração de Trabalho Científico da FAI
 
 Este é um template LaTeX completo para elaboração de trabalhos científicos seguindo as diretrizes da Faculdade de Americana (FAI). O sistema é automatizado e permite a criação de monografias, relatórios de estágio e trabalhos acadêmicos de forma padronizada.

@@ -1,3 +1,6 @@
+# Instalação:
+Acesse [`instalacao.md`](instalacao.md) para detalhes de como instalar as dependências necessárias para esse projeto.
+
 # Importar atualizações da formatação:
 Quando houver alterações na formatação no repositório original, basta rodar o comando abaixo:
 ```bash

@@ -45,14 +45,21 @@ Isso baixará a versão mais recente da pasta `src/` e `config/` do repositório
 - **Facilidade**: Correções no template são aplicadas a todos os projetos com um único comando.
 - **Organização**: Seus arquivos de texto ficam limpos na raiz do projeto, enquanto a "bagunça" do código LaTeX fica escondida na pasta `template/`.
 
-## 4. Observações Importantes
+## 4. Requisitos por Sistema Operacional
 
-- **Git**: O novo projeto já vem inicializado com Git. Lembre-se de fazer o seu primeiro commit após criar o projeto:
-  ```bash
-  git add .
-  git commit -m "Initial commit: Setup with FAI template"
-  ```
-- **Links Simbólicos no Windows**: Se você estiver usando Windows, certifique-se de executar o terminal como Administrador ou ter o "Modo de Desenvolvedor" ativado para que os links simbólicos funcionem corretamente.
+### Linux e macOS
+O script funciona nativamente. Certifique-se apenas de que ele possui permissão de execução:
+```bash
+chmod +x new_project.sh
+```
+
+### Windows
+O script **requer o Git Bash** (instalado junto com o Git para Windows). Para que a sincronização (links simbólicos) funcione corretamente:
+1.  **Ative o Modo de Desenvolvedor**: Vá em Configurações > Privacidade e Segurança > Para incorporadores > **Modo de Desenvolvedor** (Ative).
+2.  **Use o Git Bash**: Clique com o botão direito na pasta do template e selecione "Git Bash Here".
+3.  Execute o script normalmente: `./new_project.sh Meu_Projeto`.
+
+*Nota: Se o Modo de Desenvolvedor não estiver ativo, você precisará abrir o Git Bash como Administrador.*
 
 ---
 

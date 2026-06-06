@@ -210,6 +210,87 @@
 
 \DeclareFieldFormat[article]{journaltitle}{\mkbibbold{#1}}
 
+% =============================================================================
+% Incollection: parte de monografia (capítulo/artigo em livro organizado)
+% NBR 6023:2025, seção 7.3
+% Formato: AUTOR DA PARTE. Título da parte. In: ORGANIZADOR (org.). Título do
+%          livro: subtítulo. Edição. Local: Editora, ano. v. X, cap. Y, p. N-M.
+% =============================================================================
+\DeclareFieldFormat[incollection]{title}{#1}                 % part title not bold
+\DeclareFieldFormat[incollection]{booktitle}{\mkbibbold{#1}} % book title bold
+\DeclareFieldFormat[incollection]{pages}{p\adddot\space#1}
+\DeclareFieldFormat[incollection]{volume}{v\adddot\space#1}
+\DeclareFieldFormat[incollection]{chapter}{cap\adddot\space#1}
+
+\newbibmacro*{booktitle+booksubtitle}{%
+  \printfield{booktitle}%
+  \iffieldundef{booksubtitle}
+    {}
+    {\setunit{\addcolon\space}%
+     \printfield{booksubtitle}}}
+
+% Organizadores do todo: SOBRENOME, N.; SOBRENOME, N. (org.)
+% editortype padrão é "org"; use editortype = {ed}, {coord}, {comp}... para mudar
+\newbibmacro*{incollection:organizers}{%
+  \printnames[family-given]{editor}%
+  \setunit{\addspace}%
+  \printtext{(\iffieldundef{editortype}{org}{\thefield{editortype}}\adddot)}}
+
+% Após "In:": bookauthor (quando o todo tem autor próprio) ou editor + (org.)
+\newbibmacro*{incollection:in+names}{%
+  \printtext{In\addcolon\space}%
+  \ifnameundef{bookauthor}
+    {\ifnameundef{editor}
+       {}
+       {\usebibmacro{incollection:organizers}\newunit}}
+    {\printnames[family-given]{bookauthor}\newunit}}
+
+% Local: Editora, ano (com [S.l.]/[S.n.], mesmo estilo do driver de book)
+\newbibmacro*{incollection:location+publisher+year}{%
+  \iflistundef{location}
+    {\iflistundef{publisher}
+        {\printtext{[S.l.:S.n.]}}
+        {\printtext{[S.l.]}\setunit*{\addcolon\space}%
+         \printlist{publisher}}}
+    {\printlist{location}%
+     \iflistundef{publisher}
+        {\setunit*{\addcolon\space}\printtext{[S.n.]}}
+        {\setunit*{\addcolon\space}\printlist{publisher}}}%
+  \setunit*{\addcomma\space}%
+  \usebibmacro{date+extradate}}
+
+\DeclareBibliographyDriver{incollection}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{author/editor+others/translator+others}%
+  \setunit{\labelnamepunct}\newblock
+  \usebibmacro{title+subtitle}%
+  \newunit\newblock
+  \usebibmacro{incollection:in+names}%
+  \usebibmacro{booktitle+booksubtitle}%
+  \newunit
+  \printfield[edition]{edition}%
+  \newunit
+  \usebibmacro{incollection:location+publisher+year}%
+  \newunit\newblock
+  \printfield{volume}%
+  \setunit{\addcomma\space}%
+  \printfield{chapter}%
+  \setunit{\addcomma\space}%
+  \printfield{pages}%
+  \newunit\newblock
+  \iftoggle{bbx:isbn}
+    {\printfield{isbn}}
+    {}%
+  \newunit\newblock
+  \usebibmacro{doi+eprint+url}%
+  \newunit\newblock
+  \printfield{note}%
+  \newunit\newblock
+  \usebibmacro{addendum+pubstate}%
+  \usebibmacro{finentry}%
+}
+
 % Bibliography heading
 \defbibheading{bibliography}{%
   \begin{center}

@@ -75,7 +75,31 @@ Todas as referências bibliográficas devem ser cadastradas no arquivo `referenc
 }
 ```
 
-### 5. Recursos Online (`@online`)
+### 5. Capítulo/Artigo em Livro Organizado (`@incollection`)
+Para partes de monografia (NBR 6023:2025, seção 7.3): artigo ou capítulo publicado em livro organizado por alguém (coletânea), sem periodicidade.
+```bibtex
+@incollection{romano1996imagens,
+  author       = {Romano, Giovanni},
+  title        = {Imagens da juventude na era moderna},
+  editor       = {Levi, G. and Schmidt, J.},
+  editortype   = {org},
+  booktitle    = {História dos jovens 2},
+  booksubtitle = {a época contemporânea},
+  publisher    = {Companhia das Letras},
+  address      = {São Paulo},
+  year         = {1996},
+  pages        = {7--16}
+}
+```
+**Resultado**: ROMANO, Giovanni. Imagens da juventude na era moderna. In: LEVI, G.; SCHMIDT, J. (org.). **História dos jovens 2**: a época contemporânea. São Paulo: Companhia das Letras, 1996. p. 7-16.
+
+Campos opcionais:
+- `editortype = {org}` (padrão), `{ed}`, `{coord}`, `{comp}` — designação dos responsáveis pelo todo
+- `bookauthor` — use no lugar de `editor` quando o livro tem autor próprio (ex.: capítulo de livro do mesmo autor); nesse caso a designação "(org.)" não é impressa
+- `volume`, `chapter` — impressos como "v. 1, cap. 7" antes das páginas
+- `edition`, `isbn`, `url`, `note` (para "Acesso em: ...")
+
+### 6. Recursos Online (`@online`)
 ```bibtex
 @online{pucrs_psicologia_esporte,
   author    = {{PUCRS}},

@@ -84,7 +84,7 @@
     {\printtext{\printfield{labelyear}%
      \printfield{extradate}\adddot}}}
 
-\DeclareFieldFormat{edition}{#1\adddot ed\adddot}
+\DeclareFieldFormat{edition}{#1\adddot\space ed\adddot}
 \DeclareFieldFormat[book]{pages}{#1\addspace p\adddot}
 
 % Book driver
@@ -250,7 +250,7 @@
   \iflistundef{location}
     {\iflistundef{publisher}
         {\printtext{[S.l.:S.n.]}}
-        {\printtext{[S.l.]}\setunit*{\addcolon\space}%
+        {\printtext{[S.l.]:\space}%
          \printlist{publisher}}}
     {\printlist{location}%
      \iflistundef{publisher}
@@ -274,9 +274,9 @@
   \usebibmacro{incollection:location+publisher+year}%
   \newunit\newblock
   \printfield{volume}%
-  \setunit{\addcomma\space}%
+  \setunit*{\addcomma\space}%
   \printfield{chapter}%
-  \setunit{\addcomma\space}%
+  \setunit*{\addcomma\space}%
   \printfield{pages}%
   \newunit\newblock
   \iftoggle{bbx:isbn}

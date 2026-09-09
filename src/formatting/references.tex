@@ -7,10 +7,13 @@
 % ABNT format configurations
 \DeclareFieldFormat{title}{\textbf{#1}}
 \DeclareNameAlias{sortname}{family-given}
-\DeclareDelimFormat{nameyeardelim}{\addcomma\space}
+% Vírgula entre autor e ano. \addcomma é suprimido por biblatex quando o
+% último sinal impresso foi um ponto (ex.: "et al."); nesse caso a vírgula
+% é inserida explicitamente para obter "(AUTOR et al., 2025)".
+\DeclareDelimFormat{nameyeardelim}{\ifpunctmark{.}{,\space}{\addcomma\space}}
 
 \DefineBibliographyStrings{brazil}{
-  andothers = {\textit{et al.}},
+  andothers = {\textit{et\addabbrvspace al\adddot}},
 }
 
 \newbibmacro*{title+subtitle}{%
@@ -76,6 +79,8 @@
      \usebibmacro{name:hook}{#1}%
      \mkbibnamefamily{\MakeUppercase{#1}}\isdot
      \ifblank{#2}{}{\revsdnamepunct\bibnamedelimd\mkbibnamegiven{#2}\isdot}%
+     % Partícula (de, da, dos...) após o prenome, conforme ABNT: SILVA, V. A. de
+     \ifblank{#3}{}{\bibnamedelimd\mkbibnameprefix{#3}\isdot}%
      \ifblank{#4}{}{\bibnamedelimd\mkbibnamesuffix{#4}\isdot}}}
 
 \renewbibmacro*{date+extradate}{%
